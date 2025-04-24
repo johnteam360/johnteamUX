@@ -6,10 +6,26 @@ const url = require('url');
 // URL de destino para el webhook de n8n
 const N8N_WEBHOOK_URL = 'https://n8npro.johnteamzai.com/webhook/Entrada_datos';
 
+// Lista de dominios permitidos
+const ALLOWED_ORIGINS = [
+  'https://johnteamzai.com',
+  'https://www.johnteamzai.com',
+  'http://johnteamzai.com',
+  'http://www.johnteamzai.com',
+  'http://localhost:3000',
+  'http://127.0.0.1:3000'
+];
+
 // Crear servidor HTTP
 const server = http.createServer((req, res) => {
   // Registrar cada petición
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  
+  // Obtener el origen de la solicitud
+  const origin = req.headers.origin || '';
+  
+  // Determinar si el origen está permitido
+  const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : '*';
   
   // Evitar que se envíen múltiples respuestas a una misma petición
   let responseSent = false;
@@ -18,7 +34,13 @@ const server = http.createServer((req, res) => {
   const sendResponse = (statusCode, contentType, data) => {
     if (!responseSent) {
       responseSent = true;
-      res.writeHead(statusCode, {'Content-Type': contentType, 'Access-Control-Allow-Origin': '*'});
+      res.writeHead(statusCode, {
+        'Content-Type': contentType,
+        'Access-Control-Allow-Origin': allowedOrigin,
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Accept, Authorization, X-Requested-With',
+        'Access-Control-Max-Age': '86400' // 24 horas en segundos
+      });
       res.end(data);
     }
   };
