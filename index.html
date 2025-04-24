@@ -44,52 +44,68 @@
     
     <header id="hero" class="section-padding">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-main-content">
-                    <div class="hero-text">
-                        <div class="hero-title-container">
-                            <h1 class="hero-title">Consultoría Estratégica en <span class="highlight-text">IA</span> y <span class="highlight-text">UX/UI</span> para Startups LATAM</h1>
-                            <div class="profile-image-container">
-                                <img src="imagen/perfil.png" alt="John Briceño" class="profile-image">
-                                <div class="profile-glow"></div>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <div class="hero-main-content">
+                            <div class="hero-text">
+                                <div class="hero-title-container">
+                                    <h1 class="hero-title">Consultoría Estratégica en <span class="highlight-text">IA</span> y <span class="highlight-text">UX/UI</span> para Startups LATAM</h1>
+                                    <div class="profile-image-container">
+                                        <img src="imagen/perfil.png" alt="John Briceño" class="profile-image">
+                                        <div class="profile-glow"></div>
+                                    </div>
+                                </div>
+                                <p class="hero-subtitle">Tu página web es como el frente de tu casa y la experiencia de usuario es el pasillos por donde invitas a pasar a tu cliente. ¿Quién quiere andar en pasillos mal construidos que dan una experiencia negativa? Mejora la primera impresión y el recorrido de tus visitantes con un diseño estratégico.</p>
+                                
+                                <div class="hero-buttons">
+                                    <a href="#contacto" class="button-principal">¡Contáctame!</a>
+                                    <a href="#" class="button-secundario">Más Información</a>
+                                </div>
                             </div>
-                        </div>
-                        <p class="hero-subtitle">Tu página web es como el frente de tu casa y la experiencia de usuario es el pasillos por donde invitas a pasar a tu cliente. ¿Quién quiere andar en pasillos mal construidos que dan una experiencia negativa? Mejora la primera impresión y el recorrido de tus visitantes con un diseño estratégico.</p>
                         
-                        <div class="hero-buttons">
-                            <a href="#contacto" class="button-principal">¡Contáctame!</a>
-                            <a href="#" class="button-secundario">Más Información</a>
-                        </div>
-                    </div>
-                
-                <div class="profile-info">
-                    <div>
-                        <p class="profile-name">John Briceño - Consultor AI | UX/UI | Frontend Developer</p>
-                    </div>
-                </div>
-                
-                <!-- Avatar 3D -->
-                <div class="hero-avatar-container">
-                    <div class="hero-avatar">
-                        <div class="avatar-glow"></div>
-                        <div class="avatar-body">
-                            <div class="avatar-head">
-                                <div class="avatar-glasses"></div>
-                                <div class="avatar-face"></div>
+                        <div class="profile-info">
+                            <div>
+                                <p class="profile-name">John Briceño - Consultor AI | UX/UI | Frontend Developer</p>
                             </div>
-                            <div class="avatar-torso"></div>
-                            <div class="avatar-arm avatar-arm-left"></div>
-                            <div class="avatar-arm avatar-arm-right"></div>
                         </div>
-                        <div class="avatar-floating-elements">
-                            <div class="floating-icon floating-icon-1"><i class="fas fa-code"></i></div>
-                            <div class="floating-icon floating-icon-2"><i class="fas fa-lightbulb"></i></div>
-                            <div class="floating-icon floating-icon-3"><i class="fas fa-brain"></i></div>
-                            <div class="floating-icon floating-icon-4"><i class="fas fa-chart-line"></i></div>
-                            <div class="floating-icon floating-icon-5"><i class="fas fa-robot"></i></div>
+                        
+                        <!-- Avatar 3D -->
+                        <div class="hero-avatar-container">
+                            <!-- Burbuja de chat sobre el avatar -->
+                            <div class="chat-bubble" id="avatarChatBubble">
+                                <p>👋 ¡Hola! ¿En qué puedo ayudarte hoy?</p>
+                                <div class="chat-bubble-arrow"></div>
+                            </div>
+                            <div class="hero-avatar">
+                                <div class="avatar-glow"></div>
+                                <div class="avatar-body">
+                                    <div class="avatar-head">
+                                        <div class="avatar-glasses"></div>
+                                        <div class="avatar-face"></div>
+                                    </div>
+                                    <div class="avatar-torso"></div>
+                                    <div class="avatar-arm avatar-arm-left"></div>
+                                    <div class="avatar-arm avatar-arm-right"></div>
+                                </div>
+                                <div class="avatar-floating-elements">
+                                    <div class="floating-icon floating-icon-1"><i class="fas fa-code"></i></div>
+                                    <div class="floating-icon floating-icon-2"><i class="fas fa-lightbulb"></i></div>
+                                    <div class="floating-icon floating-icon-3"><i class="fas fa-brain"></i></div>
+                                    <div class="floating-icon floating-icon-4"><i class="fas fa-chart-line"></i></div>
+                                    <div class="floating-icon floating-icon-5"><i class="fas fa-robot"></i></div>
+                                </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-6">
+                    <div class="hero-image-container">
+                        <div class="hero-image">
+                            <!-- Imagen grande de perfil eliminada -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -277,13 +293,26 @@
                         headers: {
                             'Content-Type': 'application/json',
                             'Accept': 'application/json',
-                            'Access-Control-Allow-Origin': '*'
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+                            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                            'Cache-Control': 'no-cache, no-store, must-revalidate'
                         },
                         body: JSON.stringify(data),
                         mode: 'cors',
                     });
                     
-                    console.log('Respuesta del webhook:', response);
+                    console.log('Respuesta del webhook:', response.status, response.statusText);
+                    
+                    let responseData;
+                    try {
+                        // Intentar parsear la respuesta como JSON
+                        responseData = await response.json();
+                        console.log('Datos de respuesta recibidos:', responseData);
+                    } catch (parseError) {
+                        console.log('La respuesta no es JSON:', parseError);
+                        responseData = { status: response.status, message: response.statusText };
+                    }
                     
                     // Siempre mostrar el mensaje de éxito incluso si el webhook falla
                     // ya que el problema podría ser de CORS pero queremos la buena experiencia de usuario
@@ -294,7 +323,7 @@
                     // Inicializar el objeto hipnótico 3D después de mostrar el mensaje de éxito
                     initHypnoticObject();
                     
-                    return true;
+                    return responseData;
                 } catch (error) {
                     console.error('Error al enviar datos:', error);
                     
@@ -306,7 +335,7 @@
                     // Inicializar el objeto hipnótico 3D después de mostrar el mensaje de éxito
                     initHypnoticObject();
                     
-                    return false;
+                    return { error: true, message: error.message };
                 }
             }
             
@@ -938,5 +967,43 @@
         
     });
     </script>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-widget-container" id="chatContainer">
+            <div class="chat-header">
+                <div class="chat-avatar">
+                    <img src="imagen/Avatar.jpeg" alt="Zetai" class="chat-avatar-img">
+                </div>
+                <div class="chat-header-info">
+                    <h3>Chatea con Zetai</h3>
+                    <p>Asistente Virtual</p>
+                </div>
+                <button class="chat-close" id="chatClose">×</button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message-received">
+                    <p>¡Hola! Soy Zetai, ¿en qué puedo ayudarte hoy?</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Escribe tu mensaje...">
+                <button id="chatSendBtn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        <button class="chat-toggle" id="chatToggle">
+            <div class="chat-notification" id="chatNotification">1</div>
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <!-- Flecha de regreso al inicio -->
+    <a href="#" id="back-to-top" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 </body>
 </html> 
