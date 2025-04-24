@@ -3,9 +3,8 @@ const http = require('http');
 const https = require('https');
 const url = require('url');
 
-// URL de destino para el webhook de n8n - ACTUALIZADA
-// La URL debe coincidir exactamente con la URL registrada en n8n
-const N8N_WEBHOOK_URL = 'https://n8npro.johnteamzai.com/webhook-test/b3d86a61-b8c5-4f70-a2ce-50ff2c062f74';
+// URL de destino para el webhook de n8n - RESTAURADA A LA ORIGINAL
+const N8N_WEBHOOK_URL = 'https://n8npro.johnteamzai.com/webhook/Entrada_datos';
 
 // Lista de dominios permitidos
 const ALLOWED_ORIGINS = [
@@ -25,28 +24,22 @@ const server = http.createServer((req, res) => {
   // Obtener el origen de la solicitud
   const origin = req.headers.origin || '';
   
-  // Determinar si el origen está permitido
-  const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : '*';
+  // Determinar si el origen está permitido - SIEMPRE PERMITIR PARA DEPURACIÓN
+  const allowedOrigin = '*'; // Permitir todos los orígenes para depuración
   
-  // Evitar que se envíen múltiples respuestas a una misma petición
-  let responseSent = false;
-  
-  // Función para enviar respuesta de forma segura
+  // Función para enviar respuesta con CORS amplio para depuración
   const sendResponse = (statusCode, contentType, data) => {
-    if (!responseSent) {
-      responseSent = true;
-      res.writeHead(statusCode, {
-        'Content-Type': contentType,
-        'Access-Control-Allow-Origin': allowedOrigin,
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Accept, Authorization, X-Requested-With',
-        'Access-Control-Max-Age': '86400' // 24 horas en segundos
-      });
-      res.end(data);
-    }
+    res.writeHead(statusCode, {
+      'Content-Type': contentType,
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, DELETE',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Max-Age': '86400'
+    });
+    res.end(data);
   };
   
-  // Configurar cabeceras CORS para todo
+  // Manejar preflight OPTIONS de forma permisiva
   if (req.method === 'OPTIONS') {
     sendResponse(204, 'text/plain', '');
     return;
@@ -90,39 +83,7 @@ const server = http.createServer((req, res) => {
     return;
   }
   
-  // Endpoint para mensajes simulados (para pruebas sin n8n)
-  if (req.url === '/mensaje-simulado' && req.method === 'POST') {
-    let body = '';
-    
-    req.on('data', chunk => {
-      body += chunk.toString();
-    });
-    
-    req.on('end', () => {
-      try {
-        const data = JSON.parse(body);
-        const mensaje = data.message || 'sin mensaje';
-        
-        // Simular respuesta personalizada para pruebas
-        sendResponse(200, 'application/json', JSON.stringify({
-          message: `¡Hola! Soy ZetAI. He recibido tu mensaje: "${mensaje}". ¿En qué puedo ayudarte hoy?`,
-          status: 'success',
-          timestamp: new Date().toISOString()
-        }));
-      } catch (e) {
-        sendResponse(400, 'application/json', JSON.stringify({
-          message: 'Error en el formato de la solicitud',
-          error: e.message,
-          status: 'error',
-          timestamp: new Date().toISOString()
-        }));
-      }
-    });
-    
-    return;
-  }
-  
-  // Proxy para n8n
+  // Proxy para n8n - simplificado y con mejor manejo de errores
   if ((req.url === '/proxy-n8n' || req.url === '/tu-endpoint') && req.method === 'POST') {
     console.log(`[${new Date().toISOString()}] Solicitud recibida para reenviar a n8n`);
     
@@ -140,18 +101,28 @@ const server = http.createServer((req, res) => {
         console.log(`[${new Date().toISOString()}] Mensaje recibido: ${parsedBody.message}`);
       } catch (e) {
         console.error(`[${new Date().toISOString()}] Error parseando JSON: ${e.message}`);
-        sendResponse(400, 'application/json', JSON.stringify({
+        sendResponse(200, 'application/json', JSON.stringify({
           message: 'Error en el formato de la solicitud',
           error: e.message,
-          status: 'error',
-          timestamp: new Date().toISOString()
+          status: 'error'
         }));
         return;
       }
       
-      // Intentar enviar a n8n
+      // Reenviar a n8n directamente
+      console.log(`[${new Date().toISOString()}] Reenviando a: ${N8N_WEBHOOK_URL}`);
+      
+      // Hacemos una solicitud fetch directa usando https para mejor control de errores
       const parsedUrl = url.parse(N8N_WEBHOOK_URL);
-      console.log(`[${new Date().toISOString()}] Intentando conectar a: ${parsedUrl.hostname}${parsedUrl.path}`);
+      
+      // Preparamos los datos para n8n
+      const postData = JSON.stringify({
+        message: parsedBody.message,
+        interaction: parsedBody.interaction || 'chat',
+        timestamp: new Date().toISOString(),
+        source: parsedBody.source || 'chat_widget',
+        userAgent: req.headers['user-agent'] || 'unknown'
+      });
       
       const options = {
         hostname: parsedUrl.hostname,
@@ -160,81 +131,82 @@ const server = http.createServer((req, res) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Content-Length': Buffer.byteLength(body)
+          'Content-Length': Buffer.byteLength(postData),
+          'User-Agent': 'ZetAI-Proxy/1.0',
+          'Accept': 'application/json'
         },
-        timeout: 8000 // 8 segundos de timeout
+        timeout: 10000
       };
       
-      const proxyReq = https.request(options, proxyRes => {
-        let proxyData = '';
+      // Crear la solicitud a n8n
+      const proxyReq = https.request(options, (proxyRes) => {
+        let responseData = '';
         
-        proxyRes.on('data', chunk => {
-          proxyData += chunk;
+        // Recopilar los datos de respuesta
+        proxyRes.on('data', (chunk) => {
+          responseData += chunk;
         });
         
+        // Cuando la respuesta esté completa
         proxyRes.on('end', () => {
-          console.log(`[${new Date().toISOString()}] Respuesta de n8n (${proxyRes.statusCode}): ${proxyData.substring(0, 200)}${proxyData.length > 200 ? '...' : ''}`);
+          console.log(`[${new Date().toISOString()}] Respuesta de n8n: ${proxyRes.statusCode}`);
           
-          if (proxyData) {
+          if (responseData) {
+            console.log(`[${new Date().toISOString()}] Datos recibidos de n8n: ${responseData}`);
+            
+            // Intentar analizar como JSON
             try {
-              // Verificar si es JSON válido
-              JSON.parse(proxyData);
-              sendResponse(200, 'application/json', proxyData);
-            } catch (e) {
-              console.error(`[${new Date().toISOString()}] La respuesta de n8n no es JSON válido: ${e.message}`);
-              
-              // Si no es JSON válido, envolverlo
+              const jsonResponse = JSON.parse(responseData);
+              // Enviar la respuesta tal cual
+              sendResponse(200, 'application/json', responseData);
+            } catch (err) {
+              // Si no es JSON, envolver en un objeto JSON
               sendResponse(200, 'application/json', JSON.stringify({
-                message: proxyData,
-                status: 'success',
-                timestamp: new Date().toISOString()
+                message: responseData,
+                status: 'success'
               }));
             }
           } else {
-            console.warn(`[${new Date().toISOString()}] No se recibieron datos de n8n`);
+            // Si no hay datos, enviar un mensaje de error
             sendResponse(200, 'application/json', JSON.stringify({
-              message: 'No se recibió respuesta de ZetAI',
-              status: 'error',
-              timestamp: new Date().toISOString()
+              message: 'La IA está ocupada. Por favor, inténtalo de nuevo en unos momentos.',
+              status: 'error'
             }));
           }
         });
       });
       
-      proxyReq.on('error', err => {
-        console.error(`[${new Date().toISOString()}] Error al conectar con n8n: ${err.message}`);
-        
-        // Si hay un error en la conexión, enviar un mensaje claro al usuario
+      // Manejar errores en la solicitud
+      proxyReq.on('error', (err) => {
+        console.error(`[${new Date().toISOString()}] Error en la solicitud a n8n: ${err.message}`);
         sendResponse(200, 'application/json', JSON.stringify({
-          message: `Error al conectar con n8n: ${err.message}. Por favor, verifica la configuración de n8n.`,
+          message: 'Error en la comunicación con la IA. Por favor, inténtalo de nuevo más tarde.',
           status: 'error',
-          timestamp: new Date().toISOString()
+          error: err.message
         }));
       });
       
+      // Timeout
       proxyReq.on('timeout', () => {
-        console.error(`[${new Date().toISOString()}] Timeout al conectar con n8n`);
+        console.error(`[${new Date().toISOString()}] Timeout en la solicitud a n8n`);
         proxyReq.destroy();
-        
-        // Si hay timeout, enviar un mensaje claro al usuario
         sendResponse(200, 'application/json', JSON.stringify({
-          message: 'La conexión con n8n ha excedido el tiempo de espera. Por favor, verifica que n8n esté funcionando correctamente.',
+          message: 'La IA está tardando demasiado en responder. Por favor, inténtalo de nuevo más tarde.',
           status: 'error',
-          timestamp: new Date().toISOString()
+          error: 'timeout'
         }));
       });
       
-      // Enviar datos a n8n
-      console.log(`[${new Date().toISOString()}] Enviando datos a n8n: ${body}`);
-      proxyReq.write(body);
+      // Enviar los datos
+      proxyReq.write(postData);
       proxyReq.end();
     });
     
     return;
   }
   
-  // Cualquier otra ruta - 404
-  sendResponse(404, 'text/plain', 'Not Found');
+  // Para cualquier otra ruta
+  sendResponse(404, 'text/plain', 'Not found');
 });
 
 // Puerto
