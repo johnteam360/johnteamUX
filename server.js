@@ -1,35 +1,66 @@
-// Servidor minimalista para el chat
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
+// Servidor ultra minimalista usando solo HTTP nativo
+const http = require('http');
 
-// Configuración básica para aceptar JSON y CORS
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
-// Ruta principal para comprobar que el servidor funciona
-app.get('/', function(req, res) {
-  res.send('Servidor ZetAI funcionando correctamente');
-});
-
-// Endpoint simple para el chat (respuesta directa)
-app.post('/tu-endpoint', function(req, res) {
-  console.log('Mensaje recibido:', req.body);
+const server = http.createServer((req, res) => {
+  // Configurar cabeceras CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   
-  // Respuesta simple
-  res.json({
-    message: `¡Hola! Soy ZetAI. Recibí tu mensaje: "${req.body.message || 'sin mensaje'}"`,
-    status: "success",
-    timestamp: new Date().toISOString()
-  });
+  // Manejar solicitud OPTIONS (preflight)
+  if (req.method === 'OPTIONS') {
+    res.writeHead(204);
+    res.end();
+    return;
+  }
+  
+  // Ruta principal
+  if (req.url === '/' && req.method === 'GET') {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Servidor ZetAI funcionando correctamente');
+    return;
+  }
+  
+  // Ruta para el endpoint de chat
+  if (req.url === '/tu-endpoint' && req.method === 'POST') {
+    let body = '';
+    
+    // Recoger datos del body
+    req.on('data', chunk => {
+      body += chunk.toString();
+    });
+    
+    // Procesar cuando se complete
+    req.on('end', () => {
+      console.log('Mensaje recibido:', body);
+      
+      let mensaje = 'sin mensaje';
+      try {
+        const data = JSON.parse(body);
+        mensaje = data.message || mensaje;
+      } catch (e) {
+        console.error('Error parseando JSON:', e);
+      }
+      
+      // Respuesta
+      res.writeHead(200, {'Content-Type': 'application/json'});
+      res.end(JSON.stringify({
+        message: `¡Hola! Soy ZetAI. Recibí tu mensaje: "${mensaje}"`,
+        status: 'success',
+        timestamp: new Date().toISOString()
+      }));
+    });
+    
+    return;
+  }
+  
+  // Ruta no encontrada
+  res.writeHead(404, {'Content-Type': 'text/plain'});
+  res.end('Not Found');
 });
 
 // Puerto
-const listener = app.listen(process.env.PORT, function() {
-  console.log('Servidor funcionando en puerto ' + listener.address().port);
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Servidor funcionando en puerto ${PORT}`);
 }); 
