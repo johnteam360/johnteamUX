@@ -2354,7 +2354,7 @@ main > section:first-child {
 
 .chat-bubble {
     position: absolute;
-    top: -110px;
+    top: -70px; /* Cambiado de -110px a -70px para moverlo más abajo */
     left: 50%;
     transform: translateX(-50%) translateY(20px);
     background: linear-gradient(135deg, #1e293b, #0f172a);
@@ -2418,7 +2418,7 @@ main > section:first-child {
 /* Media query para dispositivos móviles */
 @media (max-width: 768px) {
     .chat-bubble {
-        top: -90px;
+        top: -60px; /* Cambiado de -90px a -60px para móviles */
         max-width: 230px;
         padding: 12px 16px;
         font-size: 14px;
@@ -2432,7 +2432,7 @@ main > section:first-child {
 /* Media query para dispositivos muy pequeños */
 @media (max-width: 576px) {
     .chat-bubble {
-        top: -80px;
+        top: -50px; /* Cambiado de -80px a -50px para dispositivos muy pequeños */
         max-width: 200px;
     }
 }
