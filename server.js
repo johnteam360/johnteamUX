@@ -15,21 +15,35 @@ app.use(cors({
 app.use(bodyParser.json()); // Para JSON
 app.use(bodyParser.urlencoded({ extended: true })); // Para formularios HTML
 
+// *** Middleware de Registro Adicional ***
+app.use((req, res, next) => {
+  console.log(`--> Petición entrante: ${req.method} ${req.path}`);
+  if (req.path === '/tu-endpoint' && req.method === 'POST') {
+    console.log('--> Intento de llegar al manejador POST /tu-endpoint');
+    // Opcional: Registrar headers para más detalles
+    // console.log('--> Headers Recibidos:', JSON.stringify(req.headers, null, 2)); 
+  }
+  next(); // Pasa al siguiente middleware o ruta
+});
+// ***********************************
+
 // Ruta principal para verificar que el servidor está funcionando
 app.get('/', function(request, response) {
   response.send('¡El servidor para ZetAI está funcionando correctamente!');
 });
 
 // Endpoint para el chat
+console.log("--- Definiendo ruta POST /tu-endpoint ---"); // Log para ver si se define
 app.post('/tu-endpoint', function(request, response) {
+  console.log("!!! DENTRO DEL MANEJADOR POST /tu-endpoint !!!"); // Log para ver si entra aquí
   // Registrar los datos recibidos (para debugging)
   console.log("Recibí mensaje de chat. Body:", request.body);
   console.log("Headers:", request.headers);
   
   // Extraer el mensaje (podría venir en diferentes formatos)
   let mensaje = "Sin mensaje";
-  if (request.body) {
-    mensaje = request.body.message || request.body.mensaje || mensaje;
+  if (request.body && request.body.message) { // Verifica si existe body y message
+    mensaje = request.body.message;
   }
   
   // Simular una respuesta de ZetAI
