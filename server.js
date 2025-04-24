@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const fetch = require('node-fetch'); // Para hacer peticiones HTTP
+const https = require('https'); // Módulo nativo de Node.js
 const app = express();
 
 // URL del webhook de n8n
@@ -37,17 +37,134 @@ app.get('/', function(request, response) {
   response.send('¡El servidor para ZetAI está funcionando correctamente!');
 });
 
-// Endpoint para el chat (versión original)
-console.log("--- Definiendo ruta POST /tu-endpoint ---");
+// *** ENDPOINT PROXY PARA N8N (USANDO HTTPS NATIVO) ***
+console.log("--- Definiendo ruta proxy POST /proxy-chat ---");
+app.post('/proxy-chat', function(request, response) {
+  console.log("!!! DENTRO DEL MANEJADOR PROXY PARA N8N !!!");
+  console.log("Proxy: Datos recibidos:", request.body);
+  
+  // Si no hay mensaje, responder con error
+  if (!request.body || !request.body.message) {
+    return response.status(400).json({
+      message: "No se recibió un mensaje válido",
+      status: "error",
+      timestamp: new Date().toISOString()
+    });
+  }
+  
+  try {
+    // Parsear la URL para obtener host y path
+    const urlParts = new URL(N8N_WEBHOOK_URL);
+    
+    // Preparar los datos para enviar a n8n
+    const postData = JSON.stringify(request.body);
+    
+    // Opciones para la petición HTTPS
+    const options = {
+      hostname: urlParts.hostname,
+      port: 443, // HTTPS
+      path: urlParts.pathname,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(postData)
+      },
+      timeout: 10000 // 10 segundos de timeout
+    };
+    
+    console.log("Proxy: Configurando petición a:", urlParts.hostname, urlParts.pathname);
+    
+    // Crear la petición a n8n
+    const proxyReq = https.request(options, (proxyRes) => {
+      console.log(`Proxy: Respuesta recibida con status: ${proxyRes.statusCode}`);
+      
+      // Si hubo un error en n8n
+      if (proxyRes.statusCode !== 200) {
+        console.error("Proxy: Error en la respuesta de n8n:", proxyRes.statusCode);
+        
+        // Respuesta de fallback en caso de error
+        return response.status(500).json({
+          message: "¡Hola! Estoy teniendo problemas para procesar tu mensaje en este momento. ¿Podrías intentarlo de nuevo?",
+          status: "error",
+          timestamp: new Date().toISOString()
+        });
+      }
+      
+      // Recoger los datos de la respuesta
+      let rawData = '';
+      proxyRes.on('data', (chunk) => { rawData += chunk; });
+      
+      // Cuando la respuesta está completa
+      proxyRes.on('end', () => {
+        try {
+          // Intentar parsear la respuesta como JSON
+          const parsedData = JSON.parse(rawData);
+          console.log("Proxy: Datos recibidos de n8n:", parsedData);
+          
+          // Enviar la respuesta al cliente
+          response.json(parsedData);
+        } catch (e) {
+          console.error("Proxy: Error al parsear JSON de respuesta:", e.message);
+          
+          // Si no se puede parsear, enviar respuesta de error
+          response.status(500).json({
+            message: "Error al procesar la respuesta del chat",
+            status: "error",
+            timestamp: new Date().toISOString()
+          });
+        }
+      });
+    });
+    
+    // Manejar errores de la petición
+    proxyReq.on('error', (e) => {
+      console.error("Proxy: Error de conexión a n8n:", e.message);
+      
+      // Respuesta de fallback en caso de error de conexión
+      response.status(200).json({
+        message: `¡Hola! Soy ZetAI (respuesta desde Glitch). Recibí tu mensaje: "${request.body.message}" pero tuve problemas para procesarlo.`,
+        status: "success",
+        timestamp: new Date().toISOString()
+      });
+    });
+    
+    // Manejar timeout
+    proxyReq.on('timeout', () => {
+      console.error("Proxy: Timeout en la conexión a n8n");
+      proxyReq.destroy();
+      
+      // Respuesta de fallback en caso de timeout
+      response.status(200).json({
+        message: `¡Hola! Soy ZetAI asistente virtual. En este momento estoy tardando más de lo normal en responder. Tu mensaje fue: "${request.body.message}"`,
+        status: "success",
+        timestamp: new Date().toISOString()
+      });
+    });
+    
+    // Enviar los datos a n8n
+    proxyReq.write(postData);
+    proxyReq.end();
+    
+  } catch (error) {
+    console.error("Proxy: Error en el manejo del proxy:", error.message);
+    
+    // Respuesta de fallback en caso de error general
+    response.status(200).json({
+      message: `¡Hola! Soy ZetAI respondiendo desde Glitch. Recibí tu mensaje: "${request.body.message}" pero tuve un problema técnico.`,
+      status: "success",
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// Endpoint para pruebas simples (sin n8n)
 app.post('/tu-endpoint', function(request, response) {
   console.log("!!! DENTRO DEL MANEJADOR POST /tu-endpoint !!!");
-  // Registrar los datos recibidos (para debugging)
   console.log("Recibí mensaje de chat. Body:", request.body);
-  console.log("Headers:", request.headers);
   
-  // Extraer el mensaje (podría venir en diferentes formatos)
+  // Extraer el mensaje
   let mensaje = "Sin mensaje";
-  if (request.body && request.body.message) { // Verifica si existe body y message
+  if (request.body && request.body.message) {
     mensaje = request.body.message;
   }
   
@@ -57,52 +174,6 @@ app.post('/tu-endpoint', function(request, response) {
     status: "success",
     timestamp: new Date().toISOString()
   });
-});
-
-// *** NUEVO ENDPOINT: PROXY PARA N8N ***
-console.log("--- Definiendo ruta proxy POST /proxy-chat ---");
-app.post('/proxy-chat', async function(request, response) {
-  console.log("!!! DENTRO DEL MANEJADOR PROXY PARA N8N !!!");
-  
-  try {
-    // Registrar los datos recibidos para debug
-    console.log("Proxy: Recibí mensaje para reenviar a n8n. Body:", request.body);
-    
-    // Enviar la petición a n8n
-    console.log("Proxy: Reenviando petición a:", N8N_WEBHOOK_URL);
-    const n8nResponse = await fetch(N8N_WEBHOOK_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(request.body)
-    });
-    
-    // Verificar si la respuesta es correcta
-    if (!n8nResponse.ok) {
-      console.error("Proxy: Error al comunicarse con n8n:", n8nResponse.status, n8nResponse.statusText);
-      return response.status(500).json({
-        message: "Error al comunicarse con el sistema de chat",
-        status: "error",
-        timestamp: new Date().toISOString()
-      });
-    }
-    
-    // Procesar la respuesta de n8n
-    const n8nData = await n8nResponse.json();
-    console.log("Proxy: Respuesta recibida de n8n:", n8nData);
-    
-    // Devolver la respuesta al cliente
-    response.json(n8nData);
-  } catch (error) {
-    console.error("Proxy: Error en la comunicación:", error.message);
-    response.status(500).json({
-      message: "Error en la comunicación con el sistema de chat: " + error.message,
-      status: "error",
-      timestamp: new Date().toISOString()
-    });
-  }
 });
 
 // Endpoint para el formulario
