@@ -135,7 +135,7 @@ const server = http.createServer((req, res) => {
           'User-Agent': 'ZetAI-Proxy/1.0',
           'Accept': 'application/json'
         },
-        timeout: 10000
+        timeout: 25000
       };
       
       // Crear la solicitud a n8n
