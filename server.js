@@ -146,34 +146,6 @@ const server = http.createServer((req, res) => {
         return;
       }
       
-      // En la versión de prueba, enviamos una respuesta inmediata simulada
-      // hasta que n8n esté funcionando correctamente
-      console.log(`[${new Date().toISOString()}] Enviando respuesta simulada (hasta que n8n esté configurado)`);
-      
-      const userMessage = parsedBody.message || '';
-      
-      // Crear respuesta basada en el mensaje recibido
-      let respuesta;
-      if (userMessage.toLowerCase().includes('hola') || userMessage.toLowerCase().includes('hi')) {
-        respuesta = "¡Hola! Soy ZetAI, tu asistente de automatización. ¿En qué puedo ayudarte hoy?";
-      } else if (userMessage.toLowerCase().includes('gracias') || userMessage.toLowerCase().includes('thanks')) {
-        respuesta = "¡De nada! Estoy aquí para ayudarte con tus necesidades de automatización.";
-      } else if (userMessage.toLowerCase().includes('ayuda') || userMessage.toLowerCase().includes('help')) {
-        respuesta = "Puedo ayudarte a automatizar procesos como: envío de emails, notificaciones, gestión de leads, y más. ¿Qué te gustaría automatizar?";
-      } else if (userMessage.toLowerCase().includes('precio') || userMessage.toLowerCase().includes('cost')) {
-        respuesta = "Ofrecemos planes flexibles adaptados a tus necesidades. Puedes contactarnos para obtener más información sobre precios.";
-      } else {
-        respuesta = `He recibido tu mensaje: "${userMessage}". Para conocer cómo puedo ayudarte con automatización, háblame sobre tu negocio o los procesos que quieres mejorar.`;
-      }
-      
-      sendResponse(200, 'application/json', JSON.stringify({
-        message: respuesta,
-        status: 'success',
-        timestamp: new Date().toISOString()
-      }));
-      
-      // Comentado el envío a n8n hasta resolver los problemas de conexión
-      /*
       // Intentar enviar a n8n
       const parsedUrl = url.parse(N8N_WEBHOOK_URL);
       console.log(`[${new Date().toISOString()}] Intentando conectar a: ${parsedUrl.hostname}${parsedUrl.path}`);
@@ -187,7 +159,7 @@ const server = http.createServer((req, res) => {
           'Content-Type': 'application/json',
           'Content-Length': Buffer.byteLength(body)
         },
-        timeout: 5000 // 5 segundos de timeout
+        timeout: 8000 // 8 segundos de timeout
       };
       
       const proxyReq = https.request(options, proxyRes => {
@@ -198,7 +170,7 @@ const server = http.createServer((req, res) => {
         });
         
         proxyRes.on('end', () => {
-          console.log(`[${new Date().toISOString()}] Respuesta de n8n: ${proxyRes.statusCode}`);
+          console.log(`[${new Date().toISOString()}] Respuesta de n8n (${proxyRes.statusCode}): ${proxyData.substring(0, 200)}${proxyData.length > 200 ? '...' : ''}`);
           
           if (proxyData) {
             try {
@@ -206,6 +178,8 @@ const server = http.createServer((req, res) => {
               JSON.parse(proxyData);
               sendResponse(200, 'application/json', proxyData);
             } catch (e) {
+              console.error(`[${new Date().toISOString()}] La respuesta de n8n no es JSON válido: ${e.message}`);
+              
               // Si no es JSON válido, envolverlo
               sendResponse(200, 'application/json', JSON.stringify({
                 message: proxyData,
@@ -214,6 +188,7 @@ const server = http.createServer((req, res) => {
               }));
             }
           } else {
+            console.warn(`[${new Date().toISOString()}] No se recibieron datos de n8n`);
             sendResponse(200, 'application/json', JSON.stringify({
               message: 'No se recibió respuesta de ZetAI',
               status: 'error',
@@ -225,8 +200,10 @@ const server = http.createServer((req, res) => {
       
       proxyReq.on('error', err => {
         console.error(`[${new Date().toISOString()}] Error al conectar con n8n: ${err.message}`);
+        
+        // Si hay un error en la conexión, enviar un mensaje claro al usuario
         sendResponse(200, 'application/json', JSON.stringify({
-          message: `En este momento no puedo procesar tu solicitud. Error: ${err.message}`,
+          message: `Error al conectar con n8n: ${err.message}. Por favor, verifica la configuración de n8n.`,
           status: 'error',
           timestamp: new Date().toISOString()
         }));
@@ -235,16 +212,19 @@ const server = http.createServer((req, res) => {
       proxyReq.on('timeout', () => {
         console.error(`[${new Date().toISOString()}] Timeout al conectar con n8n`);
         proxyReq.destroy();
+        
+        // Si hay timeout, enviar un mensaje claro al usuario
         sendResponse(200, 'application/json', JSON.stringify({
-          message: 'Lo siento, el servicio está tardando demasiado en responder. Inténtalo de nuevo más tarde.',
+          message: 'La conexión con n8n ha excedido el tiempo de espera. Por favor, verifica que n8n esté funcionando correctamente.',
           status: 'error',
           timestamp: new Date().toISOString()
         }));
       });
       
+      // Enviar datos a n8n
+      console.log(`[${new Date().toISOString()}] Enviando datos a n8n: ${body}`);
       proxyReq.write(body);
       proxyReq.end();
-      */
     });
     
     return;
