@@ -1,145 +1,18 @@
-// Funcionalidad mejorada para la burbuja de chat
+// Funcionalidad simplificada para la burbuja de chat
 document.addEventListener('DOMContentLoaded', function() {
     const chatBubble = document.getElementById('avatarChatBubble');
     const heroImage = document.querySelector('.hero-image img');
     const profileImage = document.querySelector('.profile-image');
     
-    // Configuración del webhook para la burbuja de chat principal
-    const webhookUrl = 'https://classic-alike-sandal.glitch.me/proxy-n8n';
-    
-    // Función para enviar interacciones al webhook
-    function sendToWebhook(message, interactionType) {
-        // Preparar los datos para el webhook
-        const data = {
-            message: message,
-            interaction: interactionType,
-            timestamp: new Date().toISOString(),
-            source: 'avatar_bubble',
-            url: window.location.href,
-            userAgent: navigator.userAgent
-        };
-        
-        console.log('Enviando datos a webhook:', data);
-        
-        // Enviar los datos al webhook
-        return fetch(webhookUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => {
-            console.log('Respuesta del servidor:', response.status, response.statusText);
-            return response.json().catch(e => {
-                console.error('Error parseando respuesta JSON:', e);
-                return { status: response.status, message: 'Error en la respuesta' };
-            });
-        })
-        .then(data => {
-            console.log('Datos recibidos del webhook:', data);
-            return data;
-        })
-        .catch(error => {
-            console.error('Error en la comunicación:', error);
-            return { error: true, message: error.message };
-        });
-    }
-    
     if (chatBubble) {
-        // Mensajes predefinidos para el chat con emojis para mayor expresividad
-        const chatMessages = [
-            "👋 ¡Hola! ¿En qué puedo ayudarte hoy?",
-            "💻 ¿Necesitas ayuda con diseño UX/UI o desarrollo web?",
-            "🚀 Puedo ayudarte a mejorar la experiencia de usuario de tu sitio",
-            "💡 ¿Tienes algún proyecto en mente? ¡Cuéntame!",
-            "📈 ¿Quieres optimizar la conversión de tu sitio?",
-            "🤖 Puedo desarrollar soluciones de IA para tu negocio",
-            "🔍 ¿Buscas una consultoría estratégica para tu startup?"
-        ];
+        // Mensaje permanente para la burbuja
+        const mensajePermanente = "Automatiza tu embudo de venta.\nHabla con ZetAI 👇";
         
-        // Función para cambiar el mensaje con animación
-        function changeMessage() {
-            // Obtener un mensaje aleatorio diferente al actual
-            let currentMessage = chatBubble.querySelector('p').textContent;
-            let newMessage;
-            
-            do {
-                newMessage = chatMessages[Math.floor(Math.random() * chatMessages.length)];
-            } while (newMessage === currentMessage);
-            
-            // Animación de cambio de mensaje
-            chatBubble.style.opacity = "0";
-            chatBubble.style.transform = "translateX(-50%) translateY(20px)";
-            
-            setTimeout(function() {
-                chatBubble.querySelector('p').textContent = newMessage;
-                chatBubble.style.opacity = "1";
-                chatBubble.style.transform = "translateX(-50%) translateY(0)";
-                
-                // Añadir una pequeña animación de rebote al avatar cuando cambia el mensaje
-                if (profileImage) {
-                    profileImage.style.transition = "transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-                    profileImage.style.transform = "scale(1.05)";
-                    setTimeout(() => {
-                        profileImage.style.transform = "scale(1)";
-                    }, 300);
-                }
-                
-                if (heroImage) {
-                    heroImage.style.transition = "transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-                    heroImage.style.transform = "scale(1.05)";
-                    setTimeout(() => {
-                        heroImage.style.transform = "scale(1)";
-                    }, 300);
-                }
-                
-                // Enviar al webhook el nuevo mensaje mostrado
-                sendToWebhook(newMessage, 'avatar_bubble_change');
-            }, 300);
-        }
-        
-        // Cambiar mensaje al hacer clic en el avatar
-        if (heroImage) {
-            heroImage.addEventListener('click', function() {
-                changeMessage();
-                // También podemos enviar al webhook que hubo un clic en el avatar
-                sendToWebhook('Clic en avatar principal', 'avatar_hero_click');
-            });
-            heroImage.style.cursor = 'pointer';
-        }
-        
-        if (profileImage) {
-            profileImage.addEventListener('click', function() {
-                changeMessage();
-                // También podemos enviar al webhook que hubo un clic en el perfil
-                sendToWebhook('Clic en avatar de perfil', 'avatar_profile_click');
-            });
-            profileImage.style.cursor = 'pointer';
-        }
-        
-        // También permite hacer clic en la burbuja
-        chatBubble.addEventListener('click', function() {
-            changeMessage();
-            // Enviar al webhook que hubo un clic en la burbuja
-            sendToWebhook('Clic en burbuja de chat', 'chat_bubble_click');
-            
-            // También podemos activar el chat completo
-            const chatWidget = document.getElementById('chatToggle');
-            if (chatWidget) {
-                setTimeout(() => {
-                    chatWidget.click();
-                }, 500);
-            }
-        });
-        
-        // Mostrar burbuja de chat después de 1.5 segundos
+        // Mostrar burbuja de chat después de 1.5 segundos con el mensaje fijo
         setTimeout(function() {
+            // Establecer el mensaje permanente
+            chatBubble.querySelector('p').textContent = mensajePermanente;
             chatBubble.style.display = 'block';
-            
-            // Enviar al webhook que se mostró la burbuja inicial
-            const initialMessage = chatBubble.querySelector('p').textContent;
-            sendToWebhook(initialMessage, 'initial_bubble_display');
             
             // Añadir un pequeño rebote al avatar después de que aparezca la burbuja
             if (profileImage) {
@@ -163,25 +36,40 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 1500);
         
-        // Cambiar el mensaje automáticamente cada 20 segundos
-        let messageInterval = setInterval(function() {
-            if (Math.random() > 0.3 && document.visibilityState === 'visible') { // 70% de probabilidad de cambiar
-                changeMessage();
-            }
-        }, 20000);
+        // Hacer que el avatar sea clickeable para animar pero sin abrir el chat
+        if (heroImage) {
+            heroImage.addEventListener('click', function() {
+                // Añadir animación al avatar al hacer clic
+                heroImage.style.transition = "transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+                heroImage.style.transform = "scale(1.05)";
+                setTimeout(() => {
+                    heroImage.style.transform = "scale(1)";
+                }, 300);
+            });
+            heroImage.style.cursor = 'pointer';
+        }
         
-        // Detener el intervalo cuando la página no está visible
-        document.addEventListener('visibilitychange', function() {
-            if (document.visibilityState === 'hidden') {
-                clearInterval(messageInterval);
-            } else {
-                messageInterval = setInterval(function() {
-                    if (Math.random() > 0.3) {
-                        changeMessage();
-                    }
-                }, 20000);
-            }
+        if (profileImage) {
+            profileImage.addEventListener('click', function() {
+                // Añadir animación al avatar al hacer clic
+                profileImage.style.transition = "transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+                profileImage.style.transform = "scale(1.05)";
+                setTimeout(() => {
+                    profileImage.style.transform = "scale(1)";
+                }, 300);
+            });
+            profileImage.style.cursor = 'pointer';
+        }
+        
+        // Permitir hacer clic en la burbuja para animar pero sin abrir el chat
+        chatBubble.addEventListener('click', function() {
+            // Animar burbuja al hacer clic
+            chatBubble.style.opacity = "0.7";
+            setTimeout(function() {
+                chatBubble.style.opacity = "1";
+            }, 300);
         });
+        chatBubble.style.cursor = 'pointer';
     }
 });
 
