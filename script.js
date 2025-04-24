@@ -504,6 +504,7 @@ if (chatToggle && chatWidget && chatClose) {
                     const endTime = new Date().getTime();
                     const responseTime = (endTime - startTime) / 1000;
                     console.log(`Respuesta recibida después de ${responseTime} segundos:`, response);
+                    console.log('RESPUESTA COMPLETA:', JSON.stringify(response, null, 2));
                     
                     // Eliminar indicador de escritura
                     const typingIndicator = document.getElementById('typingIndicator');
@@ -523,6 +524,9 @@ if (chatToggle && chatWidget && chatClose) {
                         chatMessages.scrollTop = chatMessages.scrollHeight;
                     } else {
                         console.warn('No se recibió respuesta válida del webhook:', response);
+                        // Mostrar mensaje por defecto cuando no hay respuesta válida
+                        addMessage('Lo siento, no pude procesar tu solicitud en este momento. Por favor, inténtalo de nuevo.', 'bot');
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
                     }
                 })
                 .catch(error => {
@@ -533,6 +537,10 @@ if (chatToggle && chatWidget && chatClose) {
                     if (typingIndicator) {
                         chatMessages.removeChild(typingIndicator);
                     }
+                    
+                    // Mostrar mensaje de error al usuario
+                    addMessage('Ha ocurrido un error al procesar tu mensaje. Por favor, inténtalo de nuevo.', 'bot');
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
                 });
         }
     });
