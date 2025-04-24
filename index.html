@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<!-- 
+    Nueva Landing Page
+    Diseño moderno con efectos visuales y elementos interactivos
+    Fecha: 20/04/2024
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechSolutions | Desarrollo Web y Soluciones Digitales</title>
+    <meta name="description" content="Transformamos ideas en experiencias digitales excepcionales. Desarrollo web, aplicaciones móviles y consultoría tecnológica.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="TechSolutions | Desarrollo Web y Soluciones Digitales" />
+    <meta property="og:description" content="Transformamos ideas en experiencias digitales excepcionales con tecnologías modernas y diseño centrado en el usuario." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://techsolutions.example.com" />
+    <meta property="og:image" content="imagen/og-image.jpg" />
+    <meta property="og:locale" content="es_ES" />
+    
+    <link rel="stylesheet" href="style.css"> 
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GSAP para animaciones -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Particles.js para efectos de partículas -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <!-- Contenedor para efectos de partículas en el fondo -->
+    <div id="particles-js" class="particles-container"></div>
+    
+    <header id="hero" class="section-padding">
+        <div class="container">
+            <nav class="main-nav">
+                <div class="logo">
+                    <img src="imagen/logo.png" alt="TechSolutions Logo">
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
+                    <li><a href="#tecnologias">Tecnologías</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+            
+            <div class="hero-content">
+                <div class="hero-main-content">
+                    <div class="hero-text">
+                        <div class="hero-title-container">
+                            <h1 class="hero-title">Desarrollo Web y <span class="highlight-text">Soluciones</span> Digitales</h1>
+                            <div class="profile-image-container">
+                                <img src="imagen/team.png" alt="Nuestro Equipo" class="profile-image">
+                                <div class="profile-glow"></div>
+                                <div class="chat-bot-icon" id="chat-bot-trigger">
+                                    <i class="fas fa-comment-dots"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="hero-subtitle">Creamos experiencias digitales que cautivan a tus usuarios y potencian tu negocio. Nuestro enfoque combina diseño centrado en el usuario con tecnologías de vanguardia.</p>
+                        
+                        <div class="hero-buttons">
+                            <a href="#contacto" class="button-principal">Solicitar Presupuesto</a>
+                            <a href="#proyectos" class="button-secundario">Ver Proyectos</a>
+                        </div>
+                    </div>
+                
+                <div class="profile-info">
+                    <div>
+                        <p class="profile-name">Equipo TechSolutions - Especialistas en Desarrollo Web</p>
+                    </div>
+                </div>
+                
+                <!-- Elemento decorativo 3D -->
+                <div class="hero-decorative-container">
+                    <div class="hero-decorative">
+                        <div class="decorative-glow"></div>
+                        <div class="decorative-element">
+                            <div class="code-element">
+                                <span class="code-line">&lt;div class="solution"&gt;</span>
+                                <span class="code-line">  &lt;code&gt;Innovación&lt;/code&gt;</span>
+                                <span class="code-line">&lt;/div&gt;</span>
+                            </div>
+                        </div>
+                        <div class="floating-elements">
+                            <div class="floating-icon floating-icon-1"><i class="fas fa-code"></i></div>
+                            <div class="floating-icon floating-icon-2"><i class="fas fa-mobile-alt"></i></div>
+                            <div class="floating-icon floating-icon-3"><i class="fas fa-server"></i></div>
+                            <div class="floating-icon floating-icon-4"><i class="fas fa-database"></i></div>
+                            <div class="floating-icon floating-icon-5"><i class="fas fa-cogs"></i></div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="servicios" class="section-padding">
+            <div class="container">
+                <h2>Nuestros Servicios</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3>Desarrollo Web</h3>
+                        <p>Sitios web modernos, responsivos y optimizados para convertir visitantes en clientes. Utilizamos las últimas tecnologías para crear experiencias digitales excepcionales.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h3>Aplicaciones Móviles</h3>
+                        <p>Apps nativas y multiplataforma que destacan en las tiendas. Diseñamos soluciones móviles intuitivas y escalables para resolver necesidades específicas.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
+                        <h3>E-commerce</h3>
+                        <p>Tiendas online optimizadas para vender. Integramos pasarelas de pago, gestión de inventario y experiencias de compra que convierten visitantes en clientes.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-search"></i></div>
+                        <h3>SEO & Marketing</h3>
+                        <p>Estrategias para posicionar tu negocio en buscadores. Optimizamos tu presencia digital para atraer tráfico cualificado y aumentar conversiones.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proyectos" class="section-padding">
+            <div class="container">
+                <h2>Proyectos Destacados</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="imagen/proyecto1.jpg" alt="Proyecto E-commerce">
+                        </div>
+                        <div class="project-info">
+                            <h3>E-commerce de Moda</h3>
+                            <p>Tienda online con +5000 productos, integración con diversos métodos de pago y sistema de gestión de inventario automatizado.</p>
+                            <div class="project-tech">
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>MongoDB</span>
+                            </div>
+                            <a href="#" class="project-link">Ver Proyecto <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="imagen/proyecto2.jpg" alt="Aplicación Móvil">
+                        </div>
+                        <div class="project-info">
+                            <h3>App de Fitness</h3>
+                            <p>Aplicación móvil con rutinas personalizadas, seguimiento de progreso y comunidad de usuarios. +100K descargas en App Store y Google Play.</p>
+                            <div class="project-tech">
+                                <span>Flutter</span>
+                                <span>Firebase</span>
+                                <span>TensorFlow</span>
+                            </div>
+                            <a href="#" class="project-link">Ver Proyecto <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="projects-cta">
+                    <a href="#" class="button-secundario">Ver Todos los Proyectos</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="tecnologias" class="section-padding">
+            <div class="container">
+                <h2>Tecnologías que Utilizamos</h2>
+                <div class="tech-grid">
+                    <div class="tech-category">
+                        <h3>Frontend</h3>
+                        <ul class="tech-list">
+                            <li><i class="fab fa-react"></i> React</li>
+                            <li><i class="fab fa-vuejs"></i> Vue.js</li>
+                            <li><i class="fab fa-angular"></i> Angular</li>
+                            <li><i class="fab fa-js"></i> JavaScript</li>
+                            <li><i class="fab fa-sass"></i> Sass</li>
+                        </ul>
+                    </div>
+                    <div class="tech-category">
+                        <h3>Backend</h3>
+                        <ul class="tech-list">
+                            <li><i class="fab fa-node-js"></i> Node.js</li>
+                            <li><i class="fab fa-php"></i> PHP</li>
+                            <li><i class="fas fa-database"></i> MySQL</li>
+                            <li><i class="fas fa-server"></i> MongoDB</li>
+                            <li><i class="fab fa-python"></i> Python</li>
+                        </ul>
+                    </div>
+                    <div class="tech-category">
+                        <h3>Móvil</h3>
+                        <ul class="tech-list">
+                            <li><i class="fab fa-android"></i> Android</li>
+                            <li><i class="fab fa-apple"></i> iOS</li>
+                            <li><i class="fas fa-mobile-alt"></i> Flutter</li>
+                            <li><i class="fab fa-react"></i> React Native</li>
+                            <li><i class="fas fa-code"></i> Swift</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="section-padding">
+            <div class="container">
+                <h2>¿Hablamos sobre tu proyecto?</h2>
+                <p class="section-description">Cuéntanos sobre tu idea y te ayudaremos a convertirla en realidad. Nuestro equipo te contactará en menos de 24 horas con una propuesta personalizada.</p>
+                
+                <div class="contact-wrapper">
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="Tu correo electrónico">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Tu número de teléfono (opcional)">
+                        </div>
+                        <div class="form-group">
+                            <label for="project">Cuéntanos sobre tu proyecto</label>
+                            <textarea id="project" name="project" rows="5" required placeholder="Describe brevemente tu idea, objetivos y plazos"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="button-principal">SOLICITAR PRESUPUESTO</button>
+                        </div>
+                    </form>
+                    
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <i class="fas fa-envelope info-icon"></i>
+                            <h3>Email</h3>
+                            <p><a href="mailto:info@techsolutions.example.com">info@techsolutions.example.com</a></p>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-phone info-icon"></i>
+                            <h3>Teléfono</h3>
+                            <p><a href="tel:+34911234567">+34 911 234 567</a></p>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-map-marker-alt info-icon"></i>
+                            <h3>Oficina</h3>
+                            <p>Calle Tecnología, 123<br>28001 Madrid, España</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="form-success" class="form-success" style="display: none;">
+                    <i class="fas fa-check-circle success-icon"></i>
+                    <h3>¡Gracias por contactarnos!</h3>
+                    <p>Hemos recibido tu solicitud correctamente. Nuestro equipo analizará tu proyecto y te contactará en las próximas 24 horas.</p>
+                    <p class="success-note">Mientras tanto, puedes revisar nuestros proyectos o seguirnos en redes sociales.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="imagen/logo-white.png" alt="TechSolutions Logo">
+                </div>
+                <div class="footer-links">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#proyectos">Proyectos</a></li>
+                        <li><a href="#tecnologias">Tecnologías</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contacto</h4>
+                    <p><a href="mailto:info@techsolutions.example.com">info@techsolutions.example.com</a></p>
+                    <p><a href="tel:+34911234567">+34 911 234 567</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 TechSolutions. Todos los derechos reservados.</p>
+                <p><a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts para la web -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configuración de particles.js
+            particlesJS('particles-js', {
+                particles: {
+                    number: {
+                        value: 80,
+                        density: {
+                            enable: true,
+                            value_area: 800
+                        }
+                    },
+                    color: {
+                        value: ["#0088cc", "#0066aa", "#00aaff"]
+                    },
+                    shape: {
+                        type: "circle",
+                        stroke: {
+                            width: 0,
+                            color: "#000000"
+                        },
+                    },
+                    opacity: {
+                        value: 0.5,
+                        random: true,
+                        anim: {
+                            enable: true,
+                            speed: 1,
+                            opacity_min: 0.1,
+                            sync: false
+                        }
+                    },
+                    size: {
+                        value: 3,
+                        random: true,
+                        anim: {
+                            enable: true,
+                            speed: 2,
+                            size_min: 0.1,
+                            sync: false
+                        }
+                    },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#0088cc",
+                        opacity: 0.2,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 1,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false,
+                        attract: {
+                            enable: true,
+                            rotateX: 600,
+                            rotateY: 1200
+                        }
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: "bubble"
+                        },
+                        onclick: {
+                            enable: true,
+                            mode: "push"
+                        },
+                        resize: true
+                    },
+                    modes: {
+                        grab: {
+                            distance: 140,
+                            line_linked: {
+                                opacity: 1
+                            }
+                        },
+                        bubble: {
+                            distance: 200,
+                            size: 6,
+                            duration: 2,
+                            opacity: 0.8,
+                            speed: 3
+                        },
+                        repulse: {
+                            distance: 200,
+                            duration: 0.4
+                        },
+                        push: {
+                            particles_nb: 4
+                        },
+                        remove: {
+                            particles_nb: 2
+                        }
+                    }
+                },
+                retina_detect: true
+            });
+
+            // Menú móvil
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                });
+            }
+
+            // Animaciones con GSAP
+            if (typeof gsap !== 'undefined') {
+                // Animación del hero
+                gsap.from('.hero-title', {
+                    duration: 1.2,
+                    opacity: 0,
+                    y: -50,
+                    ease: "power3.out"
+                });
+                
+                gsap.from('.profile-image-container', {
+                    duration: 1,
+                    opacity: 0,
+                    scale: 0.8,
+                    delay: 0.5,
+                    ease: "back.out(1.7)"
+                });
+                
+                gsap.from('.hero-subtitle', {
+                    duration: 1,
+                    opacity: 0,
+                    y: 30,
+                    delay: 0.7,
+                    ease: "power2.out"
+                });
+                
+                gsap.from('.hero-buttons', {
+                    duration: 0.8,
+                    opacity: 0,
+                    y: 20,
+                    delay: 1,
+                    ease: "power2.out"
+                });
+                
+                // Animación para la entrada del elemento decorativo
+                gsap.from(".hero-decorative", {
+                    duration: 1.5,
+                    x: 300,
+                    opacity: 0,
+                    scale: 0.7,
+                    delay: 0.5,
+                    ease: "power3.out"
+                });
+                
+                // ScrollTrigger para elementos que aparecen al hacer scroll
+                if (typeof ScrollTrigger !== 'undefined') {
+                    // Cards de servicios
+                    gsap.utils.toArray('.service-card').forEach((card, i) => {
+                        gsap.from(card, {
+                            scrollTrigger: {
+                                trigger: card,
+                                start: "top 80%",
+                                toggleActions: "play none none none"
+                            },
+                            duration: 0.8,
+                            opacity: 0,
+                            y: 50,
+                            delay: i * 0.1,
+                            ease: "power3.out"
+                        });
+                    });
+
+                    // Proyectos
+                    gsap.utils.toArray('.project-card').forEach((card, i) => {
+                        gsap.from(card, {
+                            scrollTrigger: {
+                                trigger: card,
+                                start: "top 80%",
+                                toggleActions: "play none none none"
+                            },
+                            duration: 1,
+                            opacity: 0,
+                            x: i % 2 === 0 ? -100 : 100,
+                            delay: i * 0.1,
+                            ease: "power3.out"
+                        });
+                    });
+
+                    // Tecnologías
+                    gsap.utils.toArray('.tech-category').forEach((category, i) => {
+                        gsap.from(category, {
+                            scrollTrigger: {
+                                trigger: category,
+                                start: "top 80%",
+                                toggleActions: "play none none none"
+                            },
+                            duration: 0.8,
+                            opacity: 0,
+                            y: 30,
+                            delay: i * 0.2,
+                            ease: "power2.out"
+                        });
+                    });
+                }
+            }
+
+            // Formulario de contacto
+            const contactForm = document.getElementById('contact-form');
+            const formSuccess = document.getElementById('form-success');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Aquí iría la lógica para enviar el formulario
+                    // Por ahora solo mostramos el mensaje de éxito
+                    contactForm.style.display = 'none';
+                    formSuccess.style.display = 'block';
+                    
+                    // Animación para el mensaje de éxito
+                    if (typeof gsap !== 'undefined') {
+                        gsap.from(formSuccess, {
+                            duration: 0.8,
+                            opacity: 0,
+                            y: 20,
+                            ease: "power2.out"
+                        });
+                    }
+                });
+            }
+
+            // Chatbot functionality
+            const chatbotTrigger = document.getElementById('chat-bot-trigger');
+            const chatbotContainer = document.getElementById('chatbot-container');
+            const chatbotClose = document.getElementById('chatbot-close');
+            const chatbotMessages = document.getElementById('chatbot-messages');
+            const userInput = document.getElementById('user-input');
+            const sendMessage = document.getElementById('send-message');
+            
+            // Predefined responses
+            const botResponses = {
+                'hola': '¡Hola! ¿En qué puedo ayudarte hoy?',
+                'servicios': 'Ofrecemos desarrollo web, aplicaciones móviles, e-commerce y servicios de SEO y marketing. ¿Te gustaría saber más sobre alguno de ellos?',
+                'desarrollo web': 'Creamos sitios web modernos, responsivos y optimizados para convertir visitantes en clientes. ¿Quieres más detalles o un presupuesto?',
+                'aplicaciones': 'Desarrollamos apps nativas y multiplataforma que destacan en las tiendas. ¿Tienes alguna idea para una aplicación?',
+                'precio': 'Cada proyecto es único. Para obtener un presupuesto personalizado, por favor completa nuestro formulario de contacto y te responderemos en menos de 24 horas.',
+                'contacto': 'Puedes contactarnos por email a info@techsolutions.example.com o llamar al +34 911 234 567. También puedes usar nuestro formulario de contacto.',
+                'gracias': '¡De nada! Estamos aquí para ayudarte. ¿Hay algo más en lo que pueda asistirte?',
+                'adiós': '¡Gracias por contactarnos! Si tienes más preguntas, no dudes en volver a chatear con nosotros.'
+            };
+            
+            // Function to show chatbot
+            function showChatbot() {
+                chatbotContainer.classList.add('active');
+            }
+            
+            // Function to hide chatbot
+            function hideChatbot() {
+                chatbotContainer.classList.remove('active');
+            }
+            
+            // Function to add a message to the chat
+            function addMessage(message, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = isUser ? 'user-message' : 'bot-message';
+                
+                if (!isUser) {
+                    const botAvatar = document.createElement('div');
+                    botAvatar.className = 'bot-avatar';
+                    botAvatar.innerHTML = '<img src="imagen/team.png" alt="TechSolutions Bot">';
+                    messageDiv.appendChild(botAvatar);
+                }
+                
+                const messageContent = document.createElement('div');
+                messageContent.className = 'message-content';
+                messageContent.textContent = message;
+                messageDiv.appendChild(messageContent);
+                
+                chatbotMessages.appendChild(messageDiv);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+            
+            // Function to generate bot response
+            function getBotResponse(userMessage) {
+                userMessage = userMessage.toLowerCase();
+                
+                // Check for keywords in user message
+                for (const [keyword, response] of Object.entries(botResponses)) {
+                    if (userMessage.includes(keyword)) {
+                        return response;
+                    }
+                }
+                
+                // Default response if no keywords match
+                return "Gracias por tu mensaje. Para información más detallada, te recomendamos contactar con nuestro equipo a través del formulario o por teléfono.";
+            }
+            
+            // Function to handle user sending a message
+            function handleUserMessage() {
+                const message = userInput.value.trim();
+                if (message !== '') {
+                    // Add user message to chat
+                    addMessage(message, true);
+                    
+                    // Clear input
+                    userInput.value = '';
+                    
+                    // Simulate bot typing with a slight delay
+                    setTimeout(() => {
+                        const botResponse = getBotResponse(message);
+                        addMessage(botResponse);
+                    }, 800);
+                }
+            }
+            
+            // Event listeners
+            chatbotTrigger.addEventListener('click', showChatbot);
+            chatbotClose.addEventListener('click', hideChatbot);
+            sendMessage.addEventListener('click', handleUserMessage);
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleUserMessage();
+                }
+            });
+        });
+    </script>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container" class="chatbot-container">
+        <div class="chatbot-header">
+            <h3>Asistente Virtual TechSolutions</h3>
+            <button id="chatbot-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="bot-message">
+                <div class="bot-avatar">
+                    <img src="imagen/team.png" alt="TechSolutions Bot">
+                </div>
+                <div class="message-content">
+                    ¡Hola! Soy el asistente virtual de TechSolutions. ¿En qué puedo ayudarte hoy?
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="user-input" placeholder="Escribe tu mensaje aquí...">
+            <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+</body>
+</html> 
