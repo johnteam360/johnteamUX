@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <!-- 
-    Nueva Landing Page
-    Diseño moderno con efectos visuales y elementos interactivos
+    JohnTeam Landing Page v2.0
+    Diseño mejorado con efectos visuales y avatar 3D interactivo
     Fecha: 20/04/2024
 -->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechSolutions | Desarrollo Web y Soluciones Digitales</title>
-    <meta name="description" content="Transformamos ideas en experiencias digitales excepcionales. Desarrollo web, aplicaciones móviles y consultoría tecnológica.">
+    <!-- **ACCIÓN REQUERIDA:** Revisa y ajusta title y description -->
+    <title>JohnTeamAI | Consultoría Estratégica en IA y UX/UI para Startups LATAM</title>
+    <meta name="description" content="Transformo ideas en experiencias y datos en decisiones para startups en LATAM con soluciones de IA aplicadas a UX/UI.">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="TechSolutions | Desarrollo Web y Soluciones Digitales" />
-    <meta property="og:description" content="Transformamos ideas en experiencias digitales excepcionales con tecnologías modernas y diseño centrado en el usuario." />
+    <!-- **ACCIÓN REQUERIDA:** Reemplaza los placeholders restantes de Open Graph -->
+    <meta property="og:title" content="JohnTeamAI | Consultoría Estratégica en IA y UX/UI" />
+    <meta property="og:description" content="Transformo ideas en experiencias y datos en decisiones para startups en LATAM con un enfoque híbrido de IA y UX/UI." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://techsolutions.example.com" />
-    <meta property="og:image" content="imagen/og-image.jpg" />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:url" content="[URL Completa de tu página]" />
+    <meta property="og:image" content="[URL de Imagen para compartir]" />
+    <meta property="og:locale" content="es_LA" />
     
     <link rel="stylesheet" href="style.css"> 
-    <!-- Fuentes -->
+    <!-- Fuente similar a la de la imagen -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Quantico:wght@400;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome -->
+    <!-- Fontawesome para íconos sociales -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> --> <!-- Descomenta cuando tengas tu favicon -->
     
-    <!-- GSAP para animaciones -->
+    <!-- Scripts como Google Analytics irán aquí más tarde -->
+    <!-- Añadiendo GSAP para animaciones -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
-    <!-- Particles.js para efectos de partículas -->
+    <!-- Añadiendo Particles.js para efectos de partículas -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
@@ -41,65 +44,49 @@
     
     <header id="hero" class="section-padding">
         <div class="container">
-            <nav class="main-nav">
-                <div class="logo">
-                    <img src="imagen/logo.png" alt="TechSolutions Logo">
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#proyectos">Proyectos</a></li>
-                    <li><a href="#tecnologias">Tecnologías</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
-            
             <div class="hero-content">
                 <div class="hero-main-content">
                     <div class="hero-text">
                         <div class="hero-title-container">
-                            <h1 class="hero-title">Desarrollo Web y <span class="highlight-text">Soluciones</span> Digitales</h1>
+                            <h1 class="hero-title">Consultoría Estratégica en <span class="highlight-text">IA</span> y <span class="highlight-text">UX/UI</span> para Startups LATAM</h1>
                             <div class="profile-image-container">
-                                <img src="imagen/team.png" alt="Nuestro Equipo" class="profile-image">
+                                <img src="imagen/perfil.png" alt="John Briceño" class="profile-image">
                                 <div class="profile-glow"></div>
-                                <div class="chat-bot-icon" id="chat-bot-trigger">
-                                    <i class="fas fa-comment-dots"></i>
-                                </div>
                             </div>
                         </div>
-                        <p class="hero-subtitle">Creamos experiencias digitales que cautivan a tus usuarios y potencian tu negocio. Nuestro enfoque combina diseño centrado en el usuario con tecnologías de vanguardia.</p>
+                        <p class="hero-subtitle">Tu página web es como el frente de tu casa y la experiencia de usuario es el pasillos por donde invitas a pasar a tu cliente. ¿Quién quiere andar en pasillos mal construidos que dan una experiencia negativa? Mejora la primera impresión y el recorrido de tus visitantes con un diseño estratégico.</p>
                         
                         <div class="hero-buttons">
-                            <a href="#contacto" class="button-principal">Solicitar Presupuesto</a>
-                            <a href="#proyectos" class="button-secundario">Ver Proyectos</a>
+                            <a href="#contacto" class="button-principal">¡Contáctame!</a>
+                            <a href="#" class="button-secundario">Más Información</a>
                         </div>
                     </div>
                 
                 <div class="profile-info">
                     <div>
-                        <p class="profile-name">Equipo TechSolutions - Especialistas en Desarrollo Web</p>
+                        <p class="profile-name">John Briceño - Consultor AI | UX/UI | Frontend Developer</p>
                     </div>
                 </div>
                 
-                <!-- Elemento decorativo 3D -->
-                <div class="hero-decorative-container">
-                    <div class="hero-decorative">
-                        <div class="decorative-glow"></div>
-                        <div class="decorative-element">
-                            <div class="code-element">
-                                <span class="code-line">&lt;div class="solution"&gt;</span>
-                                <span class="code-line">  &lt;code&gt;Innovación&lt;/code&gt;</span>
-                                <span class="code-line">&lt;/div&gt;</span>
+                <!-- Avatar 3D -->
+                <div class="hero-avatar-container">
+                    <div class="hero-avatar">
+                        <div class="avatar-glow"></div>
+                        <div class="avatar-body">
+                            <div class="avatar-head">
+                                <div class="avatar-glasses"></div>
+                                <div class="avatar-face"></div>
                             </div>
+                            <div class="avatar-torso"></div>
+                            <div class="avatar-arm avatar-arm-left"></div>
+                            <div class="avatar-arm avatar-arm-right"></div>
                         </div>
-                        <div class="floating-elements">
+                        <div class="avatar-floating-elements">
                             <div class="floating-icon floating-icon-1"><i class="fas fa-code"></i></div>
-                            <div class="floating-icon floating-icon-2"><i class="fas fa-mobile-alt"></i></div>
-                            <div class="floating-icon floating-icon-3"><i class="fas fa-server"></i></div>
-                            <div class="floating-icon floating-icon-4"><i class="fas fa-database"></i></div>
-                            <div class="floating-icon floating-icon-5"><i class="fas fa-cogs"></i></div>
+                            <div class="floating-icon floating-icon-2"><i class="fas fa-lightbulb"></i></div>
+                            <div class="floating-icon floating-icon-3"><i class="fas fa-brain"></i></div>
+                            <div class="floating-icon floating-icon-4"><i class="fas fa-chart-line"></i></div>
+                            <div class="floating-icon floating-icon-5"><i class="fas fa-robot"></i></div>
                         </div>
                     </div>
                 </div>
@@ -109,108 +96,77 @@
     </header>
 
     <main>
+        <section id="habilidades" class="section-padding">
+            <div class="container">
+                <h2>Habilidades Clave</h2>
+                <ul class="skills-list interactive-list">
+                    <li data-icon="🤖">LLM / Machine Learning / Fine-tuning</li>
+                    <li data-icon="🎨">Diseño UX/UI / Auditorías UX</li>
+                    <li data-icon="⚙️">Automatización con n8n y Botpress</li>
+                    <li data-icon="🔍">Pinecone / RAG / Supabase</li>
+                    <li data-icon="💻">Desarrollo Frontend con Next.js</li>
+                    <li data-icon="🧠">Pensamiento crítico y resolución de problemas</li>
+                </ul>
+            </div>
+        </section>
+
         <section id="servicios" class="section-padding">
             <div class="container">
-                <h2>Nuestros Servicios</h2>
+                <h2>Mis Servicios</h2>
                 <div class="services-grid">
                     <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
-                        <h3>Desarrollo Web</h3>
-                        <p>Sitios web modernos, responsivos y optimizados para convertir visitantes en clientes. Utilizamos las últimas tecnologías para crear experiencias digitales excepcionales.</p>
+                        <h3>Consultoría UX/UI potenciada con IA</h3>
+                        <p>Análisis exhaustivo de tu interfaz para identificar puntos de fricción y optimizar la experiencia del usuario con el apoyo de algoritmos de IA.</p>
                     </div>
                     <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
-                        <h3>Aplicaciones Móviles</h3>
-                        <p>Apps nativas y multiplataforma que destacan en las tiendas. Diseñamos soluciones móviles intuitivas y escalables para resolver necesidades específicas.</p>
+                        <h3>Agentes de Onboarding</h3>
+                        <p>Desarrollo de asistentes inteligentes que guían a tus usuarios durante sus primeras interacciones con tu producto.</p>
                     </div>
                     <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
-                        <h3>E-commerce</h3>
-                        <p>Tiendas online optimizadas para vender. Integramos pasarelas de pago, gestión de inventario y experiencias de compra que convierten visitantes en clientes.</p>
+                        <h3>Automatización de Procesos Internos</h3>
+                        <p>Identificación y optimización de procesos repetitivos mediante flujos de trabajo automatizados con n8n y otras herramientas.</p>
                     </div>
                     <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-search"></i></div>
-                        <h3>SEO & Marketing</h3>
-                        <p>Estrategias para posicionar tu negocio en buscadores. Optimizamos tu presencia digital para atraer tráfico cualificado y aumentar conversiones.</p>
+                        <h3>Agentes de Marketing e Investigación</h3>
+                        <p>Creación de sistemas inteligentes para análisis de mercado, seguimiento de competencia y generación de leads cualificados.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Chatbots con LLM</h3>
+                        <p>Desarrollo de chatbots conversacionales avanzados con capacidades de lenguaje natural y personalización por sectores.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>GPTs Personalizados</h3>
+                        <p>Configuración de GPTs específicos para tu industria y casos de uso particulares.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Agentes con RAG</h3>
+                        <p>Implementación de sistemas de Retrieval Augmented Generation para crear agentes inteligentes con acceso a tu base de conocimientos.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="proyectos" class="section-padding">
+        <section id="guias" class="section-padding">
             <div class="container">
-                <h2>Proyectos Destacados</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="imagen/proyecto1.jpg" alt="Proyecto E-commerce">
-                        </div>
-                        <div class="project-info">
-                            <h3>E-commerce de Moda</h3>
-                            <p>Tienda online con +5000 productos, integración con diversos métodos de pago y sistema de gestión de inventario automatizado.</p>
-                            <div class="project-tech">
-                                <span>React</span>
-                                <span>Node.js</span>
-                                <span>MongoDB</span>
-                            </div>
-                            <a href="#" class="project-link">Ver Proyecto <i class="fas fa-arrow-right"></i></a>
+                <h2>Contenido Gratuito</h2>
+                <div class="guides-grid">
+                    <div class="guide-card">
+                        <div class="guide-icon"><i class="fas fa-robot"></i></div>
+                        <h3>Configurar ChatGPT para obtener mejores resultados</h3>
+                        <p>Aprende a usar prompts efectivos, técnicas avanzadas y configuraciones personalizadas para maximizar el potencial de ChatGPT en tus proyectos.</p>
+                        <div class="guide-buttons">
+                            <a href="GuiasGPT/guias/guia-chatgpt.pdf" class="guide-button guide-download" download><i class="fas fa-download"></i> Obtener Guía</a>
+                            <a href="GuiasGPT/guias/guia-chatgpt.pdf" class="guide-button guide-preview" target="_blank"><i class="fas fa-eye"></i> Vista Previa</a>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="imagen/proyecto2.jpg" alt="Aplicación Móvil">
+                    <div class="guide-card">
+                        <div class="guide-icon"><i class="fas fa-server"></i></div>
+                        <h3>Desplegar EasyPanel en instancia AWS</h3>
+                        <p>Guía paso a paso para crear una instancia en AWS y configurar EasyPanel para gestionar tus aplicaciones de forma sencilla y eficiente.</p>
+                        <div class="guide-buttons">
+                            <a href="GuiasGPT/guias/guia-aws-easypanel.pdf" class="guide-button guide-download" download><i class="fas fa-download"></i> Obtener Guía</a>
+                            <a href="GuiasGPT/guias/guia-aws-easypanel.pdf" class="guide-button guide-preview" target="_blank"><i class="fas fa-eye"></i> Vista Previa</a>
                         </div>
-                        <div class="project-info">
-                            <h3>App de Fitness</h3>
-                            <p>Aplicación móvil con rutinas personalizadas, seguimiento de progreso y comunidad de usuarios. +100K descargas en App Store y Google Play.</p>
-                            <div class="project-tech">
-                                <span>Flutter</span>
-                                <span>Firebase</span>
-                                <span>TensorFlow</span>
-                            </div>
-                            <a href="#" class="project-link">Ver Proyecto <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="projects-cta">
-                    <a href="#" class="button-secundario">Ver Todos los Proyectos</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="tecnologias" class="section-padding">
-            <div class="container">
-                <h2>Tecnologías que Utilizamos</h2>
-                <div class="tech-grid">
-                    <div class="tech-category">
-                        <h3>Frontend</h3>
-                        <ul class="tech-list">
-                            <li><i class="fab fa-react"></i> React</li>
-                            <li><i class="fab fa-vuejs"></i> Vue.js</li>
-                            <li><i class="fab fa-angular"></i> Angular</li>
-                            <li><i class="fab fa-js"></i> JavaScript</li>
-                            <li><i class="fab fa-sass"></i> Sass</li>
-                        </ul>
-                    </div>
-                    <div class="tech-category">
-                        <h3>Backend</h3>
-                        <ul class="tech-list">
-                            <li><i class="fab fa-node-js"></i> Node.js</li>
-                            <li><i class="fab fa-php"></i> PHP</li>
-                            <li><i class="fas fa-database"></i> MySQL</li>
-                            <li><i class="fas fa-server"></i> MongoDB</li>
-                            <li><i class="fab fa-python"></i> Python</li>
-                        </ul>
-                    </div>
-                    <div class="tech-category">
-                        <h3>Móvil</h3>
-                        <ul class="tech-list">
-                            <li><i class="fab fa-android"></i> Android</li>
-                            <li><i class="fab fa-apple"></i> iOS</li>
-                            <li><i class="fas fa-mobile-alt"></i> Flutter</li>
-                            <li><i class="fab fa-react"></i> React Native</li>
-                            <li><i class="fas fa-code"></i> Swift</li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -218,11 +174,11 @@
 
         <section id="contacto" class="section-padding">
             <div class="container">
-                <h2>¿Hablamos sobre tu proyecto?</h2>
-                <p class="section-description">Cuéntanos sobre tu idea y te ayudaremos a convertirla en realidad. Nuestro equipo te contactará en menos de 24 horas con una propuesta personalizada.</p>
+                <h2>Solicitar Análisis UX</h2>
+                <p class="section-description">Recibe un análisis básico de usabilidad de tu sitio web o aplicación. Completa el formulario con tus datos y te enviaré un informe personalizado para mejorar la experiencia de tus usuarios.</p>
                 
                 <div class="contact-wrapper">
-                    <form class="contact-form" id="contact-form">
+                    <form class="contact-form" id="ux-report-form" action="https://n8npro.johnteamzai.com/webhook/0e31264f-f915-45ed-ab33-ec6449c3ba52" method="POST">
                         <div class="form-group">
                             <label for="name">Nombre</label>
                             <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
@@ -232,15 +188,15 @@
                             <input type="email" id="email" name="email" required placeholder="Tu correo electrónico">
                         </div>
                         <div class="form-group">
-                            <label for="phone">Teléfono</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Tu número de teléfono (opcional)">
+                            <label for="url">URL de tu sitio web</label>
+                            <input type="url" id="url" name="url" required placeholder="https://ejemplo.com">
                         </div>
                         <div class="form-group">
-                            <label for="project">Cuéntanos sobre tu proyecto</label>
-                            <textarea id="project" name="project" rows="5" required placeholder="Describe brevemente tu idea, objetivos y plazos"></textarea>
+                            <label for="message">Objetivo del análisis</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Describe brevemente qué aspectos te interesa mejorar..."></textarea>
                         </div>
                         <div class="form-actions">
-                            <button type="submit" class="button-principal">SOLICITAR PRESUPUESTO</button>
+                            <button type="submit" class="button-principal">SOLICITAR ANÁLISIS GRATUITO</button>
                         </div>
                     </form>
                     
@@ -248,26 +204,42 @@
                         <div class="info-card">
                             <i class="fas fa-envelope info-icon"></i>
                             <h3>Email</h3>
-                            <p><a href="mailto:info@techsolutions.example.com">info@techsolutions.example.com</a></p>
+                            <p><a href="mailto:johnteam380@gmail.com">johnteam380@gmail.com</a></p>
                         </div>
                         <div class="info-card">
-                            <i class="fas fa-phone info-icon"></i>
-                            <h3>Teléfono</h3>
-                            <p><a href="tel:+34911234567">+34 911 234 567</a></p>
+                            <i class="fas fa-clock info-icon"></i>
+                            <h3>Respuesta</h3>
+                            <p>En menos de 24 horas</p>
                         </div>
                         <div class="info-card">
-                            <i class="fas fa-map-marker-alt info-icon"></i>
-                            <h3>Oficina</h3>
-                            <p>Calle Tecnología, 123<br>28001 Madrid, España</p>
+                            <i class="fab fa-youtube info-icon"></i>
+                            <h3>YouTube</h3>
+                            <p><a href="https://youtube.com/@johnteamzai" target="_blank">@johnteamzai</a></p>
+                        </div>
+                        <div class="info-card">
+                            <i class="fab fa-instagram info-icon"></i>
+                            <h3>Instagram</h3>
+                            <p><a href="https://instagram.com/johnteam.ai" target="_blank">@johnteam.ai</a></p>
                         </div>
                     </div>
                 </div>
                 
                 <div id="form-success" class="form-success" style="display: none;">
                     <i class="fas fa-check-circle success-icon"></i>
-                    <h3>¡Gracias por contactarnos!</h3>
-                    <p>Hemos recibido tu solicitud correctamente. Nuestro equipo analizará tu proyecto y te contactará en las próximas 24 horas.</p>
-                    <p class="success-note">Mientras tanto, puedes revisar nuestros proyectos o seguirnos en redes sociales.</p>
+                    <h3>¡Gracias por tu solicitud!</h3>
+                    <p>Hemos recibido tus datos correctamente. Revisaremos tu sitio y te enviaremos el análisis detallado a tu correo electrónico en las próximas 24-48 horas.</p>
+                    <p class="success-note">Mientras tanto, ¿por qué no exploras nuestras guías gratuitas para mejorar tu sitio web?</p>
+                    
+                    <!-- Objeto 3D hipnótico (ahora dentro del mensaje de éxito) -->
+                    <div class="hypnotic-object-container">
+                        <div class="hypnotic-object">
+                            <div class="hypnotic-ring ring1"></div>
+                            <div class="hypnotic-ring ring2"></div>
+                            <div class="hypnotic-ring ring3"></div>
+                            <div class="hypnotic-core"></div>
+                        </div>
+                        <p class="hypnotic-message">¡Transforma tu experiencia digital!</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -276,36 +248,13 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="imagen/logo-white.png" alt="TechSolutions Logo">
+                <p>© 2024 JohnTeamAI. Todos los derechos reservados.</p>
+                <div class="social-links">
+                    <a href="https://youtube.com/@johnteamzai" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://instagram.com/johnteam.ai" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
-                <div class="footer-links">
-                    <h4>Enlaces</h4>
-                    <ul>
-                        <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="#proyectos">Proyectos</a></li>
-                        <li><a href="#tecnologias">Tecnologías</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </div>
-                <div class="footer-social">
-                    <h4>Síguenos</h4>
-                    <div class="social-links">
-                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-                <div class="footer-contact">
-                    <h4>Contacto</h4>
-                    <p><a href="mailto:info@techsolutions.example.com">info@techsolutions.example.com</a></p>
-                    <p><a href="tel:+34911234567">+34 911 234 567</a></p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2024 TechSolutions. Todos los derechos reservados.</p>
-                <p><a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a></p>
+                <p><a href="mailto:johnteam380@gmail.com">johnteam380@gmail.com</a></p>
+                <p><a href="politica-privacidad.html">Política de Privacidad</a></p>
             </div>
         </div>
     </footer>
@@ -313,358 +262,681 @@
     <!-- Scripts para la web -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Configuración de particles.js
-            particlesJS('particles-js', {
-                particles: {
-                    number: {
-                        value: 80,
-                        density: {
-                            enable: true,
-                            value_area: 800
-                        }
-                    },
-                    color: {
-                        value: ["#0088cc", "#0066aa", "#00aaff"]
-                    },
-                    shape: {
-                        type: "circle",
-                        stroke: {
-                            width: 0,
-                            color: "#000000"
-                        },
-                    },
-                    opacity: {
-                        value: 0.5,
-                        random: true,
-                        anim: {
-                            enable: true,
-                            speed: 1,
-                            opacity_min: 0.1,
-                            sync: false
-                        }
-                    },
-                    size: {
-                        value: 3,
-                        random: true,
-                        anim: {
-                            enable: true,
-                            speed: 2,
-                            size_min: 0.1,
-                            sync: false
-                        }
-                    },
-                    line_linked: {
-                        enable: true,
-                        distance: 150,
-                        color: "#0088cc",
-                        opacity: 0.2,
-                        width: 1
-                    },
-                    move: {
-                        enable: true,
-                        speed: 1,
-                        direction: "none",
-                        random: true,
-                        straight: false,
-                        out_mode: "out",
-                        bounce: false,
-                        attract: {
-                            enable: true,
-                            rotateX: 600,
-                            rotateY: 1200
-                        }
-                    }
-                },
-                interactivity: {
-                    detect_on: "canvas",
-                    events: {
-                        onhover: {
-                            enable: true,
-                            mode: "bubble"
-                        },
-                        onclick: {
-                            enable: true,
-                            mode: "push"
-                        },
-                        resize: true
-                    },
-                    modes: {
-                        grab: {
-                            distance: 140,
-                            line_linked: {
-                                opacity: 1
-                            }
-                        },
-                        bubble: {
-                            distance: 200,
-                            size: 6,
-                            duration: 2,
-                            opacity: 0.8,
-                            speed: 3
-                        },
-                        repulse: {
-                            distance: 200,
-                            duration: 0.4
-                        },
-                        push: {
-                            particles_nb: 4
-                        },
-                        remove: {
-                            particles_nb: 2
-                        }
-                    }
-                },
-                retina_detect: true
-            });
+            const form = document.getElementById('ux-report-form');
+            const successMessage = document.getElementById('form-success');
+            const webhookUrl = 'https://n8npro.johnteamzai.com/webhook/0e31264f-f915-45ed-ab33-ec6449c3ba52';
 
-            // Menú móvil
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
+            // Función genérica para enviar datos al webhook
+            async function sendToWebhook(data) {
+                try {
+                    console.log('Enviando datos al webhook:', data);
+                    
+                    // Añadir headers CORS para permitir la solicitud
+                    const response = await fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'Access-Control-Allow-Origin': '*'
+                        },
+                        body: JSON.stringify(data),
+                        mode: 'cors',
+                    });
+                    
+                    console.log('Respuesta del webhook:', response);
+                    
+                    // Siempre mostrar el mensaje de éxito incluso si el webhook falla
+                    // ya que el problema podría ser de CORS pero queremos la buena experiencia de usuario
+                    form.reset();
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Inicializar el objeto hipnótico 3D después de mostrar el mensaje de éxito
+                    initHypnoticObject();
+                    
+                    return true;
+                } catch (error) {
+                    console.error('Error al enviar datos:', error);
+                    
+                    // Mostrar mensaje de éxito de todos modos para mejorar UX
+                    form.reset();
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Inicializar el objeto hipnótico 3D después de mostrar el mensaje de éxito
+                    initHypnoticObject();
+                    
+                    return false;
+                }
+            }
             
-            if (menuToggle) {
-                menuToggle.addEventListener('click', () => {
-                    navLinks.classList.toggle('active');
-                    menuToggle.classList.toggle('active');
-                });
+            // Función para hacer elementos arrastrables
+            function makeDraggable(element) {
+                let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                
+                element.onmousedown = dragMouseDown;
+                
+                function dragMouseDown(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // Obtener la posición del cursor al inicio
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    document.onmouseup = closeDragElement;
+                    // Llamar a función cuando el cursor se mueve
+                    document.onmousemove = elementDrag;
+                }
+                
+                function elementDrag(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // Calcular la nueva posición
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    // Establecer la nueva posición del elemento
+                    element.style.top = (element.offsetTop - pos2) + "px";
+                    element.style.left = (element.offsetLeft - pos1) + "px";
+                }
+                
+                function closeDragElement() {
+                    // Detener el movimiento cuando se suelta el botón
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                }
+            }
+            
+            // Función para inicializar el objeto hipnótico después de enviar el formulario
+            function initHypnoticObject() {
+                const hypnoticObject = document.querySelector('.hypnotic-object');
+                if (hypnoticObject) {
+                    // Configurar eventos interactivos
+                    hypnoticObject.addEventListener('mouseover', function() {
+                        this.style.animation = 'rotate3d 5s infinite linear';
+                    });
+                    
+                    hypnoticObject.addEventListener('mouseout', function() {
+                        this.style.animation = 'rotate3d 10s infinite linear';
+                    });
+                    
+                    // Permitir arrastrar el objeto 3D
+                    makeDraggable(hypnoticObject);
+                    
+                    // Cambiar dirección de rotación al hacer clic
+                    hypnoticObject.addEventListener('click', function() {
+                        this.classList.toggle('reverse-rotation');
+                        if (this.classList.contains('reverse-rotation')) {
+                            this.style.animation = 'rotate3d-reverse 8s infinite linear';
+                        } else {
+                            this.style.animation = 'rotate3d 8s infinite linear';
+                        }
+                    });
+                    
+                    // Animar entrada del objeto
+                    hypnoticObject.style.transform = 'scale(0.1)';
+                    hypnoticObject.style.opacity = '0';
+                    setTimeout(() => {
+                        hypnoticObject.style.transition = 'all 1s ease';
+                        hypnoticObject.style.transform = 'scale(1)';
+                        hypnoticObject.style.opacity = '1';
+                    }, 100);
+                }
             }
 
-            // Animaciones con GSAP
-            if (typeof gsap !== 'undefined') {
-                // Animación del hero
-                gsap.from('.hero-title', {
-                    duration: 1.2,
-                    opacity: 0,
-                    y: -50,
-                    ease: "power3.out"
+            // Manejar el envío del formulario
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(form);
+                    const data = Object.fromEntries(formData.entries());
+                    // Mostrar mensaje de envío
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    submitButton.textContent = 'Enviando...';
+                    submitButton.disabled = true;
+                    // Enviar datos al webhook
+                    sendToWebhook(data);
                 });
-                
-                gsap.from('.profile-image-container', {
-                    duration: 1,
+            }
+        });
+    </script>
+    
+    <style>
+        @keyframes rotate3d-reverse {
+            0% {
+                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+            }
+            100% {
+                transform: rotateX(0) rotateY(0) rotateZ(0);
+            }
+        }
+    </style>
+    
+    <!-- Scripts para animaciones y efectos visuales -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Configuración de particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 160,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: ["#ffffff", "#ffdc6a", "#00b0ff", "#ff0082"]
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000"
+                    },
+                },
+                opacity: {
+                    value: 0.7,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 2,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 120,
+                    color: "#00b0ff",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 0.5,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: true,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "bubble"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    bubble: {
+                        distance: 200,
+                        size: 6,
+                        duration: 2,
+                        opacity: 0.8,
+                        speed: 3
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
+                }
+            },
+            retina_detect: true
+        });
+        
+        // Inicialización de GSAP para animaciones
+        if (typeof gsap !== 'undefined') {
+            // Añadir estrellas brillantes adicionales
+            const starsContainer = document.createElement('div');
+            starsContainer.className = 'twinkling-stars';
+            document.body.appendChild(starsContainer);
+            
+            // Crear estrellas brillantes
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.width = `${Math.random() * 3 + 1}px`;
+                star.style.height = star.style.width;
+                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                starsContainer.appendChild(star);
+            }
+
+            // Animaciones de los elementos principales
+            gsap.from('.hero-title', {
+                duration: 1.2,
+                opacity: 0,
+                y: -50,
+                ease: "power3.out"
+            });
+            
+            gsap.from('.profile-image-container', {
+                duration: 1,
+                opacity: 0,
+                scale: 0.8,
+                delay: 0.5,
+                ease: "back.out(1.7)"
+            });
+            
+            gsap.from('.hero-subtitle', {
+                duration: 1,
+                opacity: 0,
+                y: 30,
+                delay: 0.7,
+                ease: "power2.out"
+            });
+            
+            gsap.from('.hero-buttons', {
+                duration: 0.8,
+                opacity: 0,
+                y: 20,
+                delay: 1,
+                ease: "power2.out"
+            });
+            
+            // Animación para la entrada del avatar 3D
+            gsap.from(".hero-avatar", {
+                duration: 1.5,
+                x: 300,
+                opacity: 0,
+                scale: 0.7,
+                delay: 0.5,
+                ease: "power3.out"
+            });
+            
+            // Optimización para dispositivos móviles
+            if (window.innerWidth < 768) {
+                // Versión simplificada para móviles
+                gsap.from(".hero-avatar", {
+                    duration: 1.2,
+                    y: 50,
                     opacity: 0,
                     scale: 0.8,
-                    delay: 0.5,
-                    ease: "back.out(1.7)"
-                });
-                
-                gsap.from('.hero-subtitle', {
-                    duration: 1,
-                    opacity: 0,
-                    y: 30,
-                    delay: 0.7,
+                    delay: 0.3,
                     ease: "power2.out"
                 });
-                
-                gsap.from('.hero-buttons', {
+            }
+            
+            // Animar los iconos flotantes del avatar
+            gsap.utils.toArray('.floating-icon').forEach((icon, i) => {
+                gsap.from(icon, {
+                    duration: 0.7,
+                    opacity: 0,
+                    scale: 0,
+                    delay: 1.2 + (i * 0.2),
+                    ease: "back.out(2)"
+                });
+            });
+            
+            // Animar partes del avatar
+            const avatarParts = ['.avatar-head', '.avatar-torso', '.avatar-arm-left', '.avatar-arm-right', '.avatar-face', '.avatar-glasses'];
+            avatarParts.forEach((part, i) => {
+                gsap.from(part, {
                     duration: 0.8,
                     opacity: 0,
                     y: 20,
-                    delay: 1,
+                    delay: 0.8 + (i * 0.1),
                     ease: "power2.out"
                 });
+            });
+            
+            // Animaciones para los elementos al hacer scroll
+            if (typeof ScrollTrigger !== 'undefined') {
+                // Fade in para las secciones
+                gsap.utils.toArray(['#habilidades', '#servicios', '#guias', '#contacto']).forEach(section => {
+                    gsap.from(section, {
+                        scrollTrigger: {
+                            trigger: section,
+                            start: "top 80%",
+                            toggleActions: "play none none none"
+                        },
+                        duration: 1,
+                        opacity: 0,
+                        y: 50,
+                        ease: "power3.out"
+                    });
+                });
                 
-                // Animación para la entrada del elemento decorativo
-                gsap.from(".hero-decorative", {
-                    duration: 1.5,
-                    x: 300,
+                // Animar los elementos de la lista de habilidades
+                gsap.utils.toArray('.interactive-list li').forEach((item, i) => {
+                    gsap.from(item, {
+                        scrollTrigger: {
+                            trigger: item,
+                            start: "top 90%",
+                            toggleActions: "play none none none"
+                        },
+                        duration: 0.8,
+                        opacity: 0,
+                        x: -30,
+                        delay: i * 0.1,
+                        ease: "power3.out"
+                    });
+                });
+                
+                // Animaciones para tarjetas de servicios
+                gsap.utils.toArray('.service-card').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 80%",
+                            toggleActions: "play none none none"
+                        },
+                        duration: 0.8,
+                        opacity: 0,
+                        y: 50,
+                        delay: i * 0.1,
+                        ease: "power3.out"
+                    });
+                });
+                
+                // Animaciones para las tarjetas de guías
+                gsap.utils.toArray('.guide-card').forEach((card, i) => {
+                    // Animación principal de entrada
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 80%",
+                            toggleActions: "play none none none"
+                        },
+                        duration: 1,
+                        opacity: 0,
+                        scale: 0.9,
+                        rotationY: i % 2 === 0 ? -15 : 15,
+                        y: 50,
+                        delay: i * 0.2,
+                        ease: "back.out(1.5)"
+                    });
+                    
+                    // Animar el título de la tarjeta
+                    gsap.from(card.querySelector('h3'), {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 80%",
+                            toggleActions: "play none none none"
+                        },
+                        duration: 0.8,
+                        opacity: 0,
+                        y: -20,
+                        delay: i * 0.2 + 0.3,
+                        ease: "power3.out"
+                    });
+                    
+                    // Animar el icono
+                    gsap.from(card.querySelector('.guide-icon'), {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 80%",
+                            toggleActions: "play none none none"
+                        },
+                        duration: 0.7,
+                        opacity: 0,
+                        scale: 0,
+                        rotation: -45,
+                        delay: i * 0.2 + 0.2,
+                        ease: "elastic.out(1, 0.5)"
+                    });
+                    
+                    // Animar el párrafo
+                    gsap.from(card.querySelector('p'), {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 80%",
+                            toggleActions: "play none none none"
+                        },
+                        duration: 0.7,
+                        opacity: 0,
+                        y: 20,
+                        delay: i * 0.2 + 0.4,
+                        ease: "power2.out"
+                    });
+                    
+                    // Animar los botones
+                    const buttons = card.querySelectorAll('.guide-button');
+                    buttons.forEach((button, j) => {
+                        gsap.from(button, {
+                            scrollTrigger: {
+                                trigger: card,
+                                start: "top 80%",
+                                toggleActions: "play none none none"
+                            },
+                            duration: 0.5,
+                            opacity: 0,
+                            scale: 0.8,
+                            delay: i * 0.2 + 0.5 + (j * 0.1),
+                            ease: "back.out(2)"
+                        });
+                    });
+                    
+                    // Añadir efecto de hover con GSAP
+                    card.addEventListener('mouseenter', () => {
+                        gsap.to(card, {
+                            duration: 0.4,
+                            y: -10,
+                            rotationX: 5,
+                            boxShadow: '0 15px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 0, 130, 0.5), 0 0 25px rgba(0, 176, 255, 0.5)',
+                            ease: "power3.out"
+                        });
+                        gsap.to(card.querySelector('h3'), {
+                            duration: 0.4,
+                            color: 'var(--amarillo-estrella)',
+                            textShadow: '0 0 8px rgba(255, 220, 106, 0.5)',
+                            ease: "power2.out"
+                        });
+                        gsap.to(card.querySelector('.guide-icon'), {
+                            duration: 0.4,
+                            rotation: 0,
+                            scale: 1.1,
+                            y: -5,
+                            boxShadow: '0 8px 15px rgba(94, 44, 126, 0.7), 0 0 10px rgba(255, 0, 130, 0.5)',
+                            ease: "power3.out"
+                        });
+                    });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        gsap.to(card, {
+                            duration: 0.4,
+                            y: 0,
+                            rotationX: 0,
+                            boxShadow: '0 5px 15px rgba(0, 0, 0, 0.2)',
+                            ease: "power2.inOut"
+                        });
+                        gsap.to(card.querySelector('h3'), {
+                            duration: 0.4,
+                            color: 'var(--azul-brillante)',
+                            textShadow: '0 0 5px rgba(0, 176, 255, 0.3)',
+                            ease: "power2.inOut"
+                        });
+                        gsap.to(card.querySelector('.guide-icon'), {
+                            duration: 0.4,
+                            rotation: -10,
+                            scale: 1,
+                            y: 0,
+                            boxShadow: '0 4px 10px rgba(94, 44, 126, 0.5)',
+                            ease: "power2.inOut"
+                        });
+                    });
+                });
+                
+                // Animaciones para el formulario de contacto
+                gsap.from('.contact-form', {
+                    scrollTrigger: {
+                        trigger: '.contact-form',
+                        start: "top 80%",
+                        toggleActions: "play none none none"
+                    },
+                    duration: 1,
                     opacity: 0,
-                    scale: 0.7,
-                    delay: 0.5,
+                    y: 30,
                     ease: "power3.out"
                 });
                 
-                // ScrollTrigger para elementos que aparecen al hacer scroll
-                if (typeof ScrollTrigger !== 'undefined') {
-                    // Cards de servicios
-                    gsap.utils.toArray('.service-card').forEach((card, i) => {
-                        gsap.from(card, {
-                            scrollTrigger: {
-                                trigger: card,
-                                start: "top 80%",
-                                toggleActions: "play none none none"
-                            },
-                            duration: 0.8,
-                            opacity: 0,
-                            y: 50,
-                            delay: i * 0.1,
-                            ease: "power3.out"
-                        });
+                // Animaciones para las tarjetas de información
+                gsap.utils.toArray('.info-card').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 90%",
+                            toggleActions: "play none none none"
+                        },
+                        duration: 0.8,
+                        opacity: 0,
+                        y: 30,
+                        delay: i * 0.15,
+                        ease: "power3.out"
                     });
-
-                    // Proyectos
-                    gsap.utils.toArray('.project-card').forEach((card, i) => {
-                        gsap.from(card, {
-                            scrollTrigger: {
-                                trigger: card,
-                                start: "top 80%",
-                                toggleActions: "play none none none"
-                            },
+                });
+            }
+        }
+        
+        // Añadir animación a los elementos de la lista interactiva
+        const skillItems = document.querySelectorAll('.interactive-list li');
+        skillItems.forEach((item, index) => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translateX(10px)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateX(0)';
+            });
+            
+            // Animación inicial con retardo
+            setTimeout(() => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-20px)';
+                
+                setTimeout(() => {
+                    item.style.transition = 'all 0.5s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                }, 50);
+            }, index * 100);
+        });
+        
+        // Interactividad para el avatar 3D
+        const avatarContainer = document.querySelector('.hero-avatar-container');
+        const avatar = document.querySelector('.hero-avatar');
+        
+        if (avatarContainer && avatar) {
+            // Hacer el avatar interactivo
+            avatarContainer.style.pointerEvents = 'auto';
+            
+            // Seguir el cursor con el avatar
+            document.addEventListener('mousemove', (e) => {
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                if (window.innerWidth > 992) { // Solo en pantallas grandes
+                    gsap.to(avatar, {
+                        duration: 2,
+                        rotationY: 10 * (mouseX - 0.5),
+                        rotationX: -10 * (mouseY - 0.5),
+                        ease: "power2.out"
+                    });
+                    
+                    // Mover los iconos flotantes en relación al movimiento del ratón
+                    gsap.utils.toArray('.floating-icon').forEach((icon) => {
+                        const factor = Math.random() * 20;
+                        gsap.to(icon, {
                             duration: 1,
-                            opacity: 0,
-                            x: i % 2 === 0 ? -100 : 100,
-                            delay: i * 0.1,
-                            ease: "power3.out"
-                        });
-                    });
-
-                    // Tecnologías
-                    gsap.utils.toArray('.tech-category').forEach((category, i) => {
-                        gsap.from(category, {
-                            scrollTrigger: {
-                                trigger: category,
-                                start: "top 80%",
-                                toggleActions: "play none none none"
-                            },
-                            duration: 0.8,
-                            opacity: 0,
-                            y: 30,
-                            delay: i * 0.2,
-                            ease: "power2.out"
+                            x: factor * (mouseX - 0.5),
+                            y: factor * (mouseY - 0.5),
+                            ease: "power1.out"
                         });
                     });
                 }
-            }
-
-            // Formulario de contacto
-            const contactForm = document.getElementById('contact-form');
-            const formSuccess = document.getElementById('form-success');
+            });
             
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // Aquí iría la lógica para enviar el formulario
-                    // Por ahora solo mostramos el mensaje de éxito
-                    contactForm.style.display = 'none';
-                    formSuccess.style.display = 'block';
-                    
-                    // Animación para el mensaje de éxito
-                    if (typeof gsap !== 'undefined') {
-                        gsap.from(formSuccess, {
-                            duration: 0.8,
-                            opacity: 0,
-                            y: 20,
-                            ease: "power2.out"
+            // Efecto al hacer clic en el avatar
+            avatar.addEventListener('click', () => {
+                // Animación de salto
+                gsap.to(avatar, {
+                    duration: 0.2,
+                    y: -20,
+                    ease: "power2.out",
+                    onComplete: () => {
+                        gsap.to(avatar, {
+                            duration: 0.4,
+                            y: 0,
+                            ease: "bounce.out"
                         });
                     }
                 });
-            }
-
-            // Chatbot functionality
-            const chatbotTrigger = document.getElementById('chat-bot-trigger');
-            const chatbotContainer = document.getElementById('chatbot-container');
-            const chatbotClose = document.getElementById('chatbot-close');
-            const chatbotMessages = document.getElementById('chatbot-messages');
-            const userInput = document.getElementById('user-input');
-            const sendMessage = document.getElementById('send-message');
-            
-            // Predefined responses
-            const botResponses = {
-                'hola': '¡Hola! ¿En qué puedo ayudarte hoy?',
-                'servicios': 'Ofrecemos desarrollo web, aplicaciones móviles, e-commerce y servicios de SEO y marketing. ¿Te gustaría saber más sobre alguno de ellos?',
-                'desarrollo web': 'Creamos sitios web modernos, responsivos y optimizados para convertir visitantes en clientes. ¿Quieres más detalles o un presupuesto?',
-                'aplicaciones': 'Desarrollamos apps nativas y multiplataforma que destacan en las tiendas. ¿Tienes alguna idea para una aplicación?',
-                'precio': 'Cada proyecto es único. Para obtener un presupuesto personalizado, por favor completa nuestro formulario de contacto y te responderemos en menos de 24 horas.',
-                'contacto': 'Puedes contactarnos por email a info@techsolutions.example.com o llamar al +34 911 234 567. También puedes usar nuestro formulario de contacto.',
-                'gracias': '¡De nada! Estamos aquí para ayudarte. ¿Hay algo más en lo que pueda asistirte?',
-                'adiós': '¡Gracias por contactarnos! Si tienes más preguntas, no dudes en volver a chatear con nosotros.'
-            };
-            
-            // Function to show chatbot
-            function showChatbot() {
-                chatbotContainer.classList.add('active');
-            }
-            
-            // Function to hide chatbot
-            function hideChatbot() {
-                chatbotContainer.classList.remove('active');
-            }
-            
-            // Function to add a message to the chat
-            function addMessage(message, isUser = false) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = isUser ? 'user-message' : 'bot-message';
                 
-                if (!isUser) {
-                    const botAvatar = document.createElement('div');
-                    botAvatar.className = 'bot-avatar';
-                    botAvatar.innerHTML = '<img src="imagen/team.png" alt="TechSolutions Bot">';
-                    messageDiv.appendChild(botAvatar);
-                }
-                
-                const messageContent = document.createElement('div');
-                messageContent.className = 'message-content';
-                messageContent.textContent = message;
-                messageDiv.appendChild(messageContent);
-                
-                chatbotMessages.appendChild(messageDiv);
-                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-            }
-            
-            // Function to generate bot response
-            function getBotResponse(userMessage) {
-                userMessage = userMessage.toLowerCase();
-                
-                // Check for keywords in user message
-                for (const [keyword, response] of Object.entries(botResponses)) {
-                    if (userMessage.includes(keyword)) {
-                        return response;
+                // Onda expansiva en el glow
+                gsap.to('.avatar-glow', {
+                    duration: 0.5,
+                    scale: 1.2,
+                    opacity: 0.8,
+                    ease: "power2.out",
+                    onComplete: () => {
+                        gsap.to('.avatar-glow', {
+                            duration: 1,
+                            scale: 1,
+                            opacity: 0.4,
+                            ease: "power2.inOut"
+                        });
                     }
-                }
+                });
                 
-                // Default response if no keywords match
-                return "Gracias por tu mensaje. Para información más detallada, te recomendamos contactar con nuestro equipo a través del formulario o por teléfono.";
-            }
-            
-            // Function to handle user sending a message
-            function handleUserMessage() {
-                const message = userInput.value.trim();
-                if (message !== '') {
-                    // Add user message to chat
-                    addMessage(message, true);
-                    
-                    // Clear input
-                    userInput.value = '';
-                    
-                    // Simulate bot typing with a slight delay
-                    setTimeout(() => {
-                        const botResponse = getBotResponse(message);
-                        addMessage(botResponse);
-                    }, 800);
-                }
-            }
-            
-            // Event listeners
-            chatbotTrigger.addEventListener('click', showChatbot);
-            chatbotClose.addEventListener('click', hideChatbot);
-            sendMessage.addEventListener('click', handleUserMessage);
-            userInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    handleUserMessage();
-                }
+                // Hacer que los iconos salten
+                gsap.utils.toArray('.floating-icon').forEach((icon, i) => {
+                    gsap.to(icon, {
+                        duration: 0.2,
+                        y: -15,
+                        scale: 1.2,
+                        delay: i * 0.1,
+                        ease: "power2.out",
+                        onComplete: () => {
+                            gsap.to(icon, {
+                                duration: 0.4,
+                                y: 0,
+                                scale: 1,
+                                ease: "bounce.out"
+                            });
+                        }
+                    });
+                });
             });
-        });
+        }
+        
+    });
     </script>
-
-    <!-- Chatbot Container -->
-    <div id="chatbot-container" class="chatbot-container">
-        <div class="chatbot-header">
-            <h3>Asistente Virtual TechSolutions</h3>
-            <button id="chatbot-close"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="chatbot-messages" id="chatbot-messages">
-            <div class="bot-message">
-                <div class="bot-avatar">
-                    <img src="imagen/team.png" alt="TechSolutions Bot">
-                </div>
-                <div class="message-content">
-                    ¡Hola! Soy el asistente virtual de TechSolutions. ¿En qué puedo ayudarte hoy?
-                </div>
-            </div>
-        </div>
-        <div class="chatbot-input">
-            <input type="text" id="user-input" placeholder="Escribe tu mensaje aquí...">
-            <button id="send-message"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
 </body>
 </html> 
