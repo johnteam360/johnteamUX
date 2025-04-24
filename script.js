@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const profileImage = document.querySelector('.profile-image');
     
     // Configuración del webhook para la burbuja de chat principal
-    const webhookUrl = 'https://corsproxy.io/?https://n8npro.johnteamzai.com/webhook/Entrada_datos';
+    const webhookUrl = 'https://n8npro.johnteamzai.com/webhook/Entrada_datos';
     
     // Función para enviar interacciones al webhook
     function sendToWebhook(message, interactionType) {
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatNotification = document.getElementById('chatNotification');
     
     // Configuración del webhook
-    const webhookUrl = 'https://corsproxy.io/?https://n8npro.johnteamzai.com/webhook/Entrada_datos';
+    const webhookUrl = 'https://n8npro.johnteamzai.com/webhook/Entrada_datos';
     
     // Responses for the chatbot
     const botResponses = [
@@ -389,7 +389,7 @@ const chatInput = document.getElementById('chatInput');
 const chatMessages = document.getElementById('chatMessages');
 
 // Configuración del webhook para el widget de chat
-const webhookUrl = 'https://corsproxy.io/?https://n8npro.johnteamzai.com/webhook/Entrada_datos';
+const webhookUrl = 'https://n8npro.johnteamzai.com/webhook/Entrada_datos';
 
 // Function to send message to webhook
 function sendToWebhook(message, interactionType = 'chat_message') {
@@ -403,53 +403,42 @@ function sendToWebhook(message, interactionType = 'chat_message') {
         userAgent: navigator.userAgent
     };
     
-    console.log('Enviando datos al webhook:', data);
+    console.log('Enviando datos a n8n:', data);
     
-    // Crear una promesa con tiempo de espera extendido (20 segundos)
-    const timeoutPromise = new Promise((_, reject) => {
-        setTimeout(() => reject(new Error('Tiempo de espera agotado después de 20 segundos')), 20000);
-    });
-    
-    // Promesa de fetch normal
-    const fetchPromise = fetch(webhookUrl, {
+    // Promesa de fetch normal sin timeout
+    return fetch(webhookUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-            'Cache-Control': 'no-cache, no-store, must-revalidate'
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
         },
         body: JSON.stringify(data)
+    })
+    .then(response => {
+        console.log('Respuesta de n8n recibida:', response.status);
+        
+        if (!response.ok) {
+            console.error('Error enviando mensaje a n8n:', response.status);
+            throw new Error(`Error en la respuesta de n8n: ${response.status}`);
+        }
+        
+        return response.json();
+    })
+    .then(data => {
+        console.log('Datos de n8n:', data);
+        return data;
+    })
+    .catch(error => {
+        console.error('Error comunicándose con n8n:', error);
+        // En caso de error, devolver un mensaje predeterminado
+        return { 
+            message: "Lo siento, estamos experimentando problemas técnicos. Inténtalo de nuevo más tarde.",
+            status: "error" 
+        };
     });
-    
-    // Competir entre fetch y timeout
-    return Promise.race([fetchPromise, timeoutPromise])
-        .then(response => {
-            console.log('Respuesta del webhook recibida:', response.status, response.statusText);
-            
-            if (!response.ok) {
-                console.error('Error enviando mensaje al webhook:', response.status);
-                return response.json().catch(e => {
-                    throw new Error(`Error en la respuesta del webhook: ${response.status}`);
-                });
-            }
-            
-            // Intentar parsear la respuesta como JSON
-            return response.json().catch(e => {
-                console.warn('La respuesta no es JSON, pero el status es OK:', e);
-                return { status: response.status, message: 'Respuesta recibida correctamente' };
-            });
-        })
-        .then(data => {
-            console.log('Datos recibidos del webhook:', data);
-            return data;
-        })
-        .catch(error => {
-            console.error('Error en comunicación con webhook:', error.message);
-            return { error: true, message: error.message };
-        });
 }
 
 if (chatToggle && chatWidget && chatClose) {
