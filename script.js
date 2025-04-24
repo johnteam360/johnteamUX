@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const profileImage = document.querySelector('.profile-image');
     
     // Configuración del webhook para la burbuja de chat principal
-    const webhookUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://n8npro.johnteamzai.com/webhook/Entrada_datos');
+    const webhookUrl = 'https://classic-alike-sandal.glitch.me/proxy-n8n';
     
     // Función para enviar interacciones al webhook
     function sendToWebhook(message, interactionType) {
@@ -19,35 +19,29 @@ document.addEventListener('DOMContentLoaded', function() {
             userAgent: navigator.userAgent
         };
         
+        console.log('Enviando datos a webhook:', data);
+        
         // Enviar los datos al webhook
         return fetch(webhookUrl, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         })
         .then(response => {
-            console.log('Respuesta recibida:', response.status, response.statusText);
-            if (!response.ok) {
-                console.error('Error enviando mensaje al webhook');
-            }
-            // Intentar convertir a JSON incluso si hay error, para manejar respuestas de error
+            console.log('Respuesta del servidor:', response.status, response.statusText);
             return response.json().catch(e => {
-                console.log('Respuesta no es JSON. Texto:', response.statusText);
-                return { status: response.status, message: 'No JSON response' };
+                console.error('Error parseando respuesta JSON:', e);
+                return { status: response.status, message: 'Error en la respuesta' };
             });
         })
         .then(data => {
-            console.log('Interacción enviada exitosamente', data);
+            console.log('Datos recibidos del webhook:', data);
             return data;
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Error en la comunicación:', error);
             return { error: true, message: error.message };
         });
     }
@@ -202,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatNotification = document.getElementById('chatNotification');
     
     // Configuración del webhook
-    const webhookUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://n8npro.johnteamzai.com/webhook/Entrada_datos');
+    const webhookUrl = 'https://classic-alike-sandal.glitch.me/proxy-n8n';
     
     // Responses for the chatbot
     const botResponses = [
@@ -267,20 +261,39 @@ document.addEventListener('DOMContentLoaded', function() {
         // Scroll to bottom
         scrollToBottom();
         
-        // Send message to webhook
-        sendToWebhook(message, 'user_message');
+        // Show typing indicator immediately
+        addTypingIndicator();
         
-        // Simulate typing indicator
-        setTimeout(() => {
-            addTypingIndicator();
-            
-            // Ahora SOLO esperamos la respuesta del webhook, sin mensajes automatizados
-            setTimeout(() => {
+        // Send message to webhook
+        sendToWebhook(message, 'user_message')
+            .then(data => {
+                // Remove typing indicator
                 removeTypingIndicator();
-                // Eliminada la generación aleatoria de respuestas
-                // Aquí ya no generamos un mensaje local, solo los que vienen del webhook
-            }, 1000);
-        }, 500);
+                
+                // Process the response
+                if (data && data.message) {
+                    // Add bot message
+                    addMessage(data.message, 'received');
+                } else {
+                    // Add error message if no valid response
+                    addMessage('Lo siento, no pude procesar tu mensaje en este momento.', 'received');
+                }
+                
+                // Scroll to bottom
+                scrollToBottom();
+            })
+            .catch(error => {
+                // Remove typing indicator
+                removeTypingIndicator();
+                
+                // Add error message
+                addMessage('Ha ocurrido un error al procesar tu mensaje.', 'received');
+                
+                // Scroll to bottom
+                scrollToBottom();
+                
+                console.error('Error:', error);
+            });
     }
     
     // Function to add message
@@ -389,7 +402,7 @@ const chatInput = document.getElementById('chatInput');
 const chatMessages = document.getElementById('chatMessages');
 
 // Configuración del webhook para el widget de chat
-const webhookUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://n8npro.johnteamzai.com/webhook/Entrada_datos');
+const webhookUrl = 'https://classic-alike-sandal.glitch.me/proxy-n8n';
 
 // Function to send message to webhook
 function sendToWebhook(message, interactionType = 'chat_message') {
@@ -403,41 +416,44 @@ function sendToWebhook(message, interactionType = 'chat_message') {
         userAgent: navigator.userAgent
     };
     
-    console.log('Enviando datos a n8n:', data);
+    console.log('Enviando datos a webhook:', data);
     
-    // Promesa de fetch normal sin timeout
-    return fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => {
-        console.log('Respuesta de n8n recibida:', response.status);
+    return new Promise((resolve, reject) => {
+        // Configurar timeout por si el servidor no responde
+        const timeoutId = setTimeout(() => {
+            console.error('Timeout esperando respuesta del servidor');
+            reject(new Error('Timeout esperando respuesta del servidor'));
+        }, 15000); // 15 segundos de timeout
         
-        if (!response.ok) {
-            console.error('Error enviando mensaje a n8n:', response.status);
-            throw new Error(`Error en la respuesta de n8n: ${response.status}`);
-        }
-        
-        return response.json();
-    })
-    .then(data => {
-        console.log('Datos de n8n:', data);
-        return data;
-    })
-    .catch(error => {
-        console.error('Error comunicándose con n8n:', error);
-        // En caso de error, devolver un mensaje predeterminado
-        return { 
-            message: "Lo siento, estamos experimentando problemas técnicos. Inténtalo de nuevo más tarde.",
-            status: "error" 
-        };
+        fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            console.log('Estado de respuesta:', response.status, response.statusText);
+            
+            if (!response.ok) {
+                throw new Error(`Error del servidor: ${response.status} ${response.statusText}`);
+            }
+            
+            return response.json().catch(e => {
+                console.error('Error parseando respuesta JSON:', e);
+                throw new Error('Formato de respuesta inválido');
+            });
+        })
+        .then(data => {
+            clearTimeout(timeoutId); // Limpiar timeout cuando hay respuesta
+            console.log('Datos recibidos del webhook:', data);
+            resolve(data);
+        })
+        .catch(error => {
+            clearTimeout(timeoutId); // Limpiar timeout en caso de error
+            console.error('Error en la comunicación:', error);
+            reject(error);
+        });
     });
 }
 
