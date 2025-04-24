@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const profileImage = document.querySelector('.profile-image');
     
     // Configuración del webhook para la burbuja de chat principal
-    const webhookUrl = 'https://n8npro.johnteamzai.com/webhook/Entrada_datos';
+    const webhookUrl = 'https://classic-alike-sandal.glitch.me/proxy-chat';
     
     // Función para enviar interacciones al webhook
     function sendToWebhook(message, interactionType) {
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatNotification = document.getElementById('chatNotification');
     
     // Configuración del webhook
-    const webhookUrl = 'https://n8npro.johnteamzai.com/webhook/Entrada_datos';
+    const webhookUrl = 'https://classic-alike-sandal.glitch.me/proxy-chat';
     
     // Responses for the chatbot
     const botResponses = [
@@ -389,7 +389,7 @@ const chatInput = document.getElementById('chatInput');
 const chatMessages = document.getElementById('chatMessages');
 
 // Configuración del webhook para el widget de chat
-const webhookUrl = 'https://n8npro.johnteamzai.com/webhook/Entrada_datos';
+const webhookUrl = 'https://classic-alike-sandal.glitch.me/proxy-chat';
 
 // Function to send message to webhook
 function sendToWebhook(message, interactionType = 'chat_message') {
