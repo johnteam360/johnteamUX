@@ -270,14 +270,52 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Remove typing indicator
                 removeTypingIndicator();
                 
-                // Process the response
-                if (data && data.message) {
-                    // Add bot message
-                    addMessage(data.message, 'received');
+                console.log('Tipo de datos recibidos:', typeof data, Array.isArray(data) ? 'es un array' : 'no es un array');
+                
+                // Process the response - handle both object and array formats
+                let responseMessage = '';
+                
+                if (Array.isArray(data) && data.length > 0) {
+                    // Si es un array, tomamos el primer elemento
+                    console.log('Procesando respuesta como array:', data);
+                    const firstItem = data[0];
+                    
+                    if (typeof firstItem === 'object' && firstItem !== null) {
+                        // Si el primer elemento es un objeto, buscamos una propiedad que pueda contener el mensaje
+                        if (firstItem.message) {
+                            responseMessage = firstItem.message;
+                        } else if (firstItem.text) {
+                            responseMessage = firstItem.text;
+                        } else if (firstItem.response) {
+                            responseMessage = firstItem.response;
+                        } else if (firstItem.data) {
+                            responseMessage = typeof firstItem.data === 'string' ? 
+                                firstItem.data : 
+                                JSON.stringify(firstItem.data);
+                        } else {
+                            // Si no hay propiedades conocidas, convertimos todo el objeto a string
+                            responseMessage = JSON.stringify(firstItem);
+                        }
+                    } else if (typeof firstItem === 'string') {
+                        // Si el primer elemento es directamente un string
+                        responseMessage = firstItem;
+                    } else {
+                        // Para otros tipos
+                        responseMessage = String(firstItem);
+                    }
+                } else if (data && data.message) {
+                    // Formato original esperado: objeto con propiedad message
+                    responseMessage = data.message;
+                } else if (typeof data === 'string') {
+                    // Si es directamente un string
+                    responseMessage = data;
                 } else {
-                    // Add error message if no valid response
-                    addMessage('Lo siento, no pude procesar tu mensaje en este momento.', 'received');
+                    // Si no hay un formato reconocible
+                    responseMessage = 'Lo siento, no pude procesar tu mensaje en este momento.';
                 }
+                
+                // Add bot message
+                addMessage(responseMessage, 'received');
                 
                 // Scroll to bottom
                 scrollToBottom();
@@ -502,13 +540,13 @@ if (chatToggle && chatWidget && chatClose) {
             // Tiempo de inicio para medir cuánto tarda la respuesta
             const startTime = new Date().getTime();
             
-            // Send message to webhook con tiempo de espera aumentado
+            // Enviar mensaje al webhook
             sendToWebhook(message, 'user_message')
-                .then(response => {
+                .then(function(response) {
                     // Calcular tiempo transcurrido
                     const endTime = new Date().getTime();
                     const responseTime = (endTime - startTime) / 1000;
-                    console.log(`Respuesta recibida después de ${responseTime} segundos:`, response);
+                    console.log('Respuesta recibida después de ' + responseTime + ' segundos:', response);
                     console.log('RESPUESTA COMPLETA:', JSON.stringify(response, null, 2));
                     
                     // Eliminar indicador de escritura
@@ -517,24 +555,10 @@ if (chatToggle && chatWidget && chatClose) {
                         chatMessages.removeChild(typingIndicator);
                     }
                     
-                    // Procesar la respuesta solo si tenemos datos válidos
-                    if (response && response.message) {
-                        console.log('Mensaje de respuesta de Zetai:', response.message);
-                        
-                        // Mostrar la respuesta del LLM
-                        const botResponse = response.message;
-                        addMessage(botResponse, 'bot');
-                        
-                        // Desplazarse al fondo
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                    } else {
-                        console.warn('No se recibió respuesta válida del webhook:', response);
-                        // Mostrar mensaje por defecto cuando no hay respuesta válida
-                        addMessage('Lo siento, no pude procesar tu solicitud en este momento. Por favor, inténtalo de nuevo.', 'bot');
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                    }
+                    // Procesar la respuesta según su formato
+                    procesarRespuesta(response);
                 })
-                .catch(error => {
+                .catch(function(error) {
                     console.error('Error procesando respuesta:', error);
                     
                     // Eliminar indicador de escritura si existe
@@ -549,6 +573,56 @@ if (chatToggle && chatWidget && chatClose) {
                 });
         }
     });
+    
+    // Función para procesar las respuestas según su formato
+    function procesarRespuesta(response) {
+        if (response && response.message) {
+            console.log('Mensaje de respuesta de Zetai:', response.message);
+            
+            // Mostrar la respuesta
+            addMessage(response.message, 'bot');
+            
+            // Desplazarse al fondo
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        } 
+        else if (Array.isArray(response) && response.length > 0) {
+            // Manejar respuesta en formato array
+            console.log('Respuesta en formato array:', response);
+            
+            let botResponse = '';
+            const firstItem = response[0];
+            
+            if (typeof firstItem === 'object' && firstItem !== null) {
+                // Buscar en propiedades comunes
+                if (firstItem.message) {
+                    botResponse = firstItem.message;
+                } else if (firstItem.text) {
+                    botResponse = firstItem.text;
+                } else if (firstItem.response) {
+                    botResponse = firstItem.response;
+                } else if (firstItem.data) {
+                    botResponse = typeof firstItem.data === 'string' ? 
+                        firstItem.data : 
+                        JSON.stringify(firstItem.data);
+                } else {
+                    botResponse = JSON.stringify(firstItem);
+                }
+            } else if (typeof firstItem === 'string') {
+                botResponse = firstItem;
+            } else {
+                botResponse = String(firstItem);
+            }
+            
+            addMessage(botResponse, 'bot');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        } 
+        else {
+            console.warn('No se recibió respuesta válida del webhook:', response);
+            // Mostrar mensaje por defecto cuando no hay respuesta válida
+            addMessage('Lo siento, no pude procesar tu solicitud en este momento. Por favor, inténtalo de nuevo.', 'bot');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    }
 }
 
 // Function to add message
