@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const profileImage = document.querySelector('.profile-image');
     
     // Configuración del webhook para la burbuja de chat principal
-    const webhookUrl = 'https://n8npro.johnteamzai.com/webhook-test/Entrada_datos';
+    const webhookUrl = 'https://n8npro.johnteamzai.com/webhook/Entrada_datos';
     
     // Función para enviar interacciones al webhook
     function sendToWebhook(message, interactionType) {
