@@ -3,8 +3,9 @@ const http = require('http');
 const https = require('https');
 const url = require('url');
 
-// URL de destino para el webhook de n8n
-const N8N_WEBHOOK_URL = 'https://n8npro.johnteamzai.com/webhook/Entrada_datos';
+// URL de destino para el webhook de n8n - ACTUALIZADA
+// La URL debe coincidir exactamente con la URL registrada en n8n
+const N8N_WEBHOOK_URL = 'https://n8npro.johnteamzai.com/webhook-test/b3d86a61-b8c5-4f70-a2ce-50ff2c062f74';
 
 // Lista de dominios permitidos
 const ALLOWED_ORIGINS = [
@@ -70,6 +71,7 @@ const server = http.createServer((req, res) => {
           <p>✅ Servidor ZetAI funcionando correctamente</p>
           <p>Este servidor actúa como proxy para las comunicaciones entre la web y n8n.</p>
           <p>Hora del servidor: ${new Date().toLocaleString()}</p>
+          <p>URL de webhook configurada: ${N8N_WEBHOOK_URL}</p>
         </div>
       </body>
       </html>
@@ -82,6 +84,7 @@ const server = http.createServer((req, res) => {
     sendResponse(200, 'application/json', JSON.stringify({
       status: 'ok',
       message: 'Servidor ZetAI funcionando correctamente',
+      webhook_url: N8N_WEBHOOK_URL,
       timestamp: new Date().toISOString()
     }));
     return;
@@ -238,4 +241,4 @@ const server = http.createServer((req, res) => {
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`[${new Date().toISOString()}] Servidor iniciado en puerto ${PORT}`);
-}); 
+});
