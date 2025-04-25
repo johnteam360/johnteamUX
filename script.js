@@ -617,4 +617,128 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
         });
     });
+});
+
+// Añadir animación para la sección de video y su contenedor
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        // Animación para la sección de video
+        gsap.from('#video-presentacion', {
+            scrollTrigger: {
+                trigger: '#video-presentacion',
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            duration: 1.2,
+            opacity: 0,
+            y: 50,
+            ease: "power2.out"
+        });
+        
+        // Animación para el contenedor del video
+        gsap.from('.video-container', {
+            scrollTrigger: {
+                trigger: '.video-container',
+                start: "top 85%",
+                toggleActions: "play none none none"
+            },
+            duration: 1.5,
+            opacity: 0,
+            scale: 0.8,
+            delay: 0.3,
+            ease: "back.out(1.7)"
+        });
+        
+        // Animación para los elementos decorativos
+        gsap.utils.toArray(['.video-corner', '.video-stars-bg', '.video-holographic-overlay']).forEach((el, i) => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: '.video-container',
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                duration: 0.8,
+                opacity: 0,
+                scale: 0.5,
+                delay: 0.8 + (i * 0.15),
+                ease: "power3.out"
+            });
+        });
+        
+        // Implementar interacción 3D con el movimiento del ratón
+        const videoContainer = document.querySelector('.video-container');
+        if (videoContainer) {
+            document.addEventListener('mousemove', function(e) {
+                if (window.innerWidth > 768) { // Solo en pantallas más grandes
+                    const mouseX = e.clientX / window.innerWidth - 0.5;
+                    const mouseY = e.clientY / window.innerHeight - 0.5;
+                    
+                    gsap.to(videoContainer, {
+                        duration: 0.5,
+                        rotationY: mouseX * 10,
+                        rotationX: -mouseY * 10,
+                        transformPerspective: 1000,
+                        ease: "power1.out"
+                    });
+                }
+            });
+            
+            // Restablecer cuando el ratón sale del viewport
+            document.addEventListener('mouseleave', function() {
+                gsap.to(videoContainer, {
+                    duration: 1.2,
+                    rotationY: 0,
+                    rotationX: 0,
+                    ease: "elastic.out(1, 0.5)"
+                });
+            });
+        }
+        
+        // Manejar el botón de reproducción personalizado
+        const videoPlayButton = document.querySelector('.video-play-button');
+        const videoIframe = document.querySelector('.video-container iframe');
+        
+        if (videoPlayButton && videoIframe) {
+            // YouTube API para control del video
+            let player;
+            let youtubeReady = false;
+            
+            // Cargar YouTube API
+            const tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            
+            // Cuando la API está lista
+            window.onYouTubeIframeAPIReady = function() {
+                youtubeReady = true;
+                player = new YT.Player(videoIframe, {
+                    events: {
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            };
+            
+            // Controlar estados del reproductor
+            function onPlayerStateChange(event) {
+                if (event.data == YT.PlayerState.PLAYING) {
+                    videoPlayButton.style.opacity = '0';
+                } else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+                    videoPlayButton.style.opacity = '1';
+                }
+            }
+            
+            // Click en el botón de reproducción
+            videoPlayButton.addEventListener('click', function() {
+                if (youtubeReady && player) {
+                    const playerState = player.getPlayerState();
+                    if (playerState === YT.PlayerState.PLAYING) {
+                        player.pauseVideo();
+                    } else {
+                        player.playVideo();
+                    }
+                }
+            });
+        }
+    }
 }); 

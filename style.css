@@ -782,6 +782,7 @@ ul li::before {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+  width: 100%;
 }
 
 .guide-card {
@@ -2841,4 +2842,287 @@ main > section:first-child {
         left: 20px;
         font-size: 16px;
     }
+}
+
+/* Estilos para la sección de video */
+#video-presentacion {
+  position: relative;
+  z-index: 1;
+  margin: 4rem 0;
+}
+
+#video-presentacion::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(94, 44, 126, 0.2) 0%, rgba(12, 22, 79, 0.2) 100%);
+  z-index: -1;
+  transform: skewY(-3deg);
+  transform-origin: top right;
+}
+
+.video-container {
+  position: relative;
+  width: 80%;
+  margin: 2rem auto;
+  max-width: 900px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.7), 
+    0 0 0 2px rgba(94, 44, 126, 0.6),
+    0 0 20px var(--rosa-glow),
+    0 0 30px var(--azul-glow);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  background: rgba(5, 10, 24, 0.5);
+  padding: 20px;
+  
+  /* Decoración de bordes con gradiente animado */
+  --border-width: 3px;
+  --border-radius: 15px;
+  --border-bg-size: 400% 400%;
+  
+  background-image: 
+    linear-gradient(60deg, 
+      var(--azul-brillante), 
+      var(--rosa-nebulosa), 
+      var(--purpura-nebulosa), 
+      var(--amarillo-estrella), 
+      var(--azul-brillante));
+  background-size: var(--border-bg-size);
+  animation: moveGradient 10s ease infinite alternate;
+}
+
+/* Animación para el borde gradiente */
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Contenedor interior del video con efecto de fondo de estrellas */
+.video-inner-container {
+  position: relative;
+  width: 100%;
+  background: var(--fondo-cosmos);
+  border-radius: 12px;
+  overflow: hidden;
+  padding-top: 56.25%; /* Relación de aspecto 16:9 */
+}
+
+/* Efecto de partículas estrella en el fondo del video */
+.video-stars-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 5px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+  background-size: 550px 550px, 350px 350px, 250px 250px;
+  background-position: 0 0, 40px 60px, 130px 270px;
+  z-index: 1;
+  opacity: 0.2;
+}
+
+/* Esquinas decorativas */
+.video-corner {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.corner-top-left {
+  top: 5px;
+  left: 5px;
+  border-top: 3px solid var(--azul-brillante);
+  border-left: 3px solid var(--azul-brillante);
+  border-top-left-radius: 8px;
+}
+
+.corner-top-right {
+  top: 5px;
+  right: 5px;
+  border-top: 3px solid var(--rosa-nebulosa);
+  border-right: 3px solid var(--rosa-nebulosa);
+  border-top-right-radius: 8px;
+}
+
+.corner-bottom-left {
+  bottom: 5px;
+  left: 5px;
+  border-bottom: 3px solid var(--amarillo-estrella);
+  border-left: 3px solid var(--amarillo-estrella);
+  border-bottom-left-radius: 8px;
+}
+
+.corner-bottom-right {
+  bottom: 5px;
+  right: 5px;
+  border-bottom: 3px solid var(--purpura-nebulosa);
+  border-right: 3px solid var(--purpura-nebulosa);
+  border-bottom-right-radius: 8px;
+}
+
+.video-container:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.8), 
+    0 0 0 3px rgba(255, 0, 130, 0.8),
+    0 0 30px var(--rosa-glow),
+    0 0 50px var(--azul-glow);
+}
+
+.video-container:hover .corner-top-left,
+.video-container:hover .corner-top-right,
+.video-container:hover .corner-bottom-left,
+.video-container:hover .corner-bottom-right {
+  box-shadow: 0 0 15px currentColor;
+}
+
+.video-container iframe,
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+  z-index: 5;
+  border-radius: 8px;
+}
+
+/* Overlay para el efecto holográfico */
+.video-holographic-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, 
+    rgba(0,176,255,0.05) 0%, 
+    rgba(255,0,130,0.05) 30%, 
+    rgba(255,220,106,0.05) 70%, 
+    rgba(94,44,126,0.05) 100%);
+  opacity: 0.5;
+  z-index: 6;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+}
+
+/* Botón play personalizado */
+.video-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 176, 255, 0.2);
+  border-radius: 50%;
+  z-index: 7;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px var(--azul-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.video-container:hover .video-play-button {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-play-button::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-left: 25px solid rgba(255, 255, 255, 0.9);
+  border-bottom: 15px solid transparent;
+  margin-left: 5px;
+}
+
+/* Texto flotante sobre el video */
+.video-title-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-family: var(--fuente-titulos);
+  font-size: 1rem;
+  text-shadow: 0 0 10px var(--azul-glow);
+  z-index: 7;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.video-container:hover .video-title-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--texto-claro);
+  text-align: center;
+}
+
+@media (max-width: 992px) {
+  .video-container {
+    width: 90%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-container {
+    width: 95%;
+    margin: 1.5rem auto;
+    padding: 10px;
+  }
+  
+  .video-corner {
+    width: 20px;
+    height: 20px;
+  }
+  
+  #video-presentacion {
+    margin: 3rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-container {
+    padding: 8px;
+  }
+  
+  .video-corner {
+    width: 15px;
+    height: 15px;
+  }
 }
