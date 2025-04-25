@@ -157,8 +157,17 @@ const server = http.createServer((req, res) => {
             // Intentar analizar como JSON
             try {
               const jsonResponse = JSON.parse(responseData);
-              // Enviar la respuesta tal cual
-              sendResponse(200, 'application/json', responseData);
+              
+              // Transformar el formato si contiene "output" para hacerlo compatible
+              if (jsonResponse.output && typeof jsonResponse.output === 'string') {
+                sendResponse(200, 'application/json', JSON.stringify({
+                  message: jsonResponse.output,
+                  status: 'success'
+                }));
+              } else {
+                // Enviar la respuesta tal cual
+                sendResponse(200, 'application/json', responseData);
+              }
             } catch (err) {
               // Si no es JSON, envolver en un objeto JSON
               sendResponse(200, 'application/json', JSON.stringify({

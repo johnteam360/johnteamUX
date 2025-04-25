@@ -176,6 +176,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             responseMessage = firstItem.text;
                         } else if (firstItem.response) {
                             responseMessage = firstItem.response;
+                        } else if (firstItem.output) {
+                            responseMessage = firstItem.output;
                         } else if (firstItem.data) {
                             responseMessage = typeof firstItem.data === 'string' ? 
                                 firstItem.data : 
@@ -191,6 +193,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Para otros tipos
                         responseMessage = String(firstItem);
                     }
+                } else if (data && data.output) {
+                    // Nuevo formato con propiedad output
+                    responseMessage = data.output;
                 } else if (data && data.message) {
                     // Formato original esperado: objeto con propiedad message
                     responseMessage = data.message;
@@ -488,6 +493,8 @@ if (chatToggle && chatWidget && chatClose) {
                     botResponse = firstItem.text;
                 } else if (firstItem.response) {
                     botResponse = firstItem.response;
+                } else if (firstItem.output) {
+                    botResponse = firstItem.output;
                 } else if (firstItem.data) {
                     botResponse = typeof firstItem.data === 'string' ? 
                         firstItem.data : 
