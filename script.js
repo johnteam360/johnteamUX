@@ -4,6 +4,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroImage = document.querySelector('.hero-image img');
     const profileImage = document.querySelector('.profile-image');
     
+    // Generar o recuperar el ID único de usuario
+    function getOrCreateUserID() {
+        // Verificar si ya existe un ID en localStorage
+        let userID = localStorage.getItem('zet_user_id');
+        
+        // Si no existe, crear uno nuevo (implementación simple de UUID v4)
+        if (!userID) {
+            userID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+            // Guardar el nuevo ID en localStorage
+            localStorage.setItem('zet_user_id', userID);
+        }
+        
+        return userID;
+    }
+    
+    // Obtener ID de usuario al cargar la página
+    const userID = getOrCreateUserID();
+    console.log('ID de usuario:', userID);
+    
     if (chatBubble) {
         // Mensaje permanente para la burbuja
         const mensajePermanente = "Automatiza tu embudo de venta.\nHabla con ZetAI 👇";
@@ -82,6 +105,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatSendBtn = document.getElementById('chatSendBtn');
     const chatMessages = document.getElementById('chatMessages');
     const chatNotification = document.getElementById('chatNotification');
+    
+    // Obtener o crear el ID de usuario
+    function getOrCreateUserID() {
+        let userID = localStorage.getItem('zet_user_id');
+        if (!userID) {
+            userID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+            localStorage.setItem('zet_user_id', userID);
+        }
+        return userID;
+    }
+    
+    // ID de usuario para esta sesión
+    const userID = getOrCreateUserID();
     
     // Configuración del webhook
     const webhookUrl = 'https://classic-alike-sandal.glitch.me/proxy-n8n';
@@ -337,17 +377,34 @@ const webhookUrl = 'https://classic-alike-sandal.glitch.me/proxy-n8n';
 
 // Function to send message to webhook
 function sendToWebhook(message, interactionType = 'chat_message') {
-    // Preparar los datos para el webhook
+    // Obtener ID de usuario existente o crear uno nuevo
+    function getOrCreateUserID() {
+        let userID = localStorage.getItem('zet_user_id');
+        if (!userID) {
+            userID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+            localStorage.setItem('zet_user_id', userID);
+        }
+        return userID;
+    }
+    
+    const userID = getOrCreateUserID();
+    
+    // Preparar los datos para el webhook, incluyendo el ID único de usuario
     const data = {
         message: message,
         interaction: interactionType,
         timestamp: new Date().toISOString(),
         source: 'chat_widget',
         url: window.location.href,
-        userAgent: navigator.userAgent
+        userAgent: navigator.userAgent,
+        userID: userID // Añadimos el ID de usuario a cada solicitud
     };
     
-    console.log('Enviando datos a webhook:', data);
+    console.log('Enviando datos a webhook (userID: ' + userID + '):', data);
     
     return new Promise((resolve, reject) => {
         // Configurar timeout por si el servidor no responde

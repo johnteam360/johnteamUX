@@ -99,6 +99,11 @@ const server = http.createServer((req, res) => {
       try {
         parsedBody = JSON.parse(body);
         console.log(`[${new Date().toISOString()}] Mensaje recibido: ${parsedBody.message}`);
+        
+        // Registrar el ID de usuario si está presente
+        if (parsedBody.userID) {
+          console.log(`[${new Date().toISOString()}] ID de usuario: ${parsedBody.userID}`);
+        }
       } catch (e) {
         console.error(`[${new Date().toISOString()}] Error parseando JSON: ${e.message}`);
         sendResponse(200, 'application/json', JSON.stringify({
@@ -115,13 +120,14 @@ const server = http.createServer((req, res) => {
       // Hacemos una solicitud fetch directa usando https para mejor control de errores
       const parsedUrl = url.parse(N8N_WEBHOOK_URL);
       
-      // Preparamos los datos para n8n
+      // Preparamos los datos para n8n, incluyendo el ID de usuario si existe
       const postData = JSON.stringify({
         message: parsedBody.message,
         interaction: parsedBody.interaction || 'chat',
         timestamp: new Date().toISOString(),
         source: parsedBody.source || 'chat_widget',
-        userAgent: req.headers['user-agent'] || 'unknown'
+        userAgent: req.headers['user-agent'] || 'unknown',
+        userID: parsedBody.userID || 'anonymous' // Incluir ID de usuario o 'anonymous' si no existe
       });
       
       const options = {
