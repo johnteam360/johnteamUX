@@ -46,7 +46,7 @@ const server = http.createServer((req, res) => {
   }
   
   // Ruta principal - Página de inicio
-  if ((req.url === '/' || req.url === '/home.html') && req.method === 'GET') {
+  if ((req.url === '/' || req.url === '/index.html') && req.method === 'GET') {
     sendResponse(200, 'text/html', `
       <!DOCTYPE html>
       <html>
