@@ -161,10 +161,12 @@ function sendMessageToServer(message) {
         // Ocultar indicador de escritura
         hideTypingIndicator();
         
-        // Mostrar respuesta del bot
-        if (data && data.message) {
-            addMessage(data.message, 'bot');
+        // Mostrar respuesta del bot (revisar message o output)
+        const botMessage = data ? (data.message || data.output) : null;
+        if (botMessage) {
+            addMessage(botMessage, 'bot');
         } else {
+            console.error('Respuesta inesperada del servidor:', data); // Log para depuración
             addMessage('Lo siento, ocurrió un error al procesar tu solicitud. Por favor, intenta de nuevo más tarde.', 'bot');
         }
     })
