@@ -17,7 +17,7 @@
 /* Estilos para el chat flotante */
 .chat-bubble {
     position: fixed;
-    bottom: 50%;
+    bottom: 20px;
     right: 20px;
     width: 60px;
     height: 60px;
@@ -34,17 +34,18 @@
     border: 2px solid var(--chat-bg);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    transform: translateY(50%);
+    transform: translateY(0);
     opacity: 1;
 }
 
 .chat-bubble.hidden {
     opacity: 0;
     pointer-events: none;
+    transform: translateY(10px);
 }
 
 .chat-bubble:hover {
-    transform: translateY(50%) scale(1.05);
+    transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     background-color: var(--chat-primary-dark);
 }
@@ -55,12 +56,12 @@
 
 .chat-container {
     position: fixed;
-    bottom: auto;
-    top: 40%;
+    bottom: 90px;
+    top: auto;
     right: 20px;
-    width: 280px;
-    height: 400px;
-    max-height: 400px;
+    width: 320px;
+    height: calc(var(--vh, 1vh) * 65);
+    max-height: 450px;
     background-color: var(--chat-bg);
     border-radius: var(--chat-radius);
     box-shadow: var(--chat-shadow);
