@@ -145,7 +145,7 @@ function sendMessageToServer(message) {
     console.log('Enviando mensaje a Glitch:', data);
     
     // Enviar solicitud al servidor
-    fetch('https://classic-alike-sandal.glitch.me/message', {
+    fetch('https://classic-alike-sandal.glitch.me/tu-endpoint', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
