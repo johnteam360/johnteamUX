@@ -117,74 +117,90 @@ const server = http.createServer((req, res) => {
       // Reenviar a n8n directamente
       console.log(`[${new Date().toISOString()}] Reenviando a: ${N8N_WEBHOOK_URL}`);
       
-      // Hacemos una solicitud fetch directa usando https para mejor control de errores
       const parsedUrl = url.parse(N8N_WEBHOOK_URL);
       
-      // Preparamos los datos para n8n, incluyendo el ID de usuario si existe
+      // Preparamos los datos para n8n
       const postData = JSON.stringify({
         message: parsedBody.message,
         interaction: parsedBody.interaction || 'chat',
         timestamp: new Date().toISOString(),
         source: parsedBody.source || 'chat_widget',
         userAgent: req.headers['user-agent'] || 'unknown',
-        userID: parsedBody.userID || 'anonymous' // Incluir ID de usuario o 'anonymous' si no existe
+        userID: parsedBody.userID || 'anonymous'
       });
-      
-      const options = {
+
+      console.log('Datos enviados a n8n:', postData);
+
+      const proxyReq = https.request({
         hostname: parsedUrl.hostname,
         port: 443,
         path: parsedUrl.path,
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Content-Length': Buffer.byteLength(postData),
-          'User-Agent': 'ZetAI-Proxy/1.0',
-          'Accept': 'application/json'
-        },
-        timeout: 25000
-      };
-      
-      // Crear la solicitud a n8n
-      const proxyReq = https.request(options, (proxyRes) => {
+          'Content-Length': Buffer.byteLength(postData)
+        }
+      }, proxyRes => {
         let responseData = '';
         
-        // Recopilar los datos de respuesta
-        proxyRes.on('data', (chunk) => {
+        proxyRes.on('data', chunk => {
           responseData += chunk;
         });
         
-        // Cuando la respuesta esté completa
         proxyRes.on('end', () => {
-          console.log(`[${new Date().toISOString()}] Respuesta de n8n: ${proxyRes.statusCode}`);
+          console.log(`[${new Date().toISOString()}] Respuesta de n8n:`, responseData);
           
           if (responseData) {
-            console.log(`[${new Date().toISOString()}] Datos recibidos de n8n: ${responseData}`);
-            
-            // Intentar analizar como JSON
             try {
               const jsonResponse = JSON.parse(responseData);
               
-              // Transformar el formato si contiene "output" para hacerlo compatible
-              if (jsonResponse.output && typeof jsonResponse.output === 'string') {
+              // Si la respuesta está vacía o es inválida, enviar mensaje por defecto
+              if (!jsonResponse || (Array.isArray(jsonResponse) && jsonResponse.length === 0)) {
+                console.log('Respuesta vacía de n8n, enviando mensaje por defecto');
                 sendResponse(200, 'application/json', JSON.stringify({
-                  message: jsonResponse.output,
+                  message: '¡Hola! Soy ZetAI. ¿En qué puedo ayudarte hoy?',
                   status: 'success'
                 }));
-              } else {
-                // Enviar la respuesta tal cual
-                sendResponse(200, 'application/json', responseData);
+                return;
               }
-            } catch (err) {
-              // Si no es JSON, envolver en un objeto JSON
+
+              // Si es un array con contenido, tomar el primer elemento
+              if (Array.isArray(jsonResponse) && jsonResponse.length > 0) {
+                const firstResponse = jsonResponse[0];
+                if (typeof firstResponse === 'object' && (firstResponse.output || firstResponse.message)) {
+                  sendResponse(200, 'application/json', JSON.stringify({
+                    message: firstResponse.output || firstResponse.message,
+                    status: 'success'
+                  }));
+                  return;
+                }
+              }
+
+              // Si es un objeto directo con output o message
+              if (jsonResponse.output || jsonResponse.message) {
+                sendResponse(200, 'application/json', JSON.stringify({
+                  message: jsonResponse.output || jsonResponse.message,
+                  status: 'success'
+                }));
+                return;
+              }
+
+              // Si llegamos aquí, la respuesta no tiene el formato esperado
+              console.log('Formato de respuesta inesperado:', jsonResponse);
               sendResponse(200, 'application/json', JSON.stringify({
-                message: responseData,
-                status: 'success'
+                message: 'Lo siento, hubo un problema al procesar tu mensaje. ¿Podrías intentarlo de nuevo?',
+                status: 'error'
+              }));
+            } catch (err) {
+              console.error('Error procesando respuesta JSON:', err);
+              sendResponse(200, 'application/json', JSON.stringify({
+                message: 'Error procesando la respuesta. Por favor, intenta de nuevo.',
+                status: 'error'
               }));
             }
           } else {
-            // Si no hay datos, enviar un mensaje de error
             sendResponse(200, 'application/json', JSON.stringify({
-              message: 'La IA está ocupada. Por favor, inténtalo de nuevo en unos momentos.',
+              message: 'No se recibió respuesta del servidor. Por favor, intenta de nuevo más tarde.',
               status: 'error'
             }));
           }
