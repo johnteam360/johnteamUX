@@ -261,10 +261,22 @@ function createChatElements() {
 // Función para mostrar/ocultar el chat
 function toggleChat() {
     const chatContainer = document.getElementById('chatContainer');
+    const chatBubble = document.getElementById('chatBubble');
     chatContainer.classList.toggle('visible');
     
+    const isVisible = chatContainer.classList.contains('visible');
+    
+    // Ocultar/mostrar la burbuja
+    if (chatBubble) {
+        if (isVisible) {
+            chatBubble.classList.add('hidden');
+        } else {
+            chatBubble.classList.remove('hidden');
+        }
+    }
+    
     // Si se está abriendo el chat, enfocar el input
-    if (chatContainer.classList.contains('visible')) {
+    if (isVisible) {
         // Pequeño retraso para permitir que la animación termine
         setTimeout(() => {
             const chatInput = document.getElementById('chatInput');
