@@ -1,7 +1,20 @@
 // Función para inicializar el chat
 document.addEventListener('DOMContentLoaded', function() {
-    // Crear elementos del chat
-    createChatElements();
+    const isContactPage = window.location.pathname.includes('contact') || 
+                         window.location.hash === '#contact';
+    
+    // Si estamos en la página de contacto, crear el chat integrado
+    if (isContactPage) {
+        createContactPageChat();
+    } else {
+        // Crear el chat flotante normal
+        createChatElements();
+    }
+    
+    // Manejar el teclado virtual en móviles
+    if ('visualViewport' in window) {
+        window.visualViewport.addEventListener('resize', handleViewportResize);
+    }
     
     // Añadir evento de clic al botón de chat
     const chatBubble = document.getElementById('chatBubble');
@@ -25,6 +38,60 @@ document.addEventListener('DOMContentLoaded', function() {
         addMessage('¡Hola! Soy ZetAI, tu asistente virtual. ¿En qué puedo ayudarte hoy?', 'bot', 'welcome-message');
     }, 500);
 });
+
+// Función para manejar el redimensionamiento del viewport (teclado móvil)
+function handleViewportResize() {
+    const chatContainer = document.getElementById('chatContainer');
+    if (!chatContainer) return;
+
+    const isKeyboardOpen = window.visualViewport.height < window.innerHeight;
+    
+    if (isKeyboardOpen) {
+        chatContainer.classList.add('keyboard-open');
+        // Hacer scroll al último mensaje
+        const chatMessages = document.getElementById('chatMessages');
+        if (chatMessages) {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    } else {
+        chatContainer.classList.remove('keyboard-open');
+    }
+}
+
+// Función para crear el chat en la página de contacto
+function createContactPageChat() {
+    const contactSection = document.querySelector('.contact-card');
+    if (!contactSection) return;
+
+    // Reemplazar el contenido actual con el chat
+    contactSection.innerHTML = `
+        <div class="contact-chat-container" id="chatContainer">
+            <div class="chat-header">
+                <h3>ZetAI Asistente</h3>
+            </div>
+            <div id="chatMessages" class="chat-messages"></div>
+            <form id="chatForm" class="chat-input">
+                <input type="text" id="chatInput" placeholder="Escribe tu mensaje aquí..." autocomplete="off">
+                <button type="submit" id="chatSend" disabled>Enviar</button>
+            </form>
+        </div>
+    `;
+
+    // Configurar eventos
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    const chatSend = document.getElementById('chatSend');
+    
+    chatForm.addEventListener('submit', handleChatSubmit);
+    chatInput.addEventListener('input', function() {
+        chatSend.disabled = !chatInput.value.trim();
+    });
+
+    // Mostrar mensaje de bienvenida
+    setTimeout(() => {
+        addMessage('¡Hola! Soy ZetAI, tu asistente virtual. ¿En qué puedo ayudarte hoy?', 'bot', 'welcome-message');
+    }, 500);
+}
 
 // Función para crear los elementos del chat
 function createChatElements() {
