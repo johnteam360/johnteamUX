@@ -142,6 +142,8 @@ function sendMessageToServer(message) {
         userAgent: navigator.userAgent
     };
     
+    console.log('Enviando mensaje a Glitch:', data);
+    
     // Enviar solicitud al servidor
     fetch('https://classic-alike-sandal.glitch.me/message', {
         method: 'POST',
@@ -149,11 +151,13 @@ function sendMessageToServer(message) {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        mode: 'cors'
     })
     .then(response => {
+        console.log('Respuesta del servidor:', response.status, response.statusText);
         if (!response.ok) {
-            throw new Error('Error en la conexión');
+            throw new Error(`Error en la conexión: ${response.status} ${response.statusText}`);
         }
         return response.json();
     })
@@ -161,8 +165,10 @@ function sendMessageToServer(message) {
         // Ocultar indicador de escritura
         hideTypingIndicator();
         
+        console.log('Datos recibidos del servidor:', data);
+        
         // Mostrar respuesta del bot (revisar message o output)
-        const botMessage = data ? (data.message || data.output) : null;
+        const botMessage = data ? (data.message || data.output || data.response) : null;
         if (botMessage) {
             addMessage(botMessage, 'bot');
         } else {
@@ -171,7 +177,7 @@ function sendMessageToServer(message) {
         }
     })
     .catch(error => {
-        console.error('Error:', error);
+        console.error('Error completo:', error);
         
         // Ocultar indicador de escritura
         hideTypingIndicator();
