@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:">
+    <title>Portafolio | JohnTeam</title>
+    <link rel="icon" type="image/png" href="portfolio/favicon.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="home.html" class="logo-text">John<span>Team</span></a>
+            </div>
+            <nav class="nav">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="portafolio.html" class="active">Portafolio</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="portfolio-hero">
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="container">
+            <div class="portfolio-hero-content">
+                <h1 class="section-title">Nuestro <span class="highlight">Portafolio</span> de Proyectos</h1>
+                <p class="section-subtitle">Descubre cómo hemos ayudado a empresas a transformar su presencia digital con soluciones tecnológicas innovadoras y diseño de alto impacto</p>
+                <div class="portfolio-badges">
+                    <div class="portfolio-badge">
+                        <span>Web</span>
+                    </div>
+                    <div class="portfolio-badge">
+                        <span>AI</span>
+                    </div>
+                    <div class="portfolio-badge">
+                        <span>Ecommerce</span>
+                    </div>
+                    <div class="portfolio-badge">
+                        <span>Sistemas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <a href="#portfolio-grid">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="portfolio-filters" class="portfolio-filters">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="ai">Agentes de AI</button>
+                <button class="filter-btn" data-filter="systems">Sistemas</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio-grid" class="portfolio-grid">
+        <div class="container">
+            <div class="projects-grid">
+                <!-- Proyecto 1 - Clínica -->
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="portfolio/clinica.PNG" alt="Proyecto Clínica Estética">
+                        <div class="project-overlay">
+                            <div class="project-category">Web</div>
+                            <h3 class="project-title">Clínica Estética Belladerm</h3>
+                            <p class="project-description">Sitio web para clínica de medicina estética con sistema de reservas online y sección de antes/después.</p>
+                            <a href="https://johnteam360.github.io/Clinica/" target="_blank" class="project-link">Ver Sitio</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2 - Concesionario -->
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="portfolio/concesionario.PNG" alt="Proyecto AutoLux">
+                        <div class="project-overlay">
+                            <div class="project-category">Web</div>
+                            <h3 class="project-title">AutoLux Concesionario</h3>
+                            <p class="project-description">Plataforma digital para concesionario de vehículos de lujo con catálogo interactivo y financiamiento online.</p>
+                            <a href="https://johnteam360.github.io/Concesionario/index.html" target="_blank" class="project-link">Ver Sitio</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3 - JohnTeam -->
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="portfolio/miniatura_de_video.png" alt="Proyecto JohnTeam" style="width:100%; height:auto; object-fit:cover;">
+                        <div class="project-overlay">
+                            <div class="project-category">Web</div>
+                            <h3 class="project-title">JohnTeam Agencia Digital</h3>
+                            <p class="project-description">Plataforma corporativa con integración de servicios digitales, portafolio dinámico y blog técnico.</p>
+                            <a href="#" class="project-link">Estás Aquí</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 5 - SarAI -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="portfolio/sarai.jpg" alt="Proyecto SarAI Asistente para Spa">
+                        <div class="project-overlay">
+                            <div class="project-category">Agentes de AI</div>
+                            <h3 class="project-title">SarAI - Asistente de Spa</h3>
+                            <p class="project-description">Asistente virtual especializado en asesoramiento de tratamientos de spa, gestión de citas y seguimiento personalizado de clientes.</p>
+                            <a href="#" class="project-link">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 8 - Onboarding AI -->
+                <div class="project-card" data-category="systems ai">
+                    <div class="project-image">
+                        <img src="portfolio/onboarding.png" alt="Proyecto Onboarding AI">
+                        <div class="project-overlay">
+                            <div class="project-category">Sistemas • Agentes de AI</div>
+                            <h3 class="project-title">Onboarding AI Assistant</h3>
+                            <p class="project-description">Sistema inteligente que agiliza y personaliza el proceso de incorporación de nuevos empleados, automatizando documentación y entrenamiento.</p>
+                            <a href="#" class="project-link">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio-testimonials">
+        <div class="container">
+            <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>El sistema de IA que implementaron para nuestra cadena de restaurantes ha revolucionado completamente la forma en que gestionamos las reservas y la atención al cliente.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="portfolio/carlos.jpeg" alt="Carlos Rodríguez">
+                        </div>
+                        <div class="author-details">
+                            <h4>Carlos Rodríguez</h4>
+                            <p>CEO, Grupo Gastronómico Sabores</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>Nuestra tienda online ha visto un incremento del 180% en conversiones desde que implementamos la solución personalizada de JohnTeam. El sistema de recomendaciones es impresionante.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="portfolio/marcela.jpeg" alt="Marcela López">
+                        </div>
+                        <div class="author-details">
+                            <h4>Marcela López</h4>
+                            <p>Directora Digital, Fashion Elite</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>La implementación del sistema RAG ha transformado la manera en que nuestros equipos acceden y utilizan la información interna. La eficiencia ha aumentado dramáticamente.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="portfolio/fernando.jpeg" alt="Fernando Torres">
+                        </div>
+                        <div class="author-details">
+                            <h4>Fernando Torres</h4>
+                            <p>CTO, Corporación Innovatech</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <div class="stat-number">45</div>
+                    <div class="stat-title">Clientes Satisfechos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div class="stat-number">900+</div>
+                    <div class="stat-title">Horas de Desarrollo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="action-buttons-section">
+        <div class="action-shapes">
+            <div class="action-shape-1"></div>
+            <div class="action-shape-2"></div>
+        </div>
+        <div class="container">
+            <div class="action-content">
+                <h2 class="section-title">¿Listo para Tu Próximo Proyecto?</h2>
+                <p class="section-subtitle">Hablemos sobre cómo podemos ayudarte a transformar tu visión en una solución digital de alto impacto. Nuestro equipo está preparado para enfrentar cualquier desafío.</p>
+                <div class="action-buttons">
+                    <a href="#contact" class="btn-portfolio">
+                        <i class="fas fa-envelope"></i>
+                        Contáctanos
+                    </a>
+                    <a href="servicios.html" class="btn-zetai">
+                        <i class="fas fa-th-list"></i>
+                        Ver Servicios
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="contact-shapes">
+            <div class="contact-shape-1"></div>
+            <div class="contact-shape-2"></div>
+        </div>
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <p class="section-subtitle">Estamos listos para resolver tus dudas y ayudarte a impulsar tu presencia online</p>
+            
+            <div class="contact-card" data-aos="fade-up">
+                <div class="avatar-side">
+                    <div class="ai-avatar">
+                        <img src="imagen/Avatar.jpeg" alt="ZetAI Asistente" class="avatar-image">
+                    </div>
+                    <h3 class="avatar-title">ZetAI</h3>
+                    <p class="avatar-subtitle">Conversa conmigo</p>
+                </div>
+                
+                <div class="content-side">
+                    <h4 class="content-title">¡En seguida nos comunicaremos contigo!</h4>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> Resolver dudas sobre nuestros servicios digitales</li>
+                        <li><i class="fas fa-check-circle"></i> Información sobre precios y plazos de entrega</li>
+                        <li><i class="fas fa-check-circle"></i> Solicitar presupuestos personalizados</li>
+                        <li><i class="fas fa-check-circle"></i> Coordinar una llamada con nuestro equipo</li>
+                    </ul>
+                    
+                    <a href="javascript:openZetAI();" class="chat-button" aria-label="Iniciar chat con ZetAI">
+                        <i class="fas fa-comments"></i>
+                        Iniciar Chat Ahora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <script src="script.js" defer></script>
+    <script src="js/include-footer.js" defer></script>
+    <script src="js/chat.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filtrado de proyectos
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            // Mostrar inicialmente solo los proyectos web (categoría activa por defecto)
+            projectCards.forEach(card => {
+                const categories = card.getAttribute('data-category').split(' ');
+                
+                if (categories.includes('web')) {
+                    card.style.display = 'block';
+                    card.style.opacity = 1;
+                    card.style.transform = 'translateY(0)';
+                } else {
+                    card.style.opacity = 0;
+                    card.style.transform = 'translateY(20px)';
+                    card.style.display = 'none';
+                }
+            });
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Quitar clase activa de todos los botones
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Añadir clase activa al botón clickeado
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Filtrar proyectos
+                    projectCards.forEach(card => {
+                        const categories = card.getAttribute('data-category').split(' ');
+                        
+                        if (categories.includes(filter)) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = 1;
+                                card.style.transform = 'translateY(0)';
+                            }, 100);
+                        } else {
+                            card.style.opacity = 0;
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Slider de testimonios
+            const testimonialDots = document.querySelectorAll('.dot');
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            let currentTestimonial = 0;
+            
+            // Función para mostrar un testimonio específico
+            function showTestimonial(index) {
+                testimonialCards.forEach((card, i) => {
+                    card.style.opacity = i === index ? 1 : 0;
+                    card.style.transform = i === index ? 'translateX(0)' : 'translateX(50px)';
+                    card.style.zIndex = i === index ? 2 : 1;
+                });
+                
+                testimonialDots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+                
+                currentTestimonial = index;
+            }
+            
+            // Inicializar con el primer testimonio
+            showTestimonial(0);
+            
+            // Evento click para los puntos del slider
+            testimonialDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showTestimonial(index);
+                });
+            });
+            
+            // Cambio automático cada 5 segundos
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonialCards.length;
+                showTestimonial(currentTestimonial);
+            }, 5000);
+            
+            // Animación para las estadísticas
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            // Función para animar contadores
+            function animateCounters() {
+                statNumbers.forEach(number => {
+                    const target = parseInt(number.textContent);
+                    let count = 0;
+                    const duration = 2000; // 2 segundos
+                    const interval = duration / target;
+                    
+                    const counter = setInterval(() => {
+                        count++;
+                        
+                        // Si el número incluye un + al final
+                        if (number.textContent.includes('+')) {
+                            number.textContent = count + '+';
+                        } else {
+                            number.textContent = count;
+                        }
+                        
+                        if (count >= target) {
+                            clearInterval(counter);
+                        }
+                    }, interval);
+                });
+            }
+            
+            // Detectar cuando la sección de estadísticas está visible
+            const statsSection = document.querySelector('.portfolio-stats');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(statsSection);
+        });
+    </script>
+</body>
+</html> 

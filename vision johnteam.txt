@@ -1,0 +1,73 @@
+1. Visión y propósito
+Visión: Ayudar a PYMEs de Latinoamérica a operar con la agilidad y eficacia de una gran empresa, aprovechando la tecnología para crecer sin complejidades.
+Propósito: Simplificar el día a día de nuestros clientes, transformar su presencia digital y maximizar sus resultados de negocio.
+
+2. Público objetivo
+Pequeñas y medianas empresas en LATAM
+
+Sectores como salud (clínicas), comercio local (restaurantes, gimnasios), consultorías y servicios profesionales, consecionarios
+
+Dueños y gerentes con foco en eficiencia y retorno de inversión, pero con conocimientos técnicos limitados
+
+3. Propuesta de valor
+Automatización de procesos: Reducimos tareas manuales (captura de leads, respuestas, flujos internos) para que tu equipo se dedique a vender.
+
+Rediseño web centrado en el usuario: Desarrollamos sitios claros, modernos y adaptados a móviles, que refuercen la imagen de marca y generen confianza.
+
+Orientación a la conversión: Cada elemento de la web y de la automatización se elige para convertir visitantes en clientes, midiendo siempre el impacto real.
+
+4. Pilares de comunicación
+Eficiencia inmediata
+
+Título sugerido: “Olvida las tareas repetitivas”
+
+Subtítulo: “Automatizamos tu flujo de trabajo para que tu equipo nunca pierda tiempo”
+
+Diseño que vende
+
+Título sugerido: “Diseño pensado para tu cliente”
+
+Subtítulo: “Web responsiva y atractiva que impulsa la credibilidad de tu marca”
+
+Resultados medibles
+
+Título sugerido: “Cada visita cuenta”
+
+Subtítulo: “Convertimos clicks en clientes con estrategias basadas en datos”
+
+5. Estructura de la página
+
+Sección	Título principal	Subtítulos / Contenido breve
+Hero / Entrada	“Haz crecer tu negocio sin complicaciones”	- Breve frase de impacto.
+- Llamado a la acción (“Contáctanos”).
+Problema / Dolor	“¿Pierdes tiempo y ventas?”	- Enumera retos comunes (procesos manuales, web obsoleta).
+Nuestra solución	“La solución integral para tu PYME”	- Tres iconos con cada pilar (Automatización / Diseño / Conversión).
+Cómo trabajamos	“Pasos claros para tu éxito”	1. Diagnóstico
+2. Diseño y desarrollo
+3. Implementación
+4. Monitoreo
+Casos de éxito	“Historias que hablan por sí solas”	- Mini-testimonios o resultados concretos (porcentaje de aumento de leads).
+Planes y precios	“Elige tu nivel de crecimiento”	- Tres opciones (Básico / Estándar / Premium) con beneficios resumidos.
+Llamado final	“Listos para transformar tu empresa”	- Botón de contacto o agendamiento de llamada.
+6. Tono y estilo
+Claro y directo: Frases cortas, sin tecnicismos.
+
+Cercano y profesional: Habla de “tu negocio”, no de “nuestros sistemas”.
+
+Orientado al beneficio: Siempre enfatiza “lo que gana el cliente”.
+
+7. Instrucciones para Cursor al generar la página
+Leer este informe para entender la esencia de JohnTeam.
+
+Estructurar el contenido siguiendo la sección y los títulos sugeridos.
+
+Producir textos breves para cada bloque, manteniendo el tono cercano y sin jerga técnica.
+
+Crear llamadas a la acción claras (“Cotiza ahora”, “Solicita tu diagnóstico”).
+
+Asignar espacios para imágenes o iconos que refuercen cada pilar (eficiencia, diseño, conversión).
+
+Incluir secciones dinámicas (casos de éxito, planes) con plantillas fáciles de editar.
+
+Verificar que cada sección cumpla un objetivo: atraer atención, explicar valor, generar confianza, impulsar la acción.
+
