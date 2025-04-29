@@ -28,12 +28,17 @@
     font-size: 24px;
 }
 
+:root {
+    --vh: 1vh;
+}
+
 .chat-container {
     position: fixed;
     bottom: 90px;
     right: 20px;
-    width: 350px;
-    height: 450px;
+    width: 320px;
+    height: calc(var(--vh, 1vh) * 65);
+    max-height: 450px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
@@ -45,13 +50,16 @@
     transform: translateY(20px);
     pointer-events: none;
     transition: all 0.3s ease;
+    left: 50%;
+    right: auto;
+    margin-left: -160px;
 }
 
 /* Estilos específicos para la página de contacto */
 .contact-chat-container {
     position: relative;
     width: 100%;
-    height: 600px;
+    height: calc(var(--vh, 1vh) * 80);
     max-width: 800px;
     margin: 0 auto;
     background-color: white;
@@ -205,15 +213,19 @@
 /* Media Query para móviles */
 @media (max-width: 767px) {
     .chat-container {
-        width: 100%;
-        height: calc(100vh - 60px);
-        bottom: 0;
-        right: 0;
-        border-radius: 15px 15px 0 0;
+        width: 90%;
+        height: calc(var(--vh, 1vh) * 60);
+        bottom: 70px;
+        left: 50%;
+        right: auto;
+        margin-left: -45%;
+        border-radius: 15px 15px 15px 15px;
     }
 
     .chat-container.keyboard-open {
-        height: 50vh;
+        height: calc(var(--vh, 1vh) * 40);
+        bottom: calc(var(--vh, 1vh) * 5);
+        transition: height 0.3s ease, bottom 0.3s ease;
     }
 
     .chat-messages {
@@ -227,7 +239,7 @@
 
     .chat-input {
         padding: 8px;
-        padding-bottom: env(safe-area-inset-bottom, 8px); /* Para iPhones con notch */
+        padding-bottom: env(safe-area-inset-bottom, 8px);
     }
 
     .chat-bubble {
@@ -237,8 +249,12 @@
 
     /* Estilos específicos para la página de contacto en móvil */
     .contact-chat-container {
-        height: calc(100vh - 100px);
+        height: calc(var(--vh, 1vh) * 70);
         margin: 10px;
+    }
+    
+    .contact-chat-container.keyboard-open {
+        height: calc(var(--vh, 1vh) * 40);
     }
 }
 

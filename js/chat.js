@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const isContactPage = window.location.pathname.includes('contact') || 
                          window.location.hash === '#contact';
     
+    // Inicializar la variable CSS --vh
+    initializeVH();
+    
     // Si estamos en la página de contacto, crear el chat integrado
     if (isContactPage) {
         createContactPageChat();
@@ -11,10 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
         createChatElements();
     }
     
-    // Manejar el teclado virtual en móviles
-    if ('visualViewport' in window) {
-        window.visualViewport.addEventListener('resize', handleViewportResize);
-    }
+    // Mejorar el manejo del teclado virtual en móviles
+    setupKeyboardHandling();
     
     // Añadir evento de clic al botón de chat
     const chatBubble = document.getElementById('chatBubble');
@@ -26,12 +27,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatMessages = document.getElementById('chatMessages');
     
     // Manejo de eventos
-    chatBubble.addEventListener('click', toggleChat);
-    chatClose.addEventListener('click', toggleChat);
-    chatForm.addEventListener('submit', handleChatSubmit);
-    chatInput.addEventListener('input', function() {
-        chatSend.disabled = !chatInput.value.trim();
-    });
+    if (chatBubble) chatBubble.addEventListener('click', toggleChat);
+    if (chatClose) chatClose.addEventListener('click', toggleChat);
+    if (chatForm) {
+        chatForm.addEventListener('submit', handleChatSubmit);
+        chatInput.addEventListener('input', function() {
+            chatSend.disabled = !chatInput.value.trim();
+        });
+    }
     
     // Mostrar mensaje de bienvenida después de un breve retraso
     setTimeout(() => {
@@ -39,22 +42,86 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 500);
 });
 
-// Función para manejar el redimensionamiento del viewport (teclado móvil)
-function handleViewportResize() {
-    const chatContainer = document.getElementById('chatContainer');
-    if (!chatContainer) return;
+// Función para inicializar la variable CSS --vh
+function initializeVH() {
+    // Calcular el valor de 1vh real
+    let vh = window.innerHeight * 0.01;
+    // Establecer la variable CSS personalizada --vh
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    
+    // Actualizar la variable cuando el tamaño de la ventana cambie
+    window.addEventListener('resize', () => {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    });
+    
+    // Si visualViewport está disponible, usarlo para detectar cambios en el teclado
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', () => {
+            let vh = window.visualViewport.height * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+            handleKeyboardAppearance();
+        });
+    }
+}
 
-    const isKeyboardOpen = window.visualViewport.height < window.innerHeight;
+// Función para manejar el teclado virtual en móviles
+function setupKeyboardHandling() {
+    // Añadir eventos de foco para detectar cuando se selecciona un campo de entrada
+    document.addEventListener('focusin', function(e) {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+            // Marcar que el teclado está abierto
+            document.body.classList.add('keyboard-open');
+            handleKeyboardAppearance();
+        }
+    });
+    
+    document.addEventListener('focusout', function(e) {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+            // Retrasar un poco para permitir que el teclado se cierre antes de quitar la clase
+            setTimeout(() => {
+                document.body.classList.remove('keyboard-open');
+                handleKeyboardAppearance();
+            }, 100);
+        }
+    });
+}
+
+// Función para manejar la apariencia cuando el teclado aparece/desaparece
+function handleKeyboardAppearance() {
+    const isKeyboardOpen = document.body.classList.contains('keyboard-open');
+    const isMobile = window.innerWidth <= 767;
+    
+    if (!isMobile) return; // Solo aplicar en dispositivos móviles
+    
+    const chatContainer = document.getElementById('chatContainer');
+    const contactChatContainer = document.querySelector('.contact-chat-container');
     
     if (isKeyboardOpen) {
-        chatContainer.classList.add('keyboard-open');
+        // Cuando el teclado está abierto
+        if (chatContainer) {
+            chatContainer.classList.add('keyboard-open');
+        }
+        if (contactChatContainer) {
+            contactChatContainer.classList.add('keyboard-open');
+        }
+        
         // Hacer scroll al último mensaje
         const chatMessages = document.getElementById('chatMessages');
         if (chatMessages) {
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
     } else {
-        chatContainer.classList.remove('keyboard-open');
+        // Cuando el teclado está cerrado
+        if (chatContainer) {
+            chatContainer.classList.remove('keyboard-open');
+        }
+        if (contactChatContainer) {
+            contactChatContainer.classList.remove('keyboard-open');
+        }
+        
+        // Asegurarse de que la página vuelva al principio (para evitar que quede desplazada)
+        window.scrollTo(0, 0);
     }
 }
 
