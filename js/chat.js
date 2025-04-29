@@ -143,7 +143,7 @@ function sendMessageToServer(message) {
     };
     
     // Enviar solicitud al servidor
-    fetch('https://classic-alike-sandal.glitch.me/tu-endpoint', {
+    fetch('https://classic-alike-sandal.glitch.me/message', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
