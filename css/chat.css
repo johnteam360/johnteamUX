@@ -13,9 +13,11 @@
     color: white;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
+    z-index: 1001;
     transition: all 0.3s ease;
     border: 2px solid #ffffff;
+    visibility: visible;
+    opacity: 1;
 }
 
 .chat-bubble:hover {
@@ -185,5 +187,13 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Media Query para asegurar visibilidad en móvil si es necesario */
+@media (max-width: 767px) {
+    .chat-bubble {
+        /* Si sigue sin aparecer, se pueden añadir ajustes aquí */
+        /* Ejemplo: bottom: 80px; si el footer interfiere */
     }
 } 
