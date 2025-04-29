@@ -167,8 +167,26 @@ function sendMessageToServer(message) {
         
         console.log('Datos recibidos del servidor:', data);
         
-        // Mostrar respuesta del bot (revisar message o output)
-        const botMessage = data ? (data.message || data.output || data.response) : null;
+        // Comprobar si data es un array y extraer el mensaje
+        let botMessage = null;
+        
+        if (Array.isArray(data)) {
+            // Si es un array, intentamos obtener el primer elemento
+            console.log('Respuesta recibida como array:', data);
+            if (data.length > 0) {
+                const item = data[0];
+                // Intentar extraer mensaje del primer elemento del array
+                if (typeof item === 'object') {
+                    botMessage = item.output || item.message || item.response;
+                } else if (typeof item === 'string') {
+                    botMessage = item;
+                }
+            }
+        } else {
+            // Procesar como antes si no es un array
+            botMessage = data ? (data.message || data.output || data.response) : null;
+        }
+        
         if (botMessage) {
             addMessage(botMessage, 'bot');
         } else {
