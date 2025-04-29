@@ -264,10 +264,10 @@
 
 /* Media Query para móviles */
 @media (max-width: 767px) {
+    /* Estilos para el contenedor principal del chat en móvil */
     .chat-container {
         width: 100%;
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
+        height: 100%; /* Usar altura relativa */
         max-height: none;
         position: fixed;
         top: 0;
@@ -277,37 +277,65 @@
         margin: 0;
         border-radius: 0;
         z-index: 9999;
+        transform: translateY(100%); /* Inicialmente fuera de la pantalla */
+        opacity: 1;
+        pointer-events: none;
+        padding-top: env(safe-area-inset-top, 0);
+        padding-bottom: env(safe-area-inset-bottom, 0);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    /* Cuando es visible */
+    .chat-container.visible {
+        transform: translateY(0);
+        pointer-events: all;
+    }
+
+    /* Ajustes para cuando el teclado está abierto */
     .chat-container.keyboard-open {
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
+        /* Ajuste de altura al abrir el teclado */
+        bottom: 0;
+        height: 100%;
     }
 
+    /* Encabezado del chat */
     .chat-header {
-        padding: env(safe-area-inset-top, 16px) 16px 16px 16px;
+        padding-top: max(16px, env(safe-area-inset-top, 16px));
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: 16px;
+        position: sticky;
+        top: 0;
+        z-index: 10;
     }
 
+    /* Área de mensajes */
     .chat-messages {
         padding: 12px;
-        padding-bottom: env(safe-area-inset-bottom, 12px);
+        flex: 1;
+        overflow-y: auto;
     }
 
+    /* Estilos de mensajes en móvil */
     .message {
         max-width: 85%;
         font-size: 16px;
-        padding: 12px 16px;
     }
 
+    /* Barra de entrada de texto */
     .chat-input {
+        position: sticky;
+        bottom: 0;
         padding: 12px;
-        padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+        padding-bottom: max(12px, env(safe-area-inset-bottom, 12px));
         background-color: var(--chat-bg);
         border-top: 1px solid var(--chat-border);
+        z-index: 10;
     }
 
+    /* Botón flotante del chat */
     .chat-bubble {
-        bottom: 20px;
+        bottom: max(20px, env(safe-area-inset-bottom, 20px));
         right: 20px;
         width: 52px;
         height: 52px;
@@ -315,36 +343,9 @@
 
     /* Estilos específicos para la página de contacto en móvil */
     .contact-chat-container {
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
+        height: 100%;
         margin: 0;
         border-radius: 0;
-    }
-    
-    .contact-chat-container.keyboard-open {
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
-    }
-
-    /* Animación de entrada para el chat en móvil */
-    .chat-container {
-        transform: translateY(100%);
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .chat-container.visible {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* Ajuste para notch y áreas seguras */
-@supports (padding-top: env(safe-area-inset-top)) {
-    @media (max-width: 767px) {
-        .chat-container {
-            padding-top: env(safe-area-inset-top);
-            padding-bottom: env(safe-area-inset-bottom);
-        }
     }
 }
 

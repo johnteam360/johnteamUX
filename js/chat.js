@@ -34,6 +34,16 @@ document.addEventListener('DOMContentLoaded', function() {
         chatInput.addEventListener('input', function() {
             chatSend.disabled = !chatInput.value.trim();
         });
+        
+        // Al hacer clic en el input, desplazarse hasta él
+        chatInput.addEventListener('focus', function() {
+            // Desplazarse al final de los mensajes
+            setTimeout(() => {
+                if (chatMessages) {
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            }, 300);
+        });
     }
     
     // Mostrar mensaje de bienvenida después de un breve retraso
@@ -62,6 +72,38 @@ function initializeVH() {
             document.documentElement.style.setProperty('--vh', `${vh}px`);
             handleKeyboardAppearance();
         });
+        
+        // También escuchar eventos de desplazamiento en el viewport visual
+        window.visualViewport.addEventListener('scroll', () => {
+            // Ajustar la posición del chat si está visible
+            const chatContainer = document.getElementById('chatContainer');
+            if (chatContainer && chatContainer.classList.contains('visible')) {
+                adjustChatPosition();
+            }
+        });
+    }
+}
+
+// Función para ajustar la posición del chat
+function adjustChatPosition() {
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+    const isKeyboardOpen = document.body.classList.contains('keyboard-open');
+    
+    if (isKeyboardOpen && chatInput && chatMessages) {
+        // Hacer scroll al final de los mensajes cuando el teclado está abierto
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        // En dispositivos iOS, necesitamos ajustar manualmente
+        if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+            const chatContainer = document.getElementById('chatContainer');
+            if (chatContainer) {
+                // Asegurarse de que el input sea visible cuando el teclado está abierto
+                setTimeout(() => {
+                    chatInput.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+        }
     }
 }
 
@@ -80,11 +122,25 @@ function setupKeyboardHandling() {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
             // Retrasar un poco para permitir que el teclado se cierre antes de quitar la clase
             setTimeout(() => {
-                document.body.classList.remove('keyboard-open');
-                handleKeyboardAppearance();
+                // Solo quitar la clase si no hay otro elemento en foco
+                if (!document.querySelector('input:focus, textarea:focus')) {
+                    document.body.classList.remove('keyboard-open');
+                    handleKeyboardAppearance();
+                }
             }, 100);
         }
     });
+    
+    // Prevenir que el documento se desplace cuando el usuario desplaza dentro del chat
+    const chatMessages = document.getElementById('chatMessages');
+    if (chatMessages) {
+        chatMessages.addEventListener('touchmove', function(e) {
+            // Si el elemento tiene desplazamiento, permitir el toque
+            if (chatMessages.scrollHeight > chatMessages.clientHeight) {
+                e.stopPropagation();
+            }
+        }, { passive: false });
+    }
 }
 
 // Función para manejar la apariencia cuando el teclado aparece/desaparece
@@ -101,27 +157,29 @@ function handleKeyboardAppearance() {
         // Cuando el teclado está abierto
         if (chatContainer) {
             chatContainer.classList.add('keyboard-open');
-        }
-        if (contactChatContainer) {
-            contactChatContainer.classList.add('keyboard-open');
+            
+            // Asegurarse de que el input sea visible
+            adjustChatPosition();
         }
         
-        // Hacer scroll al último mensaje
-        const chatMessages = document.getElementById('chatMessages');
-        if (chatMessages) {
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+        if (contactChatContainer) {
+            contactChatContainer.classList.add('keyboard-open');
         }
     } else {
         // Cuando el teclado está cerrado
         if (chatContainer) {
             chatContainer.classList.remove('keyboard-open');
         }
+        
         if (contactChatContainer) {
             contactChatContainer.classList.remove('keyboard-open');
         }
         
         // Asegurarse de que la página vuelva al principio (para evitar que quede desplazada)
-        window.scrollTo(0, 0);
+        // Solo en iOS ya que Android maneja esto automáticamente
+        if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+            window.scrollTo(0, 0);
+        }
     }
 }
 
@@ -197,7 +255,13 @@ function toggleChat() {
     
     // Si se está abriendo el chat, enfocar el input
     if (chatContainer.classList.contains('visible')) {
-        document.getElementById('chatInput').focus();
+        // Pequeño retraso para permitir que la animación termine
+        setTimeout(() => {
+            const chatInput = document.getElementById('chatInput');
+            if (chatInput) {
+                chatInput.focus();
+            }
+        }, 300);
     }
 }
 
