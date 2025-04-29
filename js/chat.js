@@ -158,6 +158,11 @@ function handleKeyboardAppearance() {
         if (chatContainer) {
             chatContainer.classList.add('keyboard-open');
             
+            // Reposicionar el chat para que esté visible aún con el teclado abierto
+            if (isMobile) {
+                chatContainer.style.top = '10%';
+            }
+            
             // Asegurarse de que el input sea visible
             adjustChatPosition();
         }
@@ -169,6 +174,11 @@ function handleKeyboardAppearance() {
         // Cuando el teclado está cerrado
         if (chatContainer) {
             chatContainer.classList.remove('keyboard-open');
+            
+            // Restaurar la posición original del chat
+            if (isMobile) {
+                chatContainer.style.top = '20%';
+            }
         }
         
         if (contactChatContainer) {
