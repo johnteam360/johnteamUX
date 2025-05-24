@@ -30,7 +30,6 @@ yarn-error.log*
 /.next/
 /.nuxt/
 /.output/
-/user-dashboard/dist/
 
 # Cache
 .cache/

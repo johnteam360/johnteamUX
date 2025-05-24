@@ -38,7 +38,7 @@
       "use": "@vercel/static"
     },
     {
-      "src": "user-dashboard/**/*",
+      "src": "user-dashboard/dist/**/*",
       "use": "@vercel/static"
     },
     {
@@ -88,12 +88,21 @@
     }
   ],
   "rewrites": [
-    { "source": "/dashboard", "destination": "/dashboard-ts/dist/index.html" },
+    {
+      "source": "/dashboard",
+      "destination": "/user-dashboard/dist/index.html"
+    },
     {
       "source": "/dashboard/assets/(.*)",
+      "destination": "/user-dashboard/dist/assets/$1"
+    },
+    { "source": "/dashboard/(.*)", "destination": "/user-dashboard/dist/$1" },
+    { "source": "/admin", "destination": "/dashboard-ts/dist/index.html" },
+    {
+      "source": "/admin/assets/(.*)",
       "destination": "/dashboard-ts/dist/assets/$1"
     },
-    { "source": "/dashboard/(.*)", "destination": "/dashboard-ts/dist/$1" },
+    { "source": "/admin/(.*)", "destination": "/dashboard-ts/dist/$1" },
     { "source": "/script.js", "destination": "/script.js" },
     { "source": "/styles.css", "destination": "/styles.css" },
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
