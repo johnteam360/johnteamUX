@@ -6,7 +6,9 @@ import type { Database } from "../types/supabase";
 const supabaseUrl =
   import.meta.env.VITE_SUPABASE_URL ||
   "https://gaaeixihnhcnxgxbufum.supabase.co";
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || "";
+const supabaseAnonKey =
+  import.meta.env.VITE_SUPABASE_ANON_KEY ||
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdhYWVpeGlobmhjbnhneGJ1ZnVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4MzY4MjEsImV4cCI6MjA2MzQxMjgyMX0.fiDvf1TJ_C87ZCMU8yEVNRFckOenp8eq2eAWbotPfBs";
 
 // Verificar que las variables estén definidas
 if (!supabaseAnonKey) {
