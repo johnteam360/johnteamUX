@@ -36,6 +36,14 @@
     {
       "src": "guias/**/*",
       "use": "@vercel/static"
+    },
+    {
+      "src": "user-dashboard/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "dashboard-ts/**/*",
+      "use": "@vercel/static"
     }
   ],
   "headers": [
@@ -62,12 +70,11 @@
     }
   ],
   "rewrites": [
-    { "source": "/dashboard", "destination": "/user-dashboard/index.html" },
-    { "source": "/dashboard/(.*)", "destination": "/user-dashboard/$1" },
+    { "source": "/dashboard", "destination": "/dashboard-ts/index.html" },
+    { "source": "/dashboard/(.*)", "destination": "/dashboard-ts/$1" },
     { "source": "/script.js", "destination": "/script.js" },
     { "source": "/styles.css", "destination": "/styles.css" },
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/dashboard-ts/(.*)", "destination": "/dashboard-ts/$1" },
     { "source": "/css/(.*)", "destination": "/css/$1" },
     { "source": "/js/(.*)", "destination": "/js/$1" },
     { "source": "/img/(.*)", "destination": "/img/$1" },
