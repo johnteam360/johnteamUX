@@ -1,0 +1,28 @@
+# Comandos para desplegar los servidores
+
+## 1. Sitio Web principal (puerto 5500)
+# Abrir una terminal PowerShell en la carpeta raíz del proyecto
+npx live-server --port=5500
+
+## 2. Dashboard de Administrador (puerto 3000) - SOLO PARA DESARROLLADOR
+# Abrir otra terminal PowerShell
+cd dashboard-ts
+# Si el proyecto ya está configurado para puerto 3000 en vite.config.ts
+npm run dev
+# Si necesita definir el puerto manualmente
+npx vite --port 3000 --host
+
+## 3. Dashboard de Usuario (puerto 5174) - ACCESO PÚBLICO
+# Abrir una tercera terminal PowerShell
+cd user-dashboard
+# Si el proyecto ya está configurado para puerto 5174 en vite.config.ts
+npm run dev
+# Si necesita definir el puerto manualmente
+npx vite --port 5174 --host
+
+## Notas importantes
+# 1. Para PowerShell, ejecutar cada comando por separado
+# 2. El comando live-server puede requerir instalación: npm install -g live-server
+# 3. Verificar la configuración de vite.config.ts en cada dashboard para asegurarse de que los puertos están configurados correctamente
+# 4. Todos los enlaces de login, registro y dashboard en el sitio principal apuntan al dashboard de usuario (5174)
+# 5. El dashboard de administrador (3000) es solo para uso del desarrollador y no está enlazado desde el sitio público 

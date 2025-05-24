@@ -1,0 +1,64 @@
+.project-list-container {
+  animation: fadeIn 0.4s;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.project-table {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.project-table th {
+  font-weight: 500;
+  color: var(--secondary-color);
+  border-bottom-width: 1px;
+}
+
+.project-table td {
+  vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.015);
+}
+
+/* Estilos para los modales */
+.modal-header {
+  background-color: var(--light-color);
+}
+
+.modal-title {
+  font-weight: 600;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
+}

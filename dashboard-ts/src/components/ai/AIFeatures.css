@@ -1,0 +1,73 @@
+.ai-features-container {
+  animation: fadeIn 0.4s;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.stats-item {
+  text-align: center;
+  background-color: var(--light-color);
+  padding: 1.5rem 1rem;
+  border-radius: 8px;
+}
+
+.stats-item h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.stats-item p {
+  margin-bottom: 0;
+}
+
+.ai-response {
+  background-color: #f1f7fe;
+  border-radius: 8px;
+  padding: 1.25rem;
+  border-left: 4px solid var(--primary-color);
+  animation: fadeSlideIn 0.5s;
+}
+
+.ai-response h5 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.ai-response p {
+  margin-bottom: 0;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Para edición de prompt */
+textarea.form-control {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Botones de IA */
+.btn-primary {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.btn-primary i {
+  margin-right: 0.5rem;
+}

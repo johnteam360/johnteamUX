@@ -1,0 +1,164 @@
+/* Estilos para la integración de IA en JohnTeam Dashboard */
+
+/* Contenedor principal para resultados de IA */
+.ai-results-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+/* Cabecera de resultados de IA */
+.ai-results-header {
+  background-color: rgba(233, 30, 99, 0.1);
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(233, 30, 99, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ai-results-header .ai-badge {
+  background-color: #e91e63;
+  color: white;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+/* Contenido de resultados */
+.ai-results-content {
+  padding: 12px;
+  background-color: white;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Elemento de resultado individual */
+.ai-result-item {
+  padding: 8px;
+  border-bottom: 1px solid #e9ecef;
+  transition: background-color 0.2s;
+}
+
+.ai-result-item:hover {
+  background-color: rgba(233, 30, 99, 0.05);
+}
+
+.ai-result-item:last-child {
+  border-bottom: none;
+}
+
+/* Botones de IA */
+.ai-button {
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ai-button:hover {
+  background-color: #c2185b;
+}
+
+.ai-button .material-icons {
+  font-size: 16px;
+}
+
+/* Animaciones para carga de IA */
+.ai-loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(233, 30, 99, 0.3);
+  border-radius: 50%;
+  border-top-color: #e91e63;
+  animation: ai-spin 1s ease-in-out infinite;
+}
+
+@keyframes ai-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Sugerencias de términos de búsqueda */
+.search-terms-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.search-term-suggestion {
+  background-color: #f1f1f1;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.search-term-suggestion:hover {
+  background-color: #e0e0e0;
+  border-color: #bbb;
+}
+
+/* Botón de entrada de IA */
+.input-group-ai {
+  position: relative;
+}
+
+.input-group-ai .ai-input-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.input-group-ai .ai-input-icon:hover {
+  color: #e91e63;
+}
+
+/* Estilos para descripciones generadas por IA */
+.ai-generated-text {
+  border-left: 3px solid #e91e63;
+  padding-left: 10px;
+  margin: 10px 0;
+  font-style: italic;
+  color: #555;
+}
+
+/* Chip de fuente de IA */
+.ai-source-chip {
+  display: inline-block;
+  background-color: #f3f3f3;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+.ai-source-chip.direct {
+  background-color: #e8f5e9;
+  color: #388e3c;
+}
+
+.ai-source-chip.ai-assisted {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}

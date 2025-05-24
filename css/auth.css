@@ -1,0 +1,108 @@
+/* Estilos para las páginas de autenticación (login.html, registro.html) */
+
+.auth-main {
+    background-color: var(--background-light);
+    min-height: calc(100vh - var(--header-height) - var(--footer-height)); /* Ajustar si el footer no está en estas páginas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.auth-section {
+    width: 100%;
+}
+
+.auth-container {
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.auth-card {
+    background-color: var(--background-card);
+    padding: 30px 40px;
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow-elevation-medium);
+    text-align: center;
+}
+
+.auth-title {
+    font-family: var(--font-titles);
+    color: var(--primary-color);
+    font-size: 2.5rem; /* Ajustado para que no sea tan grande */
+    margin-bottom: 25px;
+}
+
+.auth-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.auth-form label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.auth-form input[type="email"],
+.auth-form input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    transition: border-color 0.3s ease;
+}
+
+.auth-form input[type="email"]:focus,
+.auth-form input[type="password"]:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px var(--accent-color-light);
+}
+
+.auth-button {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+.auth-redirect {
+    margin-top: 25px;
+    font-size: 0.95rem;
+    color: var(--text-gray);
+}
+
+.auth-redirect a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-redirect a:hover {
+    text-decoration: underline;
+}
+
+.auth-error-message, .auth-success-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+}
+
+.auth-error-message {
+    background-color: #f8d7da; /* Error color */
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.auth-success-message {
+    background-color: #d4edda; /* Success color */
+    color: #155724;
+    border: 1px solid #c3e6cb;
+} 

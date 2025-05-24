@@ -1,0 +1,83 @@
+@font-face {
+  font-display: block;
+  font-family: "bootstrap-icons";
+  src: url("/fonts/bootstrap-icons.woff2") format("woff2"),
+    url("/fonts/bootstrap-icons.woff") format("woff");
+}
+
+.bi::before,
+[class^="bi-"]::before,
+[class*=" bi-"]::before {
+  display: inline-block;
+  font-family: bootstrap-icons !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -0.125em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bi-shield-lock::before {
+  content: "\f5d3";
+}
+.bi-person::before {
+  content: "\f4ce";
+}
+.bi-envelope::before {
+  content: "\f32f";
+}
+.bi-key::before {
+  content: "\f43c";
+}
+.bi-exclamation-triangle::before {
+  content: "\f33a";
+}
+.bi-box-arrow-in-right::before {
+  content: "\f133";
+}
+.bi-check::before {
+  content: "\f26e";
+}
+.bi-x::before {
+  content: "\f62a";
+}
+.bi-gear::before {
+  content: "\f3e9";
+}
+.bi-people::before {
+  content: "\f4cc";
+}
+.bi-kanban::before {
+  content: "\f43c";
+}
+.bi-robot::before {
+  content: "\f526";
+}
+.bi-bell::before {
+  content: "\f120";
+}
+.bi-question-circle::before {
+  content: "\f505";
+}
+.bi-box-arrow-right::before {
+  content: "\f135";
+}
+.bi-chevron-left::before {
+  content: "\f284";
+}
+.bi-chevron-right::before {
+  content: "\f285";
+}
+.bi-person-circle::before {
+  content: "\f4d0";
+}
+.bi-speedometer2::before {
+  content: "\f5a9";
+}
+.bi-fs-1::before {
+  content: "\f5a9";
+  font-size: 2.5rem;
+}

@@ -1,0 +1,56 @@
+.user-list-container {
+  animation: fadeIn 0.4s;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.user-table {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.user-table th {
+  font-weight: 500;
+  color: var(--secondary-color);
+  border-bottom-width: 1px;
+}
+
+.user-table td {
+  vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.015);
+}
+
+/* Para la Búsqueda de IA */
+.search-ai-container {
+  background-color: var(--light-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.search-result-highlight {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-left: 3px solid var(--primary-color);
+}
+
+/* Accionenes en botones */
+.action-btn-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
