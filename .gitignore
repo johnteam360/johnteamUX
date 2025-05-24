@@ -30,7 +30,6 @@ yarn-error.log*
 /.next/
 /.nuxt/
 /.output/
-/dashboard-ts/dist/
 /user-dashboard/dist/
 
 # Cache
@@ -94,3 +93,4 @@ supabase/.temp/
 # Datos de prueba y locales
 **/test/fixtures/
 **/locales/ 
+.vercel
