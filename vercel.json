@@ -2,10 +2,6 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/node"
-    },
-    {
       "src": "*.html",
       "use": "@vercel/static"
     },
@@ -40,13 +36,6 @@
     {
       "src": "guias/**/*",
       "use": "@vercel/static"
-    },
-    {
-      "src": "user-dashboard/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "user-dashboard/dist"
-      }
     }
   ],
   "headers": [
