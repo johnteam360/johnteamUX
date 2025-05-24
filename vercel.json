@@ -32,6 +32,10 @@
     {
       "src": "imagen/**/*",
       "use": "@vercel/static"
+    },
+    {
+      "src": "user-dashboard/package.json",
+      "use": "@vercel/node"
     }
   ],
   "headers": [
@@ -59,6 +63,20 @@
   ],
   "routes": [
     { "handle": "filesystem" },
+
+    {
+      "src": "/dashboard(.*)",
+      "dest": "/user-dashboard/index.html"
+    },
+    {
+      "src": "/dashboard/assets/(.*)",
+      "dest": "/user-dashboard/dist/assets/$1"
+    },
+    {
+      "src": "/dashboard/(.+\\.[a-z]+)$",
+      "dest": "/user-dashboard/dist/$1"
+    },
+
     { "src": "/script.js", "dest": "/script.js" },
     { "src": "/styles.css", "dest": "/styles.css" },
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
