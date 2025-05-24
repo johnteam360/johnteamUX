@@ -5,7 +5,9 @@
   "main": "",
   "scripts": {
     "dev": "cd dashboard-ts && npm run dev",
-    "build": "cd dashboard-ts && npm install && npm run build"
+    "build": "npm run build:dashboard && npm run build:main",
+    "build:dashboard": "cd user-dashboard && npm install && npm run build",
+    "build:main": "cd dashboard-ts && npm install && npm run build"
   },
   "engines": {
     "node": ">=18.0.0"
