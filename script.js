@@ -685,7 +685,7 @@ async function handleAuth() {
         );
         registerForm.reset();
         // Opcionalmente, redirigir a login después de un delay:
-        // setTimeout(() => { window.location.href = 'login.html'; }, 3000);
+        // setTimeout(() => { window.location.href = '/dashboard'; }, 3000);
       } catch (error) {
         console.error("Error en el registro:", error);
         displayAuthError(error.message || "Error durante el registro.");
@@ -707,7 +707,7 @@ async function handleAuth() {
         });
         if (error) throw error;
         // Redirigir al dashboard al iniciar sesión
-        window.location.href = "dashboard-cliente.html";
+        window.location.href = "/dashboard";
       } catch (error) {
         console.error("Error en el inicio de sesión:", error);
         displayAuthError(
@@ -724,7 +724,7 @@ async function handleAuth() {
         const { error } = await supabaseClient.auth.signOut();
         if (error) throw error;
         // Redirigir a la página de inicio o login al cerrar sesión
-        window.location.href = "login.html";
+        window.location.href = "/dashboard";
       } catch (error) {
         console.error("Error al cerrar sesión:", error);
         alert("Error al cerrar sesión."); // O un mensaje más amigable
@@ -738,7 +738,7 @@ async function handleAuth() {
       try {
         const { error } = await supabaseClient.auth.signOut();
         if (error) throw error;
-        window.location.href = "login.html"; // Redirigir después de cerrar sesión
+        window.location.href = "/dashboard"; // Redirigir después de cerrar sesión
       } catch (error) {
         console.error("Error al cerrar sesión desde el nav:", error);
         alert("Error al cerrar sesión.");
@@ -763,14 +763,14 @@ async function handleAuth() {
       event === "SIGNED_OUT" &&
       document.body.classList.contains("page-dashboard")
     ) {
-      window.location.href = "login.html";
+      window.location.href = "/dashboard";
     }
     if (
       event === "SIGNED_IN" &&
       (window.location.pathname.includes("login.html") ||
         window.location.pathname.includes("registro.html"))
     ) {
-      window.location.href = "dashboard-cliente.html";
+      window.location.href = "/dashboard";
     }
   });
 }
@@ -786,13 +786,13 @@ async function checkAuthStatusAndProtectDashboard() {
   if (error) {
     console.error("Error obteniendo sesión:", error);
     // Considerar redirigir a login o mostrar un error genérico.
-    // window.location.href = 'login.html';
+    // window.location.href = '/dashboard';
     return;
   }
 
   if (!session) {
     console.log("No hay sesión activa, redirigiendo a login.");
-    window.location.href = "login.html";
+    window.location.href = "/dashboard";
   } else {
     console.log("Sesión activa, usuario:", session.user.email);
     const userNamePlaceholder = document.getElementById(
