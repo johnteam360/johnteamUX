@@ -10,7 +10,15 @@
       "use": "@vercel/static"
     },
     {
+      "src": "*.js",
+      "use": "@vercel/static"
+    },
+    {
       "src": "css/**/*.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "styles.css",
       "use": "@vercel/static"
     },
     {
@@ -28,6 +36,8 @@
   ],
   "routes": [
     { "handle": "filesystem" },
+    { "src": "/script.js", "dest": "/script.js" },
+    { "src": "/styles.css", "dest": "/styles.css" },
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
     { "src": "/dashboard-ts/(.*)", "dest": "/dashboard-ts/$1" },
     { "src": "/css/(.*)", "dest": "/css/$1" },
