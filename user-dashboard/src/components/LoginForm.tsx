@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AuthService } from "../services/authService";
 
 interface LoginFormProps {
   onRegisterClick: () => void;
+  initialError?: string | null;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onRegisterClick }) => {
+const LoginForm: React.FC<LoginFormProps> = ({
+  onRegisterClick,
+  initialError = null,
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
   const [debugInfo, setDebugInfo] = useState<string>("");
+
+  // Establecer error inicial si existe
+  useEffect(() => {
+    if (initialError) {
+      setError(initialError);
+    }
+  }, [initialError]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,6 +62,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onRegisterClick }) => {
       } else if (err.message?.includes("Email not confirmed")) {
         setError(
           "Tu email no ha sido confirmado. Por favor, revisa tu bandeja de entrada."
+        );
+      } else if (err.message?.includes("Auth session missing")) {
+        setError(
+          "No se pudo iniciar sesión. Intenta limpiar las cookies del navegador y vuelve a intentarlo."
         );
       } else {
         setError(err.message || "Error al iniciar sesión. Inténtalo de nuevo.");
@@ -152,18 +167,18 @@ const LoginForm: React.FC<LoginFormProps> = ({ onRegisterClick }) => {
                   </button>
                 </form>
 
-                {/* Enlace a registro */}
-                <div className="text-center mt-3">
-                  <p className="mb-0">
-                    ¿No tienes cuenta?{" "}
-                    <button
-                      className="btn btn-link p-0"
-                      onClick={onRegisterClick}
-                      disabled={loading}
-                    >
-                      Regístrate aquí
-                    </button>
-                  </p>
+                {/* Enlace a registro - Versión mejorada */}
+                <div className="text-center mt-4 border-top pt-3">
+                  <p className="mb-2 fw-bold">¿No tienes una cuenta?</p>
+                  <button
+                    className="btn btn-outline-primary btn-sm w-100"
+                    onClick={onRegisterClick}
+                    disabled={loading}
+                    type="button"
+                  >
+                    <i className="bi bi-person-plus me-1"></i>
+                    Regístrate aquí
+                  </button>
                 </div>
               </div>
             </div>
