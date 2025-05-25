@@ -97,6 +97,18 @@
       "destination": "/user-dashboard/dist/assets/$1"
     },
     { "source": "/dashboard/(.*)", "destination": "/user-dashboard/dist/$1" },
+    {
+      "source": "/dashboard-ts",
+      "destination": "/user-dashboard/dist/index.html"
+    },
+    {
+      "source": "/dashboard-ts/assets/(.*)",
+      "destination": "/user-dashboard/dist/assets/$1"
+    },
+    {
+      "source": "/dashboard-ts/(.*)",
+      "destination": "/user-dashboard/dist/$1"
+    },
     { "source": "/admin", "destination": "/dashboard-ts/dist/index.html" },
     {
       "source": "/admin/assets/(.*)",
