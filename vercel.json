@@ -44,6 +44,14 @@
     {
       "src": "dashboard-ts/dist/**/*",
       "use": "@vercel/static"
+    },
+    {
+      "src": "favicon.svg",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "favicon.ico",
+      "use": "@vercel/static"
     }
   ],
   "headers": [
@@ -69,7 +77,7 @@
       ]
     },
     {
-      "source": "/dashboard/css/(.*)",
+      "source": "/dashboard/assets/(.+\\.css)",
       "headers": [
         {
           "key": "Content-Type",
@@ -78,7 +86,7 @@
       ]
     },
     {
-      "source": "/dashboard/assets/(.*\\.css)",
+      "source": "/dashboard-ts/assets/(.+\\.css)",
       "headers": [
         {
           "key": "Content-Type",
@@ -87,7 +95,7 @@
       ]
     },
     {
-      "source": "/dashboard-ts/assets/(.*\\.css)",
+      "source": "/admin/assets/(.+\\.css)",
       "headers": [
         {
           "key": "Content-Type",
@@ -96,7 +104,7 @@
       ]
     },
     {
-      "source": "/admin/assets/(.*\\.css)",
+      "source": "/(.+\\.css)",
       "headers": [
         {
           "key": "Content-Type",
@@ -105,11 +113,47 @@
       ]
     },
     {
-      "source": "/(.*\\.css)",
+      "source": "/dashboard/assets/(.+\\.js)",
       "headers": [
         {
           "key": "Content-Type",
-          "value": "text/css"
+          "value": "application/javascript"
+        }
+      ]
+    },
+    {
+      "source": "/dashboard-ts/assets/(.+\\.js)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
+        }
+      ]
+    },
+    {
+      "source": "/admin/assets/(.+\\.js)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
+        }
+      ]
+    },
+    {
+      "source": "/(.+\\.js)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
+        }
+      ]
+    },
+    {
+      "source": "/(.+\\.svg)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/svg+xml"
         }
       ]
     }
@@ -120,37 +164,84 @@
       "destination": "/user-dashboard/dist/index.html"
     },
     {
-      "source": "/dashboard/assets/(.*)",
-      "destination": "/user-dashboard/dist/assets/$1"
+      "source": "/dashboard/assets/:path*",
+      "destination": "/user-dashboard/dist/assets/:path*"
     },
-    { "source": "/dashboard/(.*)", "destination": "/user-dashboard/dist/$1" },
+    {
+      "source": "/dashboard/:path*",
+      "destination": "/user-dashboard/dist/:path*"
+    },
     {
       "source": "/dashboard-ts",
       "destination": "/dashboard-ts/dist/index.html"
     },
     {
-      "source": "/dashboard-ts/assets/(.*)",
-      "destination": "/dashboard-ts/dist/assets/$1"
+      "source": "/dashboard-ts/assets/:path*",
+      "destination": "/dashboard-ts/dist/assets/:path*"
     },
     {
-      "source": "/dashboard-ts/(.*)",
-      "destination": "/dashboard-ts/dist/$1"
+      "source": "/dashboard-ts/:path*",
+      "destination": "/dashboard-ts/dist/:path*"
     },
-    { "source": "/admin", "destination": "/dashboard-ts/dist/index.html" },
     {
-      "source": "/admin/assets/(.*)",
-      "destination": "/dashboard-ts/dist/assets/$1"
+      "source": "/admin",
+      "destination": "/dashboard-ts/dist/index.html"
     },
-    { "source": "/admin/(.*)", "destination": "/dashboard-ts/dist/$1" },
-    { "source": "/script.js", "destination": "/script.js" },
-    { "source": "/styles.css", "destination": "/styles.css" },
-    { "source": "/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/css/(.*)", "destination": "/css/$1" },
-    { "source": "/js/(.*)", "destination": "/js/$1" },
-    { "source": "/img/(.*)", "destination": "/img/$1" },
-    { "source": "/imagen/(.*)", "destination": "/imagen/$1" },
-    { "source": "/portfolio/(.*)", "destination": "/portfolio/$1" },
-    { "source": "/guias/(.*)", "destination": "/guias/$1" },
-    { "source": "/(.*)\\.html", "destination": "/$1.html" }
+    {
+      "source": "/admin/assets/:path*",
+      "destination": "/dashboard-ts/dist/assets/:path*"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "/dashboard-ts/dist/:path*"
+    },
+    {
+      "source": "/favicon.svg",
+      "destination": "/dashboard-ts/dist/favicon.svg"
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": "/favicon.ico"
+    },
+    {
+      "source": "/script.js",
+      "destination": "/script.js"
+    },
+    {
+      "source": "/styles.css",
+      "destination": "/styles.css"
+    },
+    {
+      "source": "/assets/:path*",
+      "destination": "/assets/:path*"
+    },
+    {
+      "source": "/css/:path*",
+      "destination": "/css/:path*"
+    },
+    {
+      "source": "/js/:path*",
+      "destination": "/js/:path*"
+    },
+    {
+      "source": "/img/:path*",
+      "destination": "/img/:path*"
+    },
+    {
+      "source": "/imagen/:path*",
+      "destination": "/imagen/:path*"
+    },
+    {
+      "source": "/portfolio/:path*",
+      "destination": "/portfolio/:path*"
+    },
+    {
+      "source": "/guias/:path*",
+      "destination": "/guias/:path*"
+    },
+    {
+      "source": "/:file(.*)\\.html",
+      "destination": "/:file.html"
+    }
   ]
 }
