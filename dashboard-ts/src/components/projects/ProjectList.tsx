@@ -15,11 +15,13 @@ import {
 } from "react-bootstrap";
 import projectService from "../../services/projectService";
 import { Project, ProjectInput } from "../../services/projectService";
+import userService from "../../services/userService";
+import { UserProfile } from "../../services/userService";
 import supabase from "../../services/supabase";
 import aiService from "../../services/aiService";
 import "./ProjectList.css";
 
-const ProjectList: React.FC = () => {
+const ProjectList = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -36,8 +38,18 @@ const ProjectList: React.FC = () => {
     type: "web",
     status: "pending",
     user_id: "",
+    start_date: new Date().toISOString().split("T")[0],
   });
   const [saving, setSaving] = useState<boolean>(false);
+
+  // Estados para la carga de documentos
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [uploadingFile, setUploadingFile] = useState<boolean>(false);
+  const [documentUrl, setDocumentUrl] = useState<string>("");
+
+  // Estados para la selección de usuarios
+  const [users, setUsers] = useState<UserProfile[]>([]);
+  const [loadingUsers, setLoadingUsers] = useState<boolean>(false);
 
   // Estados para búsqueda con IA
   const [aiSearchQuery, setAiSearchQuery] = useState<string>("");
@@ -76,6 +88,23 @@ const ProjectList: React.FC = () => {
     };
 
     loadProjects();
+  }, []);
+
+  // Cargar usuarios para el selector
+  useEffect(() => {
+    const loadUsers = async () => {
+      try {
+        setLoadingUsers(true);
+        const data = await userService.getAll();
+        setUsers(data);
+      } catch (err) {
+        console.error("Error al cargar los usuarios:", err);
+      } finally {
+        setLoadingUsers(false);
+      }
+    };
+
+    loadUsers();
   }, []);
 
   // Filtrar proyectos
@@ -275,6 +304,28 @@ const ProjectList: React.FC = () => {
     }));
   };
 
+  // Manejar selección de archivo
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+
+      // Validar que sea un PDF
+      if (file.type !== "application/pdf") {
+        setError("Solo se permiten archivos PDF");
+        return;
+      }
+
+      // Validar tamaño máximo (10MB)
+      if (file.size > 10 * 1024 * 1024) {
+        setError("El archivo no debe superar los 10MB");
+        return;
+      }
+
+      setSelectedFile(file);
+      setError("");
+    }
+  };
+
   // Funciones para el modal
   const openCreateModal = () => {
     setEditingProject(null);
@@ -285,7 +336,10 @@ const ProjectList: React.FC = () => {
       type: "web",
       status: "pending",
       user_id: "",
+      start_date: new Date().toISOString().split("T")[0],
     });
+    setSelectedFile(null);
+    setDocumentUrl("");
     setShowModal(true);
   };
 
@@ -297,8 +351,11 @@ const ProjectList: React.FC = () => {
       description: project.description || "",
       type: project.type,
       status: project.status,
-      user_id: project.user_id,
+      user_id: project.user_id || "",
+      start_date: project.start_date || new Date().toISOString().split("T")[0],
     });
+    setDocumentUrl(project.document_url || "");
+    setSelectedFile(null);
     setShowModal(true);
   };
 
@@ -311,13 +368,21 @@ const ProjectList: React.FC = () => {
       type: "web",
       status: "pending",
       user_id: "",
+      start_date: new Date().toISOString().split("T")[0],
     });
+    setSelectedFile(null);
+    setDocumentUrl("");
     setError("");
   };
 
   const handleSubmit = async () => {
     if (!formData.name.trim()) {
       setError("El nombre del proyecto es obligatorio");
+      return;
+    }
+
+    if (!formData.user_id) {
+      setError("Debe seleccionar un usuario para asignar el proyecto");
       return;
     }
 
@@ -331,6 +396,18 @@ const ProjectList: React.FC = () => {
           editingProject.id,
           formData
         );
+
+        // Si hay un nuevo archivo seleccionado, subirlo
+        if (selectedFile) {
+          setUploadingFile(true);
+          const fileUrl = await projectService.uploadDocument(
+            updatedProject.id,
+            selectedFile
+          );
+          updatedProject.document_url = fileUrl;
+          setUploadingFile(false);
+        }
+
         setProjects((prev) =>
           prev.map((project) =>
             project.id === editingProject.id ? updatedProject : project
@@ -343,27 +420,23 @@ const ProjectList: React.FC = () => {
         );
       } else {
         // Crear nuevo proyecto
-        let userId = "demo-user-123"; // ID ficticio para modo demo
-
-        // Solo intentar obtener sesión si no estamos en modo demo
-        try {
-          const session = await supabase.auth.getSession();
-          if (session?.data?.session?.user?.id) {
-            userId = session.data.session.user.id;
-          }
-        } catch (authError) {
-          // En caso de error de autenticación, usar ID ficticio (solo en desarrollo)
-          if (import.meta.env.DEV) {
-            console.warn("Usando ID de usuario ficticio para modo demo");
-          }
-        }
-
         const projectInput: ProjectInput = {
           ...formData,
-          user_id: userId,
         };
 
         const createdProject = await projectService.create(projectInput);
+
+        // Si hay un archivo seleccionado, subirlo
+        if (selectedFile) {
+          setUploadingFile(true);
+          const fileUrl = await projectService.uploadDocument(
+            createdProject.id,
+            selectedFile
+          );
+          createdProject.document_url = fileUrl;
+          setUploadingFile(false);
+        }
+
         setProjects((prev) => [createdProject, ...prev]);
         setFilteredProjects((prev) => [createdProject, ...prev]);
       }
@@ -374,6 +447,7 @@ const ProjectList: React.FC = () => {
       console.error("Error al guardar el proyecto:", err);
     } finally {
       setSaving(false);
+      setUploadingFile(false);
     }
   };
 
@@ -681,6 +755,7 @@ const ProjectList: React.FC = () => {
                 <th>Tipo</th>
                 <th>Estado</th>
                 <th>Fecha Creación</th>
+                <th>Fecha Inicio</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -703,6 +778,11 @@ const ProjectList: React.FC = () => {
                     <td>{project.type}</td>
                     <td>{getStatusBadge(project.status)}</td>
                     <td>{formatDate(project.created_at)}</td>
+                    <td>
+                      {project.start_date
+                        ? formatDate(project.start_date)
+                        : "-"}
+                    </td>
                     <td>
                       <div className="d-flex gap-1">
                         <Button
@@ -820,6 +900,51 @@ const ProjectList: React.FC = () => {
             </Form.Group>
 
             <Form.Group className="mb-3">
+              <Form.Label htmlFor="project-start-date">
+                Fecha de inicio
+              </Form.Label>
+              <Form.Control
+                id="project-start-date"
+                type="date"
+                name="start_date"
+                value={formData.start_date}
+                onChange={handleInputChange}
+              />
+              <small className="text-muted">
+                Fecha en que comenzará el proyecto
+              </small>
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="project-user">Asignar a usuario</Form.Label>
+              <div className="select-wrapper">
+                <Form.Select
+                  id="project-user"
+                  name="user_id"
+                  value={formData.user_id}
+                  onChange={handleInputChange}
+                  title="Usuario asignado"
+                  aria-labelledby="user-label"
+                >
+                  <option value="">Seleccione un usuario</option>
+                  {users.map((user) => (
+                    <option key={user.id} value={user.id}>
+                      {user.full_name ||
+                        user.email ||
+                        `Usuario ${user.id.substring(0, 8)}`}
+                    </option>
+                  ))}
+                </Form.Select>
+                <span id="user-label" className="visually-hidden">
+                  Usuario asignado al proyecto
+                </span>
+                {loadingUsers && (
+                  <Spinner animation="border" size="sm" className="ms-2" />
+                )}
+              </div>
+            </Form.Group>
+
+            <Form.Group className="mb-3">
               <Form.Label htmlFor="project-description">Descripción</Form.Label>
               <Form.Control
                 id="project-description"
@@ -855,6 +980,46 @@ const ProjectList: React.FC = () => {
                 </small>
               </div>
             </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="project-document">
+                Documento (PDF)
+              </Form.Label>
+              <Form.Control
+                id="project-document"
+                type="file"
+                accept="application/pdf"
+                onChange={handleFileChange}
+              />
+              {selectedFile && (
+                <div className="mt-2">
+                  <Badge bg="success">
+                    <i className="bi bi-file-earmark-pdf me-1"></i>
+                    {selectedFile.name} ({Math.round(selectedFile.size / 1024)}{" "}
+                    KB)
+                  </Badge>
+                </div>
+              )}
+              {documentUrl && !selectedFile && (
+                <div className="mt-2">
+                  <Badge bg="info">
+                    <i className="bi bi-file-earmark-pdf me-1"></i>
+                    Documento existente
+                  </Badge>
+                  <a
+                    href={documentUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ms-2 text-decoration-none"
+                  >
+                    <i className="bi bi-box-arrow-up-right"></i> Ver documento
+                  </a>
+                </div>
+              )}
+              <small className="text-muted d-block mt-1">
+                Sólo archivos PDF (máx. 10MB)
+              </small>
+            </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -864,11 +1029,12 @@ const ProjectList: React.FC = () => {
           <Button
             variant="primary"
             onClick={handleSubmit}
-            disabled={saving || !formData.name.trim()}
+            disabled={saving || uploadingFile || !formData.name.trim()}
           >
-            {saving ? (
+            {saving || uploadingFile ? (
               <>
-                <Spinner animation="border" size="sm" /> Guardando...
+                <Spinner animation="border" size="sm" />
+                {uploadingFile ? "Subiendo documento..." : "Guardando..."}
               </>
             ) : editingProject ? (
               "Actualizar Proyecto"
@@ -943,11 +1109,67 @@ const ProjectList: React.FC = () => {
                 </div>
                 <div className="col-md-6">
                   <div className="detail-item mb-3">
+                    <strong className="text-muted">Fecha de Inicio:</strong>
+                    <div className="mt-1">
+                      {viewingProject.start_date
+                        ? formatDate(viewingProject.start_date)
+                        : "No definida"}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="detail-item mb-3">
                     <strong className="text-muted">ID del Proyecto:</strong>
                     <div className="mt-1">
                       <code className="bg-light p-1 rounded">
                         {viewingProject.id}
                       </code>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="detail-item mb-3">
+                    <strong className="text-muted">Usuario asignado:</strong>
+                    <div className="mt-1">
+                      {viewingProject.user_id ? (
+                        <span className="badge bg-info fs-6">
+                          {users.find(
+                            (user) => user.id === viewingProject.user_id
+                          )?.full_name ||
+                            users.find(
+                              (user) => user.id === viewingProject.user_id
+                            )?.email ||
+                            `Usuario ${viewingProject.user_id.substring(0, 8)}`}
+                        </span>
+                      ) : (
+                        <span className="text-muted">No asignado</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="detail-item mb-3">
+                    <strong className="text-muted">Documento:</strong>
+                    <div className="mt-1">
+                      {viewingProject.document_url ? (
+                        <a
+                          href={viewingProject.document_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-sm btn-outline-primary"
+                        >
+                          <i className="bi bi-file-earmark-pdf me-1"></i>
+                          Ver documento
+                        </a>
+                      ) : (
+                        <span className="text-muted">Sin documento</span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -957,19 +1179,6 @@ const ProjectList: React.FC = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            variant="outline-secondary"
-            onClick={() => {
-              if (viewingProject) {
-                openEditModal(viewingProject);
-                setShowViewModal(false);
-                setViewingProject(null);
-              }
-            }}
-          >
-            <i className="bi bi-pencil me-1"></i>
-            Editar Proyecto
-          </Button>
-          <Button
             variant="secondary"
             onClick={() => {
               setShowViewModal(false);
@@ -978,6 +1187,18 @@ const ProjectList: React.FC = () => {
           >
             Cerrar
           </Button>
+          {viewingProject && (
+            <Button
+              variant="primary"
+              onClick={() => {
+                setShowViewModal(false);
+                openEditModal(viewingProject);
+              }}
+            >
+              <i className="bi bi-pencil me-1"></i>
+              Editar
+            </Button>
+          )}
         </Modal.Footer>
       </Modal>
     </Container>

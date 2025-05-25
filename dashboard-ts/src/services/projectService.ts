@@ -13,6 +13,7 @@ export interface Project {
   end_date?: string;
   created_at: string;
   updated_at?: string;
+  document_url?: string; // URL del documento PDF
 }
 
 export interface ProjectInput {
@@ -23,6 +24,7 @@ export interface ProjectInput {
   user_id?: string;
   start_date?: string;
   end_date?: string;
+  document_url?: string; // URL del documento PDF
 }
 
 // Modo demo: cambiar a false cuando Supabase esté funcionando
@@ -175,8 +177,9 @@ class ProjectService {
   ): Promise<string> {
     // Llamada a la función de Edge para generar la descripción
     const { data, error } = await supabase.rpc("get_ai_completion", {
-      project_id_param: projectId,
-      prompt_param: prompt,
+      prompt_input: prompt,
+      max_tokens_input: 250,
+      temperature_input: 0.7
     });
 
     if (error) {
@@ -185,6 +188,61 @@ class ProjectService {
     }
 
     return data || "";
+  }
+
+  // Subir un documento para un proyecto
+  async uploadDocument(projectId: string, file: File): Promise<string> {
+    if (DEMO_MODE) {
+      await simulateNetworkDelay(500);
+      return `https://demo-storage.com/projects/${projectId}/${file.name}`;
+    }
+
+    // Crear path único para el archivo en el bucket 'project-documents'
+    const filePath = `${projectId}/${file.name}`;
+
+    // Subir el archivo a Supabase Storage
+    const { data, error } = await supabase.storage
+      .from('project-documents')
+      .upload(filePath, file, {
+        cacheControl: '3600',
+        upsert: true
+      });
+
+    if (error) {
+      console.error("Error uploading document:", error);
+      throw error;
+    }
+
+    // Obtener la URL pública del archivo
+    const { data: urlData } = supabase.storage
+      .from('project-documents')
+      .getPublicUrl(filePath);
+
+    // Actualizar el proyecto con la URL del documento
+    await this.update(projectId, { document_url: urlData.publicUrl });
+
+    return urlData.publicUrl;
+  }
+
+  // Eliminar un documento de un proyecto
+  async deleteDocument(projectId: string, filePath: string): Promise<void> {
+    if (DEMO_MODE) {
+      await simulateNetworkDelay(300);
+      return;
+    }
+
+    // Eliminar el archivo de Storage
+    const { error } = await supabase.storage
+      .from('project-documents')
+      .remove([filePath]);
+
+    if (error) {
+      console.error("Error deleting document:", error);
+      throw error;
+    }
+
+    // Actualizar el proyecto para eliminar la referencia al documento
+    await this.update(projectId, { document_url: null });
   }
 }
 

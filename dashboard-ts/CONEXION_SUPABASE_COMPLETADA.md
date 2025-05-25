@@ -63,17 +63,17 @@ La conexión del Dashboard de Administrador a Supabase ha sido **completada exit
 ## 🔗 URLs y Acceso
 
 - **Aplicación**: http://localhost:3001
-- **Proyecto Supabase**: https://gaaeixihnhcnxgxbufum.supabase.co
+- **Proyecto Supabase**:
 - **Edge Function**: `ai-assistant` (activa)
 
 ## 📝 Datos de Prueba Disponibles
 
 ### Usuarios Reales:
 
-1. **john briceño** (ID: aba60ab3-3975-4c37-9e46-5f6d18f7e9f9)
+1. **john briceño**
    - Email: john.briceño@johnteam.com
    - Rol: Administrador
-2. **wolfdarius** (ID: 98a01933-a24c-4ac4-adcd-85cf6a3b4d45)
+2. **wolfdarius**
    - Email: wolfdarius@johnteam.com
    - Rol: Usuario
 

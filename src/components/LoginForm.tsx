@@ -1,27 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AuthService } from "../services/authService";
 
 interface LoginFormProps {
   onRegisterClick: () => void;
-  initialError?: string | null;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({
-  onRegisterClick,
-  initialError = null,
-}) => {
+const LoginForm: React.FC<LoginFormProps> = ({ onRegisterClick }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
   const [debugInfo, setDebugInfo] = useState<string>("");
-
-  // Establecer error inicial si existe
-  useEffect(() => {
-    if (initialError) {
-      setError(initialError);
-    }
-  }, [initialError]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,10 +51,6 @@ const LoginForm: React.FC<LoginFormProps> = ({
       } else if (err.message?.includes("Email not confirmed")) {
         setError(
           "Tu email no ha sido confirmado. Por favor, revisa tu bandeja de entrada."
-        );
-      } else if (err.message?.includes("Auth session missing")) {
-        setError(
-          "No se pudo iniciar sesión. Intenta limpiar las cookies del navegador y vuelve a intentarlo."
         );
       } else {
         setError(err.message || "Error al iniciar sesión. Inténtalo de nuevo.");

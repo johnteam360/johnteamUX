@@ -6,8 +6,8 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -41,10 +41,511 @@ button:focus,
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #adb5bd;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #6c757d;
+}
+
+/* Clases de utilidad */
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navegación y Header */
+.navbar {
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.navbar .navbar-brand {
+  font-weight: 600;
+}
+
+.navbar-toggler {
+  border: none !important;
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 56px;
+  right: -280px; /* Posicionado a la derecha en lugar de a la izquierda */
+  width: 280px;
+  height: calc(100vh - 56px);
+  background-color: #212529;
+  color: white;
+  z-index: 1030;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.show {
+  right: 0;
+}
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #0d6efd;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.sidebar .list-group-item {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.sidebar .list-group-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.sidebar .list-group-item.active {
+  background-color: #0d6efd;
+  color: white;
+  border-color: #0d6efd;
+}
+
+.sidebar .list-group-item i {
+  width: 20px;
+  text-align: center;
+}
+
+.sidebar .badge {
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+/* Overlay para cerrar sidebar */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1025;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  transition: all 0.3s ease;
+}
+
+/* Contenido principal */
+.main-content {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  width: 100%;
+}
+
+/* Ajustes responsive para el contenido principal */
+@media (min-width: 992px) {
+  .main-content {
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+}
+
+/* Tarjetas */
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1rem 1.25rem;
+}
+
+.card-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Estadísticas */
+.display-6 {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+/* Fondos con gradientes */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #0d6efd 0%, #4da3ff 100%);
+}
+
+.bg-gradient-success {
+  background: linear-gradient(135deg, #28a745 0%, #5dd879 100%);
+}
+
+.bg-gradient-warning {
+  background: linear-gradient(135deg, #ffc107 0%, #ffe083 100%);
+}
+
+.bg-gradient-danger {
+  background: linear-gradient(135deg, #dc3545 0%, #f87987 100%);
+}
+
+/* Botones estilizados */
+.btn {
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  box-shadow: 0 4px 10px rgba(13, 110, 253, 0.25);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 15px rgba(13, 110, 253, 0.35);
+  transform: translateY(-2px);
+}
+
+.btn-outline-primary:hover {
+  box-shadow: 0 4px 10px rgba(13, 110, 253, 0.25);
+}
+
+/* Tablas mejoradas */
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table th {
+  font-weight: 600;
+  color: #495057;
+  background-color: #f8f9fa;
+}
+
+.table td,
+.table th {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(13, 110, 253, 0.05);
+}
+
+/* Estilos para móviles */
+@media (max-width: 768px) {
+  .display-6 {
+    font-size: 1.5rem;
+  }
+
+  .sidebar {
+    width: 100%;
+    right: -100%;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  h4.mb-0 {
+    font-size: 1.2rem;
+  }
+
+  .navbar-brand {
+    max-width: 70%;
+  }
+
+  .row > [class*="col-"] {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .main-content {
+    padding: 0.5rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+  }
+
+  .form-control-plaintext {
+    font-size: 0.9rem;
+    word-break: break-word;
+  }
+
+  .py-4 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .container-fluid {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+.spinner-grow {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.spinner-border {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-width: 0.15em;
+  margin-right: 0.5rem;
+}
+
+.text-light-50 {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Sección de IA - Corregir colores para garantizar visibilidad */
+.card .card-body .alert-info h5,
+.card .card-body .alert-info p {
+  color: #055160;
+}
+
+.card .bg-light h4 {
+  color: #212529;
+}
+
+.card .bg-light p {
+  color: #6c757d;
+}
+
+/* Animaciones para elementos interactivos */
+.list-group-item,
+.btn {
+  transition: all 0.2s ease-in-out;
+  box-shadow: none;
+}
+
+.list-group-item:active,
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Toast y alertas */
+.alert {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Diseño responsivo para proyectos */
+@media (min-width: 992px) {
+  .main-content {
+    padding: 1.5rem 2rem;
+  }
+}
+
+/* Mejoras específicas para vista de perfil en móvil */
+@media (max-width: 576px) {
+  .card-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  .form-label {
+    margin-bottom: 0.25rem;
+    font-size: 0.85rem;
+  }
+
+  .mb-3 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .card-title.mb-2 {
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Ajuste para el menú hamburguesa */
+  .navbar-toggler {
+    width: 38px;
+    height: 38px;
+    padding: 0.4rem;
+  }
+
+  /* Ajuste para el avatar de usuario */
+  .user-avatar {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+
+  /* Ajuste para elementos de información */
+  .row.mb-4 {
+    margin-bottom: 1rem !important;
+  }
+}
+
+/* Arreglo para tarjetas de información en vista móvil */
+@media (max-width: 767.98px) {
+  .row > .col-md-6 {
+    margin-bottom: 0.75rem;
+  }
+
+  .row > .col-md-6:last-child {
+    margin-bottom: 0;
+  }
+
+  .row > .col-md-3 {
+    margin-bottom: 0.75rem;
+  }
+
+  /* Asegurar que el menú lateral ocupe todo el ancho en móvil */
+  .sidebar.show {
+    width: 100%;
+  }
+}
+
+/* Navegación horizontal en el encabezado */
+.navbar-nav .nav-item .nav-link.btn-link {
+  color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.navbar-nav .nav-item .nav-link.btn-link:hover,
+.navbar-nav .nav-item .nav-link.btn-link:focus {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-nav .nav-item .nav-link.btn-link.active {
+  color: #ffffff;
+  position: relative;
+}
+
+.navbar-nav .nav-item .nav-link.btn-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0.75rem;
+  right: 0.75rem;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 3px 3px 0 0;
+}
+
+/* Media queries para navegación */
+@media (min-width: 992px) {
+  .navbar-brand {
+    margin-right: 0;
+  }
+
+  .navbar-nav {
+    margin-left: 2rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .navbar .container-fluid {
+    justify-content: space-between;
+  }
+}
+
+/* Estilos para el acordeón de depuración */
+.accordion-button {
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  background-color: #f8f9fa;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #0d6efd;
+  background-color: rgba(13, 110, 253, 0.1);
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: rgba(0, 0, 0, 0.125);
+}
+
+.accordion-item {
+  border-radius: 0.375rem;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.accordion-body {
+  padding: 1rem;
+}
+
+.table-sm th,
+.table-sm td {
+  padding: 0.5rem;
+  word-break: break-word;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(13, 110, 253, 0.05);
 }
