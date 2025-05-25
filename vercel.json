@@ -77,7 +77,7 @@
       ]
     },
     {
-      "source": "/dashboard/assets/(.+\\.css)",
+      "source": "/(.*\\.css)",
       "headers": [
         {
           "key": "Content-Type",
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "source": "/dashboard-ts/assets/(.+\\.css)",
+      "source": "/dashboard/assets/(.*\\.css)",
       "headers": [
         {
           "key": "Content-Type",
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "source": "/admin/assets/(.+\\.css)",
+      "source": "/dashboard-ts/assets/(.*\\.css)",
       "headers": [
         {
           "key": "Content-Type",
@@ -104,16 +104,7 @@
       ]
     },
     {
-      "source": "/(.+\\.css)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/css"
-        }
-      ]
-    },
-    {
-      "source": "/dashboard/assets/(.+\\.js)",
+      "source": "/(.*\\.js)",
       "headers": [
         {
           "key": "Content-Type",
@@ -122,7 +113,7 @@
       ]
     },
     {
-      "source": "/dashboard-ts/assets/(.+\\.js)",
+      "source": "/dashboard/assets/(.*\\.js)",
       "headers": [
         {
           "key": "Content-Type",
@@ -131,7 +122,7 @@
       ]
     },
     {
-      "source": "/admin/assets/(.+\\.js)",
+      "source": "/dashboard-ts/assets/(.*\\.js)",
       "headers": [
         {
           "key": "Content-Type",
@@ -140,20 +131,83 @@
       ]
     },
     {
-      "source": "/(.+\\.js)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript"
-        }
-      ]
-    },
-    {
-      "source": "/(.+\\.svg)",
+      "source": "/(.*\\.svg)",
       "headers": [
         {
           "key": "Content-Type",
           "value": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.json)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.png)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/png"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.jpg)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.jpeg)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.gif)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/gif"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.webp)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/webp"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.woff2)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "font/woff2"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.woff)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "font/woff"
         }
       ]
     }
@@ -181,18 +235,6 @@
     },
     {
       "source": "/dashboard-ts/:path*",
-      "destination": "/dashboard-ts/dist/:path*"
-    },
-    {
-      "source": "/admin",
-      "destination": "/dashboard-ts/dist/index.html"
-    },
-    {
-      "source": "/admin/assets/:path*",
-      "destination": "/dashboard-ts/dist/assets/:path*"
-    },
-    {
-      "source": "/admin/:path*",
       "destination": "/dashboard-ts/dist/:path*"
     },
     {

@@ -16,7 +16,7 @@ export default defineConfig({
     cors: true,
     open: true,
   },
-  base: "/admin/",
+  base: "/dashboard-ts/",
   build: {
     sourcemap: true,
   },

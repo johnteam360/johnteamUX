@@ -5,7 +5,7 @@ import { resolve } from "path";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/dashboard-ts/", // Base para el dashboard
+  base: "/dashboard/", // Base para el dashboard
   build: {
     outDir: "dist",
     assetsDir: "assets",
