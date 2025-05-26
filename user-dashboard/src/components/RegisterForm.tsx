@@ -238,6 +238,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onBackToLogin }) => {
                   </p>
                 </div>
 
+                {/* Mensaje de contacto con soporte */}
+                <div className="alert alert-info text-center" role="alert">
+                  Gracias por elegir a JohnTeam. Para registrarte debes hablar
+                  con soporte.
+                </div>
+
                 {/* Mensaje de éxito */}
                 {success ? (
                   <div className="alert alert-success" role="alert">
