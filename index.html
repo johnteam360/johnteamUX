@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' https://esm.sh 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; frame-src https://www.youtube.com;"
+    />
+    <title>JohnTeam - Transformamos tu presencia digital</title>
+    <link rel="icon" href="portfolio/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/why-choose-me.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Raleway:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/whatsapp-bubble.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="logo">
+          <a href="index.html" class="logo-text">John<span>Team</span></a>
+        </div>
+        <nav class="nav">
+          <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+          </button>
+          <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="portafolio.html">Portafolio</a></li>
+            <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+            <li><a href="#contact">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-shapes">
+          <div class="shape shape-1"></div>
+          <div class="shape shape-2"></div>
+          <div class="shape shape-3"></div>
+        </div>
+        <div class="container">
+          <div class="hero-content">
+            <div class="hero-text">
+              <h1 class="hero-title">
+                Impulsa tu negocio al siguiente nivel con
+                <span class="highlight">Inteligencia Artificial</span>
+              </h1>
+              <p class="hero-subtitle">
+                Transformamos tu presencia digital con diseño web moderno,
+                procesos automatizados y estrategias que convierten visitas en
+                ventas.
+              </p>
+              <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">Contacto</a>
+                <a href="servicios.html" class="btn-secondary"
+                  ><i class="fas fa-play-circle" aria-hidden="true"></i> Ver
+                  servicios</a
+                >
+              </div>
+            </div>
+            <div class="hero-video-container">
+              <div class="video-wrapper">
+                <iframe
+                  src="https://www.youtube.com/embed/iBy60rXPB4I"
+                  title="Video Presentación JohnTeam"
+                  frameborder="0"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                >
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-down">
+          <a href="#benefits" aria-label="Ir a la sección de ventajas">
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
+          </a>
+        </div>
+      </section>
+
+      <section class="why-choose-me" id="benefits">
+        <div class="why-shapes">
+          <div class="why-shape-1"></div>
+          <div class="why-shape-2"></div>
+        </div>
+        <div class="container">
+          <h2 class="section-title">¿Por qué elegir trabajar conmigo?</h2>
+          <p class="section-subtitle">
+            He desarrollado un framework único que combina las mejores tecnologías para crear sistemas de automatización escalables y eficientes
+          </p>
+
+          <div class="why-content">
+            <div class="why-description">
+              <h3>Framework de Automatización Integral</h3>
+              <p>
+                Mi metodología de trabajo se basa en la integración inteligente de tecnologías de vanguardia para crear 
+                sistemas robustos y escalables que se adaptan a cualquier industria.
+              </p>
+              <p>
+                <strong>El sistema funciona así:</strong> Los clientes interactúan a través de WhatsApp, donde cada mensaje 
+                es procesado y transformado automáticamente. La inteligencia artificial analiza y responde mediante Flowise, 
+                mientras que toda la información se almacena de forma segura en Supabase. Los pedidos se capturan tanto por 
+                WhatsApp como por un formulario web optimizado, y todo se organiza en un sistema visual tipo Trello para 
+                una gestión eficiente.
+              </p>
+              <div class="why-highlights">
+                <div class="highlight-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Automatización end-to-end sin intervención manual</span>
+                </div>
+                <div class="highlight-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Escalable para cualquier volumen de operación</span>
+                </div>
+                <div class="highlight-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Adaptable a cualquier industria o modelo de negocio</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="workflow-diagram">
+              <h4 class="diagram-title">Flujo de Trabajo Automatizado</h4>
+              
+              <div class="flow-container">
+                <!-- Paso 1: WhatsApp -->
+                <div class="flow-step" data-step="1">
+                  <div class="step-icon whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                  </div>
+                  <div class="step-content">
+                    <h5>Canal de Venta</h5>
+                    <p>WhatsApp Business</p>
+                  </div>
+                </div>
+
+                <div class="flow-arrow">
+                  <i class="fas fa-arrow-down"></i>
+                </div>
+
+                <!-- Paso 2: n8n -->
+                <div class="flow-step" data-step="2">
+                  <div class="step-icon n8n">
+                    <i class="fas fa-network-wired"></i>
+                  </div>
+                  <div class="step-content">
+                    <h5>Procesamiento</h5>
+                    <p>n8n - Transformación de datos</p>
+                  </div>
+                </div>
+
+                <div class="flow-arrow">
+                  <i class="fas fa-arrow-down"></i>
+                </div>
+
+                <!-- Paso 3: Flowise -->
+                <div class="flow-step" data-step="3">
+                  <div class="step-icon flowise">
+                    <i class="fas fa-brain"></i>
+                  </div>
+                  <div class="step-content">
+                    <h5>Inteligencia Artificial</h5>
+                    <p>Flowise LLM - Respuestas inteligentes</p>
+                  </div>
+                </div>
+
+                <div class="flow-arrow">
+                  <i class="fas fa-arrow-down"></i>
+                </div>
+
+                <!-- Paso 4: Supabase -->
+                <div class="flow-step" data-step="4">
+                  <div class="step-icon supabase">
+                    <i class="fas fa-database"></i>
+                  </div>
+                  <div class="step-content">
+                    <h5>Backend</h5>
+                    <p>Supabase - Almacenamiento seguro</p>
+                  </div>
+                </div>
+
+                <div class="flow-split">
+                  <div class="split-line left"></div>
+                  <div class="split-line right"></div>
+                </div>
+
+                <!-- Paso 5a y 5b: Formulario Web y Trello -->
+                <div class="flow-dual">
+                  <div class="flow-step" data-step="5a">
+                    <div class="step-icon web">
+                      <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="step-content">
+                      <h5>Captura de Pedidos</h5>
+                      <p>Formulario Web</p>
+                    </div>
+                  </div>
+
+                  <div class="flow-step" data-step="5b">
+                    <div class="step-icon trello">
+                      <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="step-content">
+                      <h5>Gestión Visual</h5>
+                      <p>Sistema tipo Trello</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="diagram-note">
+                <i class="fas fa-info-circle"></i>
+                <p>Este sistema se adapta a cualquier industria: e-commerce, servicios, consultoría, restaurantes, y más.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="why-cta">
+            <a href="#contact" class="btn-primary">
+              <i class="fas fa-rocket" aria-hidden="true"></i>
+              Quiero Automatizar Mi Negocio
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="free-resources" class="free-resources">
+        <div class="resources-shapes">
+          <div class="resources-shape-1"></div>
+          <div class="resources-shape-2"></div>
+          <div class="resources-shape-3"></div>
+        </div>
+        <div class="container">
+          <h2 class="section-title">Recursos Gratuitos</h2>
+          <p class="section-subtitle">
+            Descarga estas guías exclusivas para potenciar tu negocio digital y
+            mantenerte a la vanguardia
+          </p>
+
+          <div class="resources-grid">
+            <div class="resource-card glow-on-hover" data-aos="fade-up">
+              <div class="resource-icon">
+                <i class="fas fa-robot" aria-hidden="true"></i>
+              </div>
+              <div class="resource-content">
+                <h3>Guía Completa de ChatGPT</h3>
+                <p>
+                  Aprende a utilizar ChatGPT para automatizar tareas, mejorar la
+                  productividad y crear contenido de calidad para tu negocio.
+                </p>
+                <a
+                  href="guias/guia-chatgpt.pdf"
+                  class="download-btn"
+                  download
+                  rel="noopener"
+                >
+                  <i class="fas fa-download" aria-hidden="true"></i>
+                  Descargar Guía
+                </a>
+              </div>
+            </div>
+
+            <div class="resource-card glow-on-hover" data-aos="fade-up">
+              <div class="resource-icon">
+                <i class="fas fa-cloud" aria-hidden="true"></i>
+              </div>
+              <div class="resource-content">
+                <h3>Guía AWS con EasyPanel</h3>
+                <p>
+                  Implementa tus aplicaciones web en Amazon Web Services de
+                  forma sencilla utilizando EasyPanel, sin necesidad de
+                  conocimientos avanzados.
+                </p>
+                <a
+                  href="guias/guia-aws-easypanel.pdf"
+                  class="download-btn"
+                  download
+                  rel="noopener"
+                >
+                  <i class="fas fa-download" aria-hidden="true"></i>
+                  Descargar Guía
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="contact-shapes">
+          <div class="contact-shape-1"></div>
+          <div class="contact-shape-2"></div>
+        </div>
+        <div class="container">
+          <h2 class="section-title">Contáctanos</h2>
+          <p class="section-subtitle">
+            Estamos listos para resolver tus dudas y ayudarte a impulsar tu
+            presencia online
+          </p>
+
+          <div class="contact-card" data-aos="fade-up">
+            <div class="avatar-side">
+              <div class="ai-avatar">
+                <img
+                  src="imagen/miniatura_de_video.png"
+                  alt="Contacto JohnTeam"
+                  class="avatar-image"
+                />
+              </div>
+              <h3 class="avatar-title" data-text="Contacto">Contacto</h3>
+              <p class="avatar-subtitle">Hablemos de tu proyecto</p>
+            </div>
+
+            <div class="content-side">
+              <h4 class="content-title">
+                ¡Conversemos sobre cómo podemos transformar tu negocio!
+              </h4>
+              <ul class="features-list">
+                <li>
+                  <i class="fas fa-check-circle" aria-hidden="true"></i>
+                  Consulta gratuita y personalizada
+                </li>
+                <li>
+                  <i class="fas fa-check-circle" aria-hidden="true"></i>
+                  Presupuesto sin compromiso
+                </li>
+                <li>
+                  <i class="fas fa-check-circle" aria-hidden="true"></i>
+                  Respuesta en menos de 24 horas
+                </li>
+                <li>
+                  <i class="fas fa-check-circle" aria-hidden="true"></i>
+                  Atención personalizada por WhatsApp
+                </li>
+              </ul>
+
+              <a
+                href="https://wa.me/573189526675"
+                class="chat-button"
+                aria-label="Contactar por WhatsApp"
+                target="_blank"
+                rel="noopener"
+              >
+                <i class="fas fa-comments" aria-hidden="true"></i>
+                Ir a Contacto
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="footer">
+      <div class="container footer-container">
+        <div class="footer-section footer-accordion">
+          <h3 class="footer-title">
+            <span>Contacto</span>
+            <i class="fas fa-chevron-down footer-icon"></i>
+          </h3>
+          <div class="footer-content">
+            <ul>
+              <li><i class="fas fa-envelope"></i> <a href="mailto:johnteam380@gmail.com">johnteam380@gmail.com</a></li>
+              <li><i class="fas fa-phone"></i> <a href="tel:+573189526675">+57 318 952 6675</a></li>
+              <li><i class="fas fa-map-marker-alt"></i> Bogotá, Colombia</li>
+            </ul>
+            <div class="social-icons">
+              <a href="#" aria-label="Facebook JohnTeam" target="_blank" rel="noopener">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://www.instagram.com/johnteam.ai/" target="_blank" rel="noopener" aria-label="Instagram JohnTeam">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="https://www.youtube.com/@Johnteamzai" target="_blank" rel="noopener" aria-label="YouTube JohnTeam">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-section footer-accordion">
+          <h3 class="footer-title">
+            <span>Enlaces de Interés</span>
+            <i class="fas fa-chevron-down footer-icon"></i>
+          </h3>
+          <div class="footer-content">
+            <div class="footer-links-grid">
+              <div class="footer-links-col">
+                <h4>Navegación</h4>
+                <ul>
+                  <li><a href="servicios.html">Servicios</a></li>
+                  <li><a href="portafolio.html">Portafolio</a></li>
+                  <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                  <li><a href="blog.html">Blog</a></li>
+                </ul>
+              </div>
+              <div class="footer-links-col">
+                <h4>Legal</h4>
+                <ul>
+                  <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+                  <li><a href="terminos-condiciones.html">Términos y Condiciones</a></li>
+                  <li><a href="politica-cookies.html">Política de Cookies</a></li>
+                  <li><a href="aviso-legal.html">Aviso Legal</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 JohnTeam. Todos los derechos reservados. Potenciado por IA.</p>
+      </div>
+    </footer>
+
+    <a
+      href="https://wa.me/573189526675"
+      class="whatsapp-bubble"
+      target="_blank"
+      rel="noopener"
+      aria-label="Contactar por WhatsApp"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

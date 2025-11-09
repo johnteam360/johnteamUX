@@ -1,0 +1,464 @@
+/* ========================================
+   Why Choose Me Section - Mobile First
+   ======================================== */
+
+.why-choose-me {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+
+/* Shapes de fondo */
+.why-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.why-shape-1,
+.why-shape-2 {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  animation: float 20s ease-in-out infinite;
+}
+
+.why-shape-1 {
+  width: 300px;
+  height: 300px;
+  top: -100px;
+  right: -100px;
+}
+
+.why-shape-2 {
+  width: 400px;
+  height: 400px;
+  bottom: -150px;
+  left: -150px;
+  animation-delay: 5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(10deg);
+  }
+}
+
+.why-choose-me .container {
+  position: relative;
+  z-index: 1;
+}
+
+.why-choose-me .section-title {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.why-choose-me .section-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 50px;
+  line-height: 1.6;
+}
+
+/* Content Layout */
+.why-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+/* Description */
+.why-description {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.why-description h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.why-description p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.why-description p strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Highlights */
+.why-highlights {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px 18px;
+  border-radius: 12px;
+  border-left: 4px solid #ffd700;
+}
+
+.highlight-item i {
+  color: #ffd700;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.highlight-item span {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ========================================
+   Workflow Diagram - Mobile First
+   ======================================== */
+
+.workflow-diagram {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px 20px;
+  border-radius: 20px;
+  color: #333;
+}
+
+.diagram-title {
+  font-size: 1.3rem;
+  color: #667eea;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.flow-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  max-width: 100%;
+}
+
+/* Flow Steps */
+.flow-step {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+.flow-step[data-step="1"] { animation-delay: 0.1s; }
+.flow-step[data-step="2"] { animation-delay: 0.2s; }
+.flow-step[data-step="3"] { animation-delay: 0.3s; }
+.flow-step[data-step="4"] { animation-delay: 0.4s; }
+.flow-step[data-step="5a"] { animation-delay: 0.5s; }
+.flow-step[data-step="5b"] { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.flow-step:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Step Icons */
+.step-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.step-icon.whatsapp {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+}
+
+.step-icon.n8n {
+  background: linear-gradient(135deg, #ea4b71 0%, #d43f5a 100%);
+}
+
+.step-icon.flowise {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.step-icon.supabase {
+  background: linear-gradient(135deg, #3ECF8E 0%, #2B9E70 100%);
+}
+
+.step-icon.web {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.step-icon.trello {
+  background: linear-gradient(135deg, #0079BF 0%, #005A8C 100%);
+}
+
+/* Step Content */
+.step-content {
+  flex: 1;
+}
+
+.step-content h5 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.step-content p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Flow Arrows */
+.flow-arrow {
+  font-size: 2rem;
+  color: #667eea;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Flow Split (para división en dos caminos) */
+.flow-split {
+  display: none; /* Oculto en móvil */
+}
+
+/* Flow Dual (dos pasos paralelos) */
+.flow-dual {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  align-items: center;
+}
+
+/* Diagram Note */
+.diagram-note {
+  margin-top: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.diagram-note i {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.diagram-note p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* CTA Button */
+.why-cta {
+  text-align: center;
+}
+
+.why-cta .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  color: #667eea;
+  padding: 15px 35px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.why-cta .btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  background: #ffd700;
+  color: #333;
+}
+
+/* ========================================
+   Tablet: 768px - 1023px
+   ======================================== */
+
+@media (min-width: 768px) {
+  .why-choose-me {
+    padding: 100px 40px;
+  }
+
+  .why-choose-me .section-title {
+    font-size: 2.5rem;
+  }
+
+  .why-choose-me .section-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .why-description {
+    padding: 40px;
+  }
+
+  .why-description h3 {
+    font-size: 1.8rem;
+  }
+
+  .why-highlights {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .highlight-item {
+    flex: 1 1 calc(50% - 10px);
+  }
+
+  .workflow-diagram {
+    padding: 40px;
+  }
+
+  .diagram-title {
+    font-size: 1.6rem;
+  }
+
+  .flow-step {
+    max-width: 400px;
+  }
+}
+
+/* ========================================
+   Desktop: 1024px+
+   ======================================== */
+
+@media (min-width: 1024px) {
+  .why-choose-me {
+    padding: 120px 60px;
+  }
+
+  .why-choose-me .section-title {
+    font-size: 3rem;
+  }
+
+  .why-content {
+    flex-direction: row;
+    gap: 50px;
+    align-items: flex-start;
+  }
+
+  .why-description {
+    flex: 1;
+  }
+
+  .workflow-diagram {
+    flex: 1;
+    padding: 50px;
+  }
+
+  .highlight-item {
+    flex: 1 1 100%;
+  }
+
+  .flow-container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+/* ========================================
+   Large Desktop: 1440px+
+   ======================================== */
+
+@media (min-width: 1440px) {
+  .why-choose-me .section-title {
+    font-size: 3.5rem;
+  }
+
+  .why-description h3 {
+    font-size: 2rem;
+  }
+
+  .diagram-title {
+    font-size: 1.8rem;
+  }
+
+  .flow-step {
+    max-width: 450px;
+    padding: 25px;
+  }
+
+  .step-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+  }
+
+  .step-content h5 {
+    font-size: 1.2rem;
+  }
+
+  .step-content p {
+    font-size: 1rem;
+  }
+}
+

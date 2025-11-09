@@ -1,0 +1,243 @@
+/* Estilos para el footer - Mobile First con Accordions */
+.footer {
+  background: linear-gradient(135deg, #764ba2 0%, #5a4a7d 100%);
+  color: #fff;
+  padding: 40px 0 20px;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Accordion styles para móvil */
+.footer-accordion {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.footer-title:hover {
+  color: #ff6b35;
+}
+
+.footer-title span {
+  flex: 1;
+}
+
+.footer-icon {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+  color: #ff6b35;
+}
+
+.footer-accordion.active .footer-icon {
+  transform: rotate(180deg);
+}
+
+.footer-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0;
+}
+
+.footer-accordion.active .footer-content {
+  max-height: 600px;
+  padding-bottom: 20px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: #b3b3b3;
+}
+
+.footer-section ul li i {
+  margin-right: 8px;
+  color: #ff6b35;
+  width: 16px;
+  font-size: 0.9rem;
+}
+
+.footer-section ul li a {
+  color: #b3b3b3;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.footer-section ul li a:hover {
+  color: #ff6b35;
+  padding-left: 5px;
+}
+
+/* Grid de enlaces para "Enlaces de Interés" */
+.footer-links-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.footer-links-col h4 {
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+/* Redes sociales */
+.social-icons {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.social-icons a:hover {
+  background-color: #ff6b35;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+/* Footer bottom */
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  margin-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom p {
+  color: #999;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Tablet: 576px+ */
+@media (min-width: 576px) {
+  .footer {
+    padding: 50px 0 20px;
+  }
+
+  .footer-links-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .footer-title {
+    font-size: 1.15rem;
+  }
+
+  .footer-section ul li {
+    font-size: 1rem;
+  }
+}
+
+/* Desktop: 768px+ - Desactivar accordions, mostrar todo expandido */
+@media (min-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+  }
+
+  /* Desactivar accordion en desktop */
+  .footer-title {
+    cursor: default;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #ff6b35;
+    margin-bottom: 20px;
+  }
+
+  .footer-title:hover {
+    color: #fff;
+  }
+
+  .footer-icon {
+    display: none;
+  }
+
+  .footer-content {
+    max-height: none !important;
+    padding: 0 !important;
+    overflow: visible;
+  }
+
+  .footer-accordion {
+    border-bottom: none;
+  }
+
+  .footer-section ul li {
+    font-size: 1rem;
+  }
+
+  .social-icons a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer-bottom {
+    padding-top: 40px;
+    margin-top: 40px;
+  }
+}
+
+/* Large Desktop: 1024px+ */
+@media (min-width: 1024px) {
+  .footer-container {
+    gap: 60px;
+  }
+
+  .footer-title {
+    font-size: 1.3rem;
+  }
+
+  .footer-links-col h4 {
+    font-size: 1.05rem;
+  }
+}
+
+/* Extra Large: 1200px+ */
+@media (min-width: 1200px) {
+  .footer-container {
+    padding: 0 40px;
+  }
+} 
