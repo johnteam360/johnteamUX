@@ -645,4 +645,48 @@ document.addEventListener("DOMContentLoaded", () => {
       statObserver.observe(counter);
     });
   }
+
+  // Blog filtering functionality
+  const blogFilterButtons = document.querySelectorAll(".blog-filters .filter-btn");
+  const blogCards = document.querySelectorAll(".blog-card");
+
+  if (blogFilterButtons.length > 0 && blogCards.length > 0) {
+    blogFilterButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        // Remove active class from all buttons
+        blogFilterButtons.forEach((btn) => btn.classList.remove("active"));
+        // Add active class to clicked button
+        this.classList.add("active");
+
+        const selectedCategory = this.getAttribute("data-category");
+
+        blogCards.forEach((card) => {
+          const cardCategories = card.getAttribute("data-category").split(" ");
+          
+          if (selectedCategory === "all" || cardCategories.includes(selectedCategory)) {
+            // Show card with animation
+            card.style.display = "flex";
+            card.style.opacity = "0";
+            card.style.transform = "translateY(20px)";
+            
+            // Trigger reflow for smooth transition
+            void card.offsetWidth;
+            
+            setTimeout(() => {
+              card.style.opacity = "1";
+              card.style.transform = "translateY(0)";
+            }, 10);
+          } else {
+            // Hide card with animation
+            card.style.opacity = "0";
+            card.style.transform = "translateY(20px)";
+            
+            setTimeout(() => {
+              card.style.display = "none";
+            }, 300);
+          }
+        });
+      });
+    });
+  }
 });

@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" href="portfolio/favicon.png" />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/coming-soon.css" />
+    <link rel="stylesheet" href="css/blog.css" />
     <link rel="stylesheet" href="css/whatsapp-bubble.css" />
     <link
       rel="stylesheet"
@@ -48,6 +48,7 @@
             <li><a href="servicios.html">Servicios</a></li>
             <li><a href="portafolio.html">Portafolio</a></li>
             <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+            <li><a href="blog.html" class="active">Blog</a></li>
             <li><a href="index.html#contact">Contacto</a></li>
           </ul>
         </nav>
@@ -55,37 +56,66 @@
     </header>
 
     <main>
-      <section class="coming-soon">
-        <div class="coming-soon-shapes">
-          <div class="coming-shape-1"></div>
-          <div class="coming-shape-2"></div>
-        </div>
+      <!-- Hero Section -->
+      <section class="blog-hero">
         <div class="container">
-          <div class="coming-soon-content">
-            <div class="coming-soon-icon" aria-hidden="true">
-              <i class="fas fa-hourglass-half"></i>
-            </div>
-            <h1 class="coming-soon-title">Nuestro Blog Llegará Pronto</h1>
-            <p class="coming-soon-message">
-              Estamos trabajando en contenido increíble lleno de ideas,
-              tutoriales y las últimas noticias sobre inteligencia artificial,
-              diseño web y automatización para potenciar tu negocio. ¡Vuelve
-              pronto!
+          <div class="blog-hero-content">
+            <h1>Blog JohnTeam</h1>
+            <p>
+              Descubre las últimas tendencias en inteligencia artificial,
+              automatización empresarial y diseño web. Aprende, inspírate y
+              transforma tu negocio.
             </p>
-            <div class="social-icons" aria-label="Síguenos en redes sociales">
-              <a href="#" class="social-icon" aria-label="Facebook JohnTeam"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="#" class="social-icon" aria-label="Instagram JohnTeam"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="#" class="social-icon" aria-label="LinkedIn JohnTeam"
-                ><i class="fab fa-linkedin-in"></i
-              ></a>
-              <a href="#" class="social-icon" aria-label="Twitter JohnTeam"
-                ><i class="fab fa-twitter"></i
-              ></a>
-            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Grid de Artículos -->
+      <section class="blog-section">
+        <div class="container">
+          <div class="blog-grid" id="blogGrid">
+            <!-- Artículo -->
+            <a href="articulo-ia-viaje.html" target="_blank" rel="noopener" class="blog-card-link">
+              <article class="blog-card" data-category="ia">
+                <div class="blog-card-image">
+                  <span class="blog-card-category">IA</span>
+                  <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-brain" style="font-size: 4rem; color: rgba(255,255,255,0.3);"></i>
+                  </div>
+                </div>
+                <div class="blog-card-content">
+                  <div class="blog-card-meta">
+                    <span class="blog-card-date">
+                      <i class="far fa-calendar"></i>
+                      Enero, 2025
+                    </span>
+                    <span class="blog-card-author">
+                      <i class="fas fa-user"></i>
+                      JohnTeam
+                    </span>
+                  </div>
+                  <h3>
+                    Mi Viaje con la Inteligencia Artificial: De la Curiosidad a la
+                    Transformación
+                  </h3>
+                  <p class="blog-card-excerpt">
+                    En el último año he dedicado gran parte de mi tiempo a sumergirme
+                    en el mundo de la inteligencia artificial, especialmente en los
+                    modelos de lenguaje (LLM). Recuerdo claramente la primera vez que
+                    escuché sobre ChatGPT: una amiga con la que salía lo mencionó de
+                    paso. Me pareció curioso, pero no me rompió la cabeza...
+                  </p>
+                  <div class="blog-card-footer">
+                    <span class="read-more">
+                      Leer más <i class="fas fa-arrow-right"></i>
+                    </span>
+                    <span class="blog-card-reading-time">
+                      <i class="far fa-clock"></i> 12 min
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </a>
           </div>
         </div>
       </section>
