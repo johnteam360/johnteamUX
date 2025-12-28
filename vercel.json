@@ -1,5 +1,7 @@
 ﻿{
   "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
   "headers": [
     {
       "source": "/(.*)",
@@ -25,8 +27,8 @@
   ],
   "rewrites": [
     {
-      "source": "/:file(.*)\\.html",
-      "destination": "/:file.html"
+      "source": "/:path*",
+      "destination": "/:path*"
     }
   ]
 }
