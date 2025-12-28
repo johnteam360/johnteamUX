@@ -1,464 +1,503 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="DENY" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:"
-    />
-    <title>Resultados Comprobados | JohnTeam</title>
-    <link rel="icon" type="image/png" href="portfolio/favicon.png" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-      rel="stylesheet"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Raleway:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="css/whatsapp-bubble.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/portfolio-results.css" />
-  </head>
-  <body>
-    <header class="header">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:" />
+  <title>Resultados Comprobados | JohnTeam</title>
+  <link rel="icon" type="image/png" href="portfolio/favicon.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"
+    crossorigin="anonymous" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Raleway:wght@400;500;600;700&display=swap"
+    rel="stylesheet" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/whatsapp-bubble.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/portfolio-results.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html" class="logo-text">John<span>Team</span></a>
+      </div>
+      <nav class="nav">
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="portafolio.html" class="active">Portafolio</a></li>
+          <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="index.html#contact">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero con video de fondo -->
+    <section class="hero-video-background">
+      <div class="hero-video-container">
+        <video autoplay muted loop playsinline class="hero-video">
+          <source src="portfolio/Asistente promo español.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-video-overlay"></div>
+      <div class="hero-video-content">
+        <div class="container">
+          <h1 class="hero-video-title">
+            Resultados Que
+            <span style="color: var(--accent-color)">Transforman Negocios</span>
+          </h1>
+          <p class="hero-video-subtitle">
+            Más de 15 clientes satisfechos con sistemas que generan resultados medibles y escalables
+          </p>
+          <div class="hero-buttons">
+            <a href="#resultados" class="btn-primary">
+              <i class="fas fa-chart-line"></i> Ver Resultados
+            </a>
+            <a href="#portafolio-proyectos" class="btn-secondary">
+              <i class="fas fa-briefcase"></i> Ver Proyectos
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Números Impactantes -->
+    <section id="resultados" class="results-section">
       <div class="container">
-        <div class="logo">
-          <a href="index.html" class="logo-text">John<span>Team</span></a>
+        <h2 class="section-title">Números Que Hablan Por Sí Solos</h2>
+        <p class="section-subtitle">
+          Resultados reales de clientes que confiaron en nuestro sistema de automatización
+        </p>
+
+        <div class="stats-grid">
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-number" data-target="15">15</div>
+            <div class="stat-label">Clientes Satisfechos</div>
+            <p class="stat-description">Empresas de diversos sectores automatizadas</p>
+          </div>
+
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-number" data-target="180">180%</div>
+            <div class="stat-label">Más Conversiones en WhatsApp</div>
+            <p class="stat-description">Los clientes compran más cuando reciben respuesta inmediata</p>
+          </div>
+
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="stat-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="stat-number" data-target="24">24/7</div>
+            <div class="stat-label">Atención Sin Descanso</div>
+            <p class="stat-description">El sistema responde de madrugada, fines de semana y festivos</p>
+          </div>
+
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="stat-icon">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="stat-number" data-target="2500">$2,500</div>
+            <div class="stat-label">USD Ahorrados Mensualmente</div>
+            <p class="stat-description">Eliminas costos de salarios, capacitación y rotación</p>
+          </div>
+
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="600">
+            <div class="stat-icon">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <div class="stat-number" data-target="18">18 días</div>
+            <div class="stat-label">Tiempo de Implementación</div>
+            <p class="stat-description">Sistema completo operativo</p>
+          </div>
         </div>
-        <nav class="nav">
-          <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-            <i class="fas fa-bars" aria-hidden="true"></i>
-          </button>
-          <ul class="nav-menu" id="navMenu">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="servicios.html">Servicios</a></li>
-            <li><a href="portafolio.html" class="active">Portafolio</a></li>
-            <li><a href="quienes-somos.html">Quiénes Somos</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="index.html#contact">Contacto</a></li>
+      </div>
+    </section>
+
+    <!-- Sección de Portafolio de Proyectos -->
+    <section id="portafolio-proyectos" class="portfolio-grid">
+      <div class="container">
+        <h2 class="section-title">Casos de Éxito que Transforman Negocios</h2>
+        <p class="section-subtitle">
+          Descubre cómo nuestras soluciones de IA y desarrollo web han generado resultados tangibles, automatización
+          real y un ROI medible para nuestros clientes.
+        </p>
+
+        <!-- Filtros -->
+        <div class="portfolio-filters">
+          <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="web">Web</button>
+            <button class="filter-btn" data-filter="automation">Automatización</button>
+            <button class="filter-btn" data-filter="cms">CMS</button>
+            <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+          </div>
+        </div>
+
+        <!-- Grid de Proyectos -->
+        <div class="projects-grid">
+          <!-- Proyecto 1: Sistema de Automatización con IA -->
+          <div class="project-card" data-category="automation web" data-aos="fade-up" data-aos-delay="100">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop"
+                alt="Sistema de Automatización con IA">
+              <div class="project-overlay">
+                <span class="project-category">Automatización • IA</span>
+                <h3 class="project-title">Ecosistema de Automatización IA</h3>
+                <p class="project-description">
+                  Transformación digital completa con agentes de IA que reducen la carga operativa en un 80% y funcionan
+                  24/7.
+                </p>
+                <a href="proyectos/sistema-automatizacion-ia.html" class="project-link">Ver Caso de Éxito</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto 2: Sistema Web Corporativo -->
+          <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="200">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop"
+                alt="Sistema Web Corporativo">
+              <div class="project-overlay">
+                <span class="project-category">Web • Corporativo</span>
+                <h3 class="project-title">Plataforma Web Empresarial</h3>
+                <p class="project-description">
+                  Portal corporativo robusto con arquitectura Headless para máxima velocidad, seguridad y escalabilidad
+                  global.
+                </p>
+                <a href="proyectos/sistema-web-corporativo.html" class="project-link">Ver Caso de Éxito</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto 3: CMS para Consultorio Privado -->
+          <div class="project-card" data-category="cms web" data-aos="fade-up" data-aos-delay="300">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=600&h=400&fit=crop"
+                alt="CMS Consultorio Privado">
+              <div class="project-overlay">
+                <span class="project-category">CMS • Salud</span>
+                <h3 class="project-title">CMS Médico Especializado</h3>
+                <p class="project-description">
+                  Sistema de gestión clínica que digitaliza el 100% de los procesos y reduce el ausentismo de pacientes
+                  en un 50%.
+                </p>
+                <a href="proyectos/cms-consultorio-privado.html" class="project-link">Ver Caso de Éxito</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto 4: Sistema de Pedidos en Tiempo Real -->
+          <div class="project-card" data-category="ecommerce web" data-aos="fade-up" data-aos-delay="400">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop"
+                alt="Sistema de Pedidos">
+              <div class="project-overlay">
+                <span class="project-category">E-commerce • Realtime</span>
+                <h3 class="project-title">Sistema de Pedidos Realtime</h3>
+                <p class="project-description">
+                  Plataforma de delivery con tracking en vivo y sincronización < 500ms, eliminando las llamadas de
+                    seguimiento. </p>
+                    <a href="proyectos/sistema-pedidos-tiempo-real.html" class="project-link">Ver Caso de Éxito</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto 5: Automatización Escuela Canina -->
+          <div class="project-card" data-category="automation web" data-aos="fade-up" data-aos-delay="500">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&h=400&fit=crop"
+                alt="Automatización Escuela Canina">
+              <div class="project-overlay">
+                <span class="project-category">Automatización • IA</span>
+                <h3 class="project-title">Automatización Escuela Canina</h3>
+                <p class="project-description">
+                  Sistema inteligente que gestiona admisiones, genera propuestas personalizadas y agenda citas
+                  automáticamente.
+                </p>
+                <a href="proyectos/automatizacion-escuela-canina.html" class="project-link">Ver Caso de Éxito</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto 6: Sistema de Ventas Automatizado WhatsApp -->
+          <div class="project-card" data-category="automation ecommerce" data-aos="fade-up" data-aos-delay="600">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop"
+                alt="Ventas Automatizado WhatsApp">
+              <div class="project-overlay">
+                <span class="project-category">Automatización • WhatsApp</span>
+                <h3 class="project-title">Ventas Automáticas WhatsApp</h3>
+                <p class="project-description">
+                  Embudo de ventas "Vendedor Infinito" capaz de procesar 1000+ leads diarios y cerrar ventas sin
+                  humanos.
+                </p>
+                <a href="proyectos/sistema-ventas-automatizado.html" class="project-link">Ver Caso de Éxito</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto 7: Plataforma de Análisis Político -->
+          <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="700">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop"
+                alt="Plataforma Análisis Político">
+              <div class="project-overlay">
+                <span class="project-category">Big Data • IA</span>
+                <h3 class="project-title">Inteligencia Política con RAG</h3>
+                <p class="project-description">
+                  Sistema de análisis de datos masivos con IA que genera estrategias políticas basadas en millones de
+                  documentos.
+                </p>
+                <a href="proyectos/plataforma-analisis-politico.html" class="project-link">Ver Caso de Éxito</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto 8: Migración WordPress a Headless -->
+          <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="800">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop"
+                alt="Migración WordPress Headless">
+              <div class="project-overlay">
+                <span class="project-category">Web • Performance</span>
+                <h3 class="project-title">Migración Headless High-Perf</h3>
+                <p class="project-description">
+                  Modernización de infraestructura web logrando tiempos de carga de 0.5s y puntuación perfecta en Google
+                  Lighthouse.
+                </p>
+                <a href="proyectos/migracion-wordpress-headless.html" class="project-link">Ver Caso de Éxito</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beneficios para Clientes -->
+    <section class="benefits-section">
+      <div class="container">
+        <h2 class="section-title">Beneficios Comprobados Para Tu Negocio</h2>
+        <p class="section-subtitle">
+          Esto es lo que nuestros clientes han logrado con nuestro sistema
+        </p>
+
+        <div class="benefits-grid">
+          <div class="benefit-item" data-aos="zoom-in" data-aos-delay="100">
+            <div class="benefit-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3>Atiende 10x Más Clientes</h3>
+            <p>El sistema puede atender 1000 conversaciones simultáneas sin colapsar</p>
+          </div>
+
+          <div class="benefit-item" data-aos="zoom-in" data-aos-delay="200">
+            <div class="benefit-icon">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <h3>Ahorra $2,500 USD/mes</h3>
+            <p>Eliminas salarios, prestaciones y costos de capacitación de 3 empleados</p>
+          </div>
+
+          <div class="benefit-item" data-aos="zoom-in" data-aos-delay="300">
+            <div class="benefit-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>180% Más Ventas en WhatsApp</h3>
+            <p>Respuesta inmediata = Más clientes que compran sin pensarlo</p>
+          </div>
+
+          <div class="benefit-item" data-aos="zoom-in" data-aos-delay="400">
+            <div class="benefit-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3>Recupera 15hrs/Semana</h3>
+            <p>Tu equipo deja de responder lo mismo 100 veces al día</p>
+          </div>
+
+          <div class="benefit-item" data-aos="zoom-in" data-aos-delay="500">
+            <div class="benefit-icon">
+              <i class="fas fa-moon"></i>
+            </div>
+            <h3>Vende Mientras Duermes</h3>
+            <p>El sistema captura pedidos de madrugada, fines de semana y festivos</p>
+          </div>
+
+          <div class="benefit-item" data-aos="zoom-in" data-aos-delay="600">
+            <div class="benefit-icon">
+              <i class="fas fa-tachometer-alt"></i>
+            </div>
+            <h3>Respuesta en 3 Segundos</h3>
+            <p>Nunca más pierdes clientes por responder tarde</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lista de Clientes -->
+    <section class="clients-section">
+      <div class="container">
+        <h2 class="section-title">Clientes Que Confían En Nosotros</h2>
+        <p class="section-subtitle">
+          Empresas de diversos sectores que ya están viendo resultados
+        </p>
+
+        <div class="clients-grid">
+          <div class="client-badge">
+            <i class="fas fa-utensils"></i>
+            <span>Restaurantes</span>
+          </div>
+          <div class="client-badge">
+            <i class="fas fa-shopping-cart"></i>
+            <span>E-commerce</span>
+          </div>
+          <div class="client-badge">
+            <i class="fas fa-building"></i>
+            <span>Corporativos</span>
+          </div>
+          <div class="client-badge">
+            <i class="fas fa-heartbeat"></i>
+            <span>Salud & Bienestar</span>
+          </div>
+          <div class="client-badge">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Educación</span>
+          </div>
+          <div class="client-badge">
+            <i class="fas fa-car"></i>
+            <span>Automotriz</span>
+          </div>
+          <div class="client-badge">
+            <i class="fas fa-home"></i>
+            <span>Bienes Raíces</span>
+          </div>
+          <div class="client-badge">
+            <i class="fas fa-briefcase"></i>
+            <span>Consultoría</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="final-cta-section">
+      <div class="container">
+        <h2 class="section-title">¿Listo Para Obtener Estos Resultados?</h2>
+        <p class="section-subtitle">
+          Únete a más de 15 empresas que ya están transformando su negocio con nuestro sistema
+        </p>
+        <div class="cta-buttons">
+          <a href="servicios.html" class="btn-primary btn-large">
+            <i class="fas fa-rocket"></i> Ver Sistema Completo
+          </a>
+          <a href="https://wa.me/573189526675" target="_blank" class="btn-secondary btn-large">
+            <i class="fab fa-whatsapp"></i> Solicitar Consultoría Gratuita
+          </a>
+        </div>
+        <p class="cta-guarantee">
+          <i class="fas fa-shield-alt"></i>
+          Sistema listo en 18 días | Soporte continuo | Resultados garantizados
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="container footer-container">
+      <div class="footer-section footer-accordion">
+        <h3 class="footer-title">
+          <span>Contacto</span>
+          <i class="fas fa-chevron-down footer-icon"></i>
+        </h3>
+        <div class="footer-content">
+          <ul>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:johnteam380@gmail.com">johnteam380@gmail.com</a></li>
+            <li><i class="fas fa-phone"></i> <a href="tel:+573189526675">+57 318 952 6675</a></li>
+            <li><i class="fas fa-map-marker-alt"></i> Bogotá, Colombia</li>
           </ul>
-        </nav>
-      </div>
-    </header>
-
-    <main>
-      <!-- Hero con video de fondo -->
-      <section class="hero-video-background">
-        <div class="hero-video-container">
-          <video autoplay muted loop playsinline class="hero-video">
-            <source src="portfolio/Asistente promo español.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="hero-video-overlay"></div>
-        <div class="hero-video-content">
-          <div class="container">
-            <h1 class="hero-video-title">
-              Resultados Que
-              <span style="color: var(--accent-color)">Transforman Negocios</span>
-            </h1>
-            <p class="hero-video-subtitle">
-              Más de 15 clientes satisfechos con sistemas que generan resultados medibles y escalables
-            </p>
-            <div class="hero-buttons">
-              <a href="#resultados" class="btn-primary">
-                <i class="fas fa-chart-line"></i> Ver Resultados
-              </a>
-              <a href="#casos-exito" class="btn-secondary">
-                <i class="fas fa-video"></i> Casos de Éxito
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Sección de Números Impactantes -->
-      <section id="resultados" class="results-section">
-        <div class="container">
-          <h2 class="section-title">Números Que Hablan Por Sí Solos</h2>
-          <p class="section-subtitle">
-            Resultados reales de clientes que confiaron en nuestro sistema de automatización
-          </p>
-
-          <div class="stats-grid">
-            <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
-              <div class="stat-icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <div class="stat-number" data-target="15">15</div>
-              <div class="stat-label">Clientes Satisfechos</div>
-              <p class="stat-description">Empresas de diversos sectores automatizadas</p>
-            </div>
-
-            <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
-              <div class="stat-icon">
-                <i class="fas fa-chart-line"></i>
-              </div>
-              <div class="stat-number" data-target="180">180%</div>
-              <div class="stat-label">Más Conversiones en WhatsApp</div>
-              <p class="stat-description">Los clientes compran más cuando reciben respuesta inmediata</p>
-            </div>
-
-            <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
-              <div class="stat-icon">
-                <i class="fas fa-robot"></i>
-              </div>
-              <div class="stat-number" data-target="24">24/7</div>
-              <div class="stat-label">Atención Sin Descanso</div>
-              <p class="stat-description">El sistema responde de madrugada, fines de semana y festivos</p>
-            </div>
-
-            <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
-              <div class="stat-icon">
-                <i class="fas fa-dollar-sign"></i>
-              </div>
-              <div class="stat-number" data-target="2500">$2,500</div>
-              <div class="stat-label">USD Ahorrados Mensualmente</div>
-              <p class="stat-description">Eliminas costos de salarios, capacitación y rotación</p>
-            </div>
-
-            <div class="stat-card" data-aos="fade-up" data-aos-delay="600">
-              <div class="stat-icon">
-                <i class="fas fa-chart-bar"></i>
-              </div>
-              <div class="stat-number" data-target="18">18 días</div>
-              <div class="stat-label">Tiempo de Implementación</div>
-              <p class="stat-description">Sistema completo operativo</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Casos de Éxito con Videos -->
-      <section id="casos-exito" class="success-cases-section">
-        <div class="container">
-          <h2 class="section-title">Casos de Éxito Comprobados</h2>
-          <p class="section-subtitle">
-            Mira cómo hemos transformado negocios reales con tecnología y automatización
-          </p>
-
-          <!-- Caso 1: Dashboard Empresarial -->
-          <div class="case-card" data-aos="fade-up">
-            <div class="case-video">
-              <iframe
-                width="100%"
-                height="400"
-                src="https://www.youtube.com/embed/QshCOeJ1110"
-                title="Dashboard Empresarial - Caso de Éxito"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                loading="lazy"
-              ></iframe>
-            </div>
-            <div class="case-content">
-              <h3>Dashboard Empresarial con IA</h3>
-              <p class="case-industry"><i class="fas fa-building"></i> Sector: Tecnología & Finanzas</p>
-              
-              <div class="case-results">
-                <h4>Resultados Obtenidos:</h4>
-                <ul>
-                  <li><i class="fas fa-check-circle"></i> <strong>85% más eficiencia</strong> en análisis de datos</li>
-                  <li><i class="fas fa-check-circle"></i> <strong>Automatización completa</strong> de reportes gerenciales</li>
-                  <li><i class="fas fa-check-circle"></i> <strong>Dashboard personalizado</strong> con métricas en tiempo real</li>
-                  <li><i class="fas fa-check-circle"></i> <strong>Integración con IA</strong> para predicciones y análisis</li>
-                </ul>
-              </div>
-
-              <div class="case-testimonial">
-                <div class="testimonial-author">
-                  <img src="portfolio/fernando.jpeg" alt="Cliente">
-                  <div>
-                    <p class="client-name">Fernando Torres</p>
-                    <p class="client-role">CTO, Corporación Innovatech</p>
-                  </div>
-                </div>
-                <p class="testimonial-quote">
-                  "El dashboard ha transformado la manera en que nuestros equipos acceden y utilizan la información. La eficiencia aumentó dramáticamente."
-                </p>
-              </div>
-
-              <div class="case-actions">
-                <a href="https://dashboard-ai-steel.vercel.app/" target="_blank" class="btn-primary btn-small">
-                  <i class="fas fa-external-link-alt"></i> Ver Demo En Vivo
-                </a>
-                <a href="portfolio/informedashboard.pdf" target="_blank" class="btn-secondary btn-small">
-                  <i class="fas fa-file-pdf"></i> Descargar Caso de Estudio
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Caso 2: Sistema de Automatización -->
-          <div class="case-card" data-aos="fade-up">
-            <div class="case-video">
-              <video width="100%" height="400" controls>
-                <source src="portfolio/Asistente promo español.mp4" type="video/mp4">
-                Tu navegador no soporta el elemento de video.
-              </video>
-            </div>
-            <div class="case-content">
-              <h3>Sistema de Automatización con IA</h3>
-              <p class="case-industry"><i class="fas fa-utensils"></i> Sector: Restaurantes & Servicios</p>
-              
-              <div class="case-results">
-                <h4>Resultados Obtenidos:</h4>
-                <ul>
-                  <li><i class="fas fa-check-circle"></i> <strong>90% menos tiempo</strong> en gestión de reservas</li>
-                  <li><i class="fas fa-check-circle"></i> <strong>Atención 24/7</strong> sin personal adicional</li>
-                  <li><i class="fas fa-check-circle"></i> <strong>300% más capacidad</strong> de atención simultánea</li>
-                  <li><i class="fas fa-check-circle"></i> <strong>Satisfacción del cliente</strong> aumentó al 95%</li>
-                </ul>
-              </div>
-
-              <div class="case-testimonial">
-                <div class="testimonial-author">
-                  <img src="portfolio/carlos.jpeg" alt="Cliente">
-                  <div>
-                    <p class="client-name">Carlos Rodríguez</p>
-                    <p class="client-role">CEO, Grupo Gastronómico Sabores</p>
-                  </div>
-                </div>
-                <p class="testimonial-quote">
-                  "El sistema de IA que implementaron ha revolucionado completamente la forma en que gestionamos las reservas y la atención al cliente."
-                </p>
-              </div>
-
-              <div class="case-actions">
-                <a href="servicios.html#sistema-automation" class="btn-primary btn-small">
-                  <i class="fas fa-rocket"></i> Implementar en Mi Negocio
-                </a>
-                <a href="https://wa.me/573189526675" target="_blank" class="btn-secondary btn-small">
-                  <i class="fab fa-whatsapp"></i> Consultar Detalles
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Beneficios para Clientes -->
-      <section class="benefits-section">
-        <div class="container">
-          <h2 class="section-title">Beneficios Comprobados Para Tu Negocio</h2>
-          <p class="section-subtitle">
-            Esto es lo que nuestros clientes han logrado con nuestro sistema
-          </p>
-
-          <div class="benefits-grid">
-            <div class="benefit-item" data-aos="zoom-in" data-aos-delay="100">
-              <div class="benefit-icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <h3>Atiende 10x Más Clientes</h3>
-              <p>El sistema puede atender 1000 conversaciones simultáneas sin colapsar</p>
-            </div>
-
-            <div class="benefit-item" data-aos="zoom-in" data-aos-delay="200">
-              <div class="benefit-icon">
-                <i class="fas fa-dollar-sign"></i>
-              </div>
-              <h3>Ahorra $2,500 USD/mes</h3>
-              <p>Eliminas salarios, prestaciones y costos de capacitación de 3 empleados</p>
-            </div>
-
-            <div class="benefit-item" data-aos="zoom-in" data-aos-delay="300">
-              <div class="benefit-icon">
-                <i class="fas fa-chart-line"></i>
-              </div>
-              <h3>180% Más Ventas en WhatsApp</h3>
-              <p>Respuesta inmediata = Más clientes que compran sin pensarlo</p>
-            </div>
-
-            <div class="benefit-item" data-aos="zoom-in" data-aos-delay="400">
-              <div class="benefit-icon">
-                <i class="fas fa-clock"></i>
-              </div>
-              <h3>Recupera 15hrs/Semana</h3>
-              <p>Tu equipo deja de responder lo mismo 100 veces al día</p>
-            </div>
-
-            <div class="benefit-item" data-aos="zoom-in" data-aos-delay="500">
-              <div class="benefit-icon">
-                <i class="fas fa-moon"></i>
-              </div>
-              <h3>Vende Mientras Duermes</h3>
-              <p>El sistema captura pedidos de madrugada, fines de semana y festivos</p>
-            </div>
-
-            <div class="benefit-item" data-aos="zoom-in" data-aos-delay="600">
-              <div class="benefit-icon">
-                <i class="fas fa-tachometer-alt"></i>
-              </div>
-              <h3>Respuesta en 3 Segundos</h3>
-              <p>Nunca más pierdes clientes por responder tarde</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Lista de Clientes -->
-      <section class="clients-section">
-        <div class="container">
-          <h2 class="section-title">Clientes Que Confían En Nosotros</h2>
-          <p class="section-subtitle">
-            Empresas de diversos sectores que ya están viendo resultados
-          </p>
-
-          <div class="clients-grid">
-            <div class="client-badge">
-              <i class="fas fa-utensils"></i>
-              <span>Restaurantes</span>
-            </div>
-            <div class="client-badge">
-              <i class="fas fa-shopping-cart"></i>
-              <span>E-commerce</span>
-            </div>
-            <div class="client-badge">
-              <i class="fas fa-building"></i>
-              <span>Corporativos</span>
-            </div>
-            <div class="client-badge">
-              <i class="fas fa-heartbeat"></i>
-              <span>Salud & Bienestar</span>
-            </div>
-            <div class="client-badge">
-              <i class="fas fa-graduation-cap"></i>
-              <span>Educación</span>
-            </div>
-            <div class="client-badge">
-              <i class="fas fa-car"></i>
-              <span>Automotriz</span>
-            </div>
-            <div class="client-badge">
-              <i class="fas fa-home"></i>
-              <span>Bienes Raíces</span>
-            </div>
-            <div class="client-badge">
-              <i class="fas fa-briefcase"></i>
-              <span>Consultoría</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA Final -->
-      <section class="final-cta-section">
-        <div class="container">
-          <h2 class="section-title">¿Listo Para Obtener Estos Resultados?</h2>
-          <p class="section-subtitle">
-            Únete a más de 15 empresas que ya están transformando su negocio con nuestro sistema
-          </p>
-          <div class="cta-buttons">
-            <a href="servicios.html" class="btn-primary btn-large">
-              <i class="fas fa-rocket"></i> Ver Sistema Completo
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook JohnTeam" target="_blank" rel="noopener">
+              <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://wa.me/573189526675" target="_blank" class="btn-secondary btn-large">
-              <i class="fab fa-whatsapp"></i> Solicitar Consultoría Gratuita
+            <a href="https://www.instagram.com/johnteam.ai/" target="_blank" rel="noopener"
+              aria-label="Instagram JohnTeam">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@Johnteamzai" target="_blank" rel="noopener" aria-label="YouTube JohnTeam">
+              <i class="fab fa-youtube"></i>
             </a>
           </div>
-          <p class="cta-guarantee">
-            <i class="fas fa-shield-alt"></i>
-            Sistema listo en 18 días | Soporte continuo | Resultados garantizados
-          </p>
         </div>
-      </section>
-    </main>
+      </div>
 
-    <footer class="footer" id="footer">
-      <div class="container footer-container">
-        <div class="footer-section footer-accordion">
-          <h3 class="footer-title">
-            <span>Contacto</span>
-            <i class="fas fa-chevron-down footer-icon"></i>
-          </h3>
-          <div class="footer-content">
-            <ul>
-              <li><i class="fas fa-envelope"></i> <a href="mailto:johnteam380@gmail.com">johnteam380@gmail.com</a></li>
-              <li><i class="fas fa-phone"></i> <a href="tel:+573189526675">+57 318 952 6675</a></li>
-              <li><i class="fas fa-map-marker-alt"></i> Bogotá, Colombia</li>
-            </ul>
-            <div class="social-icons">
-              <a href="#" aria-label="Facebook JohnTeam" target="_blank" rel="noopener">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="https://www.instagram.com/johnteam.ai/" target="_blank" rel="noopener" aria-label="Instagram JohnTeam">
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a href="https://www.youtube.com/@Johnteamzai" target="_blank" rel="noopener" aria-label="YouTube JohnTeam">
-                <i class="fab fa-youtube"></i>
-              </a>
+      <div class="footer-section footer-accordion">
+        <h3 class="footer-title">
+          <span>Enlaces de Interés</span>
+          <i class="fas fa-chevron-down footer-icon"></i>
+        </h3>
+        <div class="footer-content">
+          <div class="footer-links-grid">
+            <div class="footer-links-col">
+              <h4>Navegación</h4>
+              <ul>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="portafolio.html">Portafolio</a></li>
+                <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                <li><a href="blog.html">Blog</a></li>
+              </ul>
             </div>
-          </div>
-        </div>
-
-        <div class="footer-section footer-accordion">
-          <h3 class="footer-title">
-            <span>Enlaces de Interés</span>
-            <i class="fas fa-chevron-down footer-icon"></i>
-          </h3>
-          <div class="footer-content">
-            <div class="footer-links-grid">
-              <div class="footer-links-col">
-                <h4>Navegación</h4>
-                <ul>
-                  <li><a href="servicios.html">Servicios</a></li>
-                  <li><a href="portafolio.html">Portafolio</a></li>
-                  <li><a href="quienes-somos.html">Quiénes Somos</a></li>
-                  <li><a href="blog.html">Blog</a></li>
-                </ul>
-              </div>
-              <div class="footer-links-col">
-                <h4>Legal</h4>
-                <ul>
-                  <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
-                  <li><a href="terminos-condiciones.html">Términos y Condiciones</a></li>
-                  <li><a href="politica-cookies.html">Política de Cookies</a></li>
-                  <li><a href="aviso-legal.html">Aviso Legal</a></li>
-                </ul>
-              </div>
+            <div class="footer-links-col">
+              <h4>Legal</h4>
+              <ul>
+                <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+                <li><a href="terminos-condiciones.html">Términos y Condiciones</a></li>
+                <li><a href="politica-cookies.html">Política de Cookies</a></li>
+                <li><a href="aviso-legal.html">Aviso Legal</a></li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-      
-      <div class="footer-bottom">
-        <p>&copy; 2025 JohnTeam. Todos los derechos reservados. Potenciado por IA.</p>
-      </div>
-    </footer>
+    </div>
 
-    <a
-      href="https://wa.me/573189526675"
-      class="whatsapp-bubble"
-      target="_blank"
-      rel="noopener"
-      aria-label="Contactar por WhatsApp"
-    >
-      <i class="fab fa-whatsapp"></i>
-    </a>
-    
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true
-      });
-    </script>
-    <script type="module" src="script.js"></script>
-  </body>
+    <div class="footer-bottom">
+      <p>&copy; 2025 JohnTeam. Todos los derechos reservados. Potenciado por IA.</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/573189526675" class="whatsapp-bubble" target="_blank" rel="noopener"
+    aria-label="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+  </script>
+  <script type="module" src="script.js"></script>
+</body>
+
 </html>

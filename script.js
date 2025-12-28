@@ -353,7 +353,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         projectCards.forEach((card) => {
           const categories = card.getAttribute("data-category").split(" ");
-          const matchesFilter = categories.includes(filter);
+          const matchesFilter = filter === 'all' || categories.includes(filter);
 
           // Optimización: no re-animar si ya está visible y coincide, o ya está oculto y no coincide
           const isCurrentlyVisible = card.style.display === "block";
@@ -456,7 +456,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Obtener el valor objetivo
         let target;
         let targetText = numberElement.textContent || "0";
-        
+
         // Priorizar data-target si existe
         if (numberElement.hasAttribute('data-target')) {
           target = parseInt(numberElement.getAttribute('data-target'));
@@ -464,16 +464,16 @@ document.addEventListener("DOMContentLoaded", function () {
           // Extraer el número del texto
           target = parseInt(targetText.replace(/\D/g, ""));
         }
-        
+
         // Si no hay número válido, salir
         if (isNaN(target) || target === 0) return;
-        
+
         // Detectar prefijo y sufijo (como $2,500)
         const hasPrefix = targetText.match(/^[^0-9]+/);
         const prefix = hasPrefix ? hasPrefix[0] : '';
         const suffixMatch = targetText.match(/[^0-9]+$/);
         const suffix = suffixMatch ? suffixMatch[0] : '';
-        
+
         let count = 0;
         const duration = 2000;
         const increment = target / (duration / 16);
@@ -496,7 +496,7 @@ document.addEventListener("DOMContentLoaded", function () {
             numberElement.textContent = prefix + displayNum + suffix;
           }
         };
-        
+
         animate();
       });
     }
@@ -546,30 +546,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Portfolio filtering logic (from portfolio.html)
-  const filterButtons = document.querySelectorAll(".filter-btn");
-  const projectCards = document.querySelectorAll(".project-card");
-
-  if (filterButtons.length > 0 && projectCards.length > 0) {
-    filterButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        // Remove active class from all buttons
-        filterButtons.forEach((btn) => btn.classList.remove("active"));
-        // Add active class to the clicked button
-        button.classList.add("active");
-
-        const filter = button.dataset.filter;
-
-        projectCards.forEach((card) => {
-          if (filter === "all" || card.dataset.category.includes(filter)) {
-            card.style.display = "block";
-          } else {
-            card.style.display = "none";
-          }
-        });
-      });
-    });
-  }
+  // Portfolio filtering logic is already handled in the block above (lines 318-384).
+  // Removing duplicate block to prevent conflicts.
 
   // Testimonial slider (from portfolio.html)
   const testimonials = document.querySelectorAll(".testimonial-item");
@@ -662,16 +640,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         blogCards.forEach((card) => {
           const cardCategories = card.getAttribute("data-category").split(" ");
-          
+
           if (selectedCategory === "all" || cardCategories.includes(selectedCategory)) {
             // Show card with animation
             card.style.display = "flex";
             card.style.opacity = "0";
             card.style.transform = "translateY(20px)";
-            
+
             // Trigger reflow for smooth transition
             void card.offsetWidth;
-            
+
             setTimeout(() => {
               card.style.opacity = "1";
               card.style.transform = "translateY(0)";
@@ -680,7 +658,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Hide card with animation
             card.style.opacity = "0";
             card.style.transform = "translateY(20px)";
-            
+
             setTimeout(() => {
               card.style.display = "none";
             }, 300);
