@@ -38,10 +38,6 @@
       "use": "@vercel/static"
     },
     {
-      "src": "proyectos/**/*.html",
-      "use": "@vercel/static"
-    },
-    {
       "src": "user-dashboard/dist/**/*",
       "use": "@vercel/static"
     },
@@ -284,10 +280,6 @@
     {
       "source": "/guias/:path*",
       "destination": "/guias/:path*"
-    },
-    {
-      "source": "/proyectos/:path*",
-      "destination": "/proyectos/:path*"
     },
     {
       "source": "/:file(.*)\\.html",
