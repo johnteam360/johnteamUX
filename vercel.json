@@ -38,7 +38,7 @@
       "use": "@vercel/static"
     },
     {
-      "src": "proyectos/**/*",
+      "src": "proyectos/**/*.html",
       "use": "@vercel/static"
     },
     {
