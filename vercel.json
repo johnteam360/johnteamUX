@@ -1,47 +1,5 @@
 ﻿{
   "version": 2,
-  "builds": [
-    {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "css/**/*.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "styles.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "js/**/*.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "img/**/*",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "imagen/**/*",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "portfolio/**/*",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "favicon.svg",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "favicon.ico",
-      "use": "@vercel/static"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -66,38 +24,6 @@
     }
   ],
   "rewrites": [
-    {
-      "source": "/favicon.ico",
-      "destination": "/favicon.ico"
-    },
-    {
-      "source": "/script.js",
-      "destination": "/script.js"
-    },
-    {
-      "source": "/styles.css",
-      "destination": "/styles.css"
-    },
-    {
-      "source": "/css/:path*",
-      "destination": "/css/:path*"
-    },
-    {
-      "source": "/js/:path*",
-      "destination": "/js/:path*"
-    },
-    {
-      "source": "/img/:path*",
-      "destination": "/img/:path*"
-    },
-    {
-      "source": "/imagen/:path*",
-      "destination": "/imagen/:path*"
-    },
-    {
-      "source": "/portfolio/:path*",
-      "destination": "/portfolio/:path*"
-    },
     {
       "source": "/:file(.*)\\.html",
       "destination": "/:file.html"
