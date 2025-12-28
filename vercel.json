@@ -34,18 +34,6 @@
       "use": "@vercel/static"
     },
     {
-      "src": "guias/**/*",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "user-dashboard/dist/**/*",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "dashboard-ts/dist/**/*",
-      "use": "@vercel/static"
-    },
-    {
       "src": "favicon.svg",
       "use": "@vercel/static"
     },
@@ -75,172 +63,9 @@
           "value": "camera=(), microphone=(), geolocation=()"
         }
       ]
-    },
-    {
-      "source": "/(.*\\.css)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/css"
-        }
-      ]
-    },
-    {
-      "source": "/dashboard/assets/(.*\\.css)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/css"
-        }
-      ]
-    },
-    {
-      "source": "/dashboard-ts/assets/(.*\\.css)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/css"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.js)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript"
-        }
-      ]
-    },
-    {
-      "source": "/dashboard/assets/(.*\\.js)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript"
-        }
-      ]
-    },
-    {
-      "source": "/dashboard-ts/assets/(.*\\.js)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.svg)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/svg+xml"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.json)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/json"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.png)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/png"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.jpg)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.jpeg)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.gif)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/gif"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.webp)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/webp"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.woff2)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "font/woff2"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.woff)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "font/woff"
-        }
-      ]
     }
   ],
   "rewrites": [
-    {
-      "source": "/dashboard",
-      "destination": "/user-dashboard/dist/index.html"
-    },
-    {
-      "source": "/dashboard/assets/:path*",
-      "destination": "/user-dashboard/dist/assets/:path*"
-    },
-    {
-      "source": "/dashboard/:path*",
-      "destination": "/user-dashboard/dist/:path*"
-    },
-    {
-      "source": "/dashboard-ts",
-      "destination": "/dashboard-ts/dist/index.html"
-    },
-    {
-      "source": "/dashboard-ts/assets/:path*",
-      "destination": "/dashboard-ts/dist/assets/:path*"
-    },
-    {
-      "source": "/dashboard-ts/:path*",
-      "destination": "/dashboard-ts/dist/:path*"
-    },
-    {
-      "source": "/favicon.svg",
-      "destination": "/dashboard-ts/dist/favicon.svg"
-    },
     {
       "source": "/favicon.ico",
       "destination": "/favicon.ico"
@@ -252,10 +77,6 @@
     {
       "source": "/styles.css",
       "destination": "/styles.css"
-    },
-    {
-      "source": "/assets/:path*",
-      "destination": "/assets/:path*"
     },
     {
       "source": "/css/:path*",
@@ -276,10 +97,6 @@
     {
       "source": "/portfolio/:path*",
       "destination": "/portfolio/:path*"
-    },
-    {
-      "source": "/guias/:path*",
-      "destination": "/guias/:path*"
     },
     {
       "source": "/:file(.*)\\.html",
