@@ -1,7 +1,5 @@
 ﻿{
-  "version": 2,
   "cleanUrls": true,
-  "trailingSlash": false,
   "headers": [
     {
       "source": "/(.*)",
@@ -23,12 +21,6 @@
           "value": "camera=(), microphone=(), geolocation=()"
         }
       ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/:path*",
-      "destination": "/:path*"
     }
   ]
 }
