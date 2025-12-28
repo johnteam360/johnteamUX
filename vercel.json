@@ -1,4 +1,4 @@
-{
+﻿{
   "version": 2,
   "builds": [
     {
@@ -35,6 +35,10 @@
     },
     {
       "src": "guias/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "proyectos/**/*",
       "use": "@vercel/static"
     },
     {
@@ -280,6 +284,10 @@
     {
       "source": "/guias/:path*",
       "destination": "/guias/:path*"
+    },
+    {
+      "source": "/proyectos/:path*",
+      "destination": "/proyectos/:path*"
     },
     {
       "source": "/:file(.*)\\.html",
